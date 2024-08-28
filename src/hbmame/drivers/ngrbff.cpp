@@ -1129,6 +1129,54 @@ ROM_START( rbff2bs09 )
 	ROM_LOAD16_BYTE( "240.c6", 0x2000001, 0x800000, CRC(4609e507) SHA1(bb17f50a377dddb77c1eeda5944a7bcbf0cca5f7) )
 ROM_END
 
+ROM_START( rbff1an ) /* ACA NEOGEO Version */
+	ROM_REGION( 0x300000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "095-p1an.p1",   0x000000, 0x100000, CRC(4deb432f) SHA1(b60b1fc0d5e5aa4456112f1846159b2efeaaab94) )
+	ROM_LOAD16_WORD_SWAP( "095-p2.p2", 0x100000, 0x200000, CRC(cc15826e) SHA1(44d6ac6c0ca697a6f367dcfd809b1e1771cb0635) )
+
+	NEO_SFIX_128K( "095-s1.s1", CRC(b6bf5e08) SHA1(b527355c35ea097f3448676f2ffa65b8e56ae30c) )
+
+	NEO_BIOS_AUDIO_128K( "095-m1.m1", CRC(653492a7) SHA1(39e511fb9ed5d2135dc8428a31d0baafb2ab36e0) )
+
+	ROM_REGION( 0xc00000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "069-v1.v1", 0x000000, 0x400000, CRC(2bdbd4db) SHA1(5f4fecf69c2329d699cbd45829c19303b1e2a80e) )
+	ROM_LOAD( "069-v2.v2", 0x400000, 0x400000, CRC(a698a487) SHA1(11b8bc53bc26a51f4a408e900e3769958625c4ed) )
+	ROM_LOAD( "095-v3.v3", 0x800000, 0x400000, CRC(189d1c6c) SHA1(f0b8cd1ee40ea3feeb2800f0723b451ec8240203) )
+
+	ROM_REGION( 0x1c00000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "069-c1.c1", 0x0000000, 0x400000, CRC(e302f93c) SHA1(d8610b14900b2b8fe691b67ca9b1abb335dbff74) )
+	ROM_LOAD16_BYTE( "069-c2.c2", 0x0000001, 0x400000, CRC(1053a455) SHA1(69501bfac68739e63d798045b812badd251d57b8) )
+	ROM_LOAD16_BYTE( "069-c3.c3", 0x0800000, 0x400000, CRC(1c0fde2f) SHA1(cf6c2ef56c03a861de3b0b6dc0d7c9204d947f9d) )
+	ROM_LOAD16_BYTE( "069-c4.c4", 0x0800001, 0x400000, CRC(a25fc3d0) SHA1(83cb349e2f1032652060b233e741fb893be5af16) )
+	ROM_LOAD16_BYTE( "095-c5.c5", 0x1000000, 0x400000, CRC(8b9b65df) SHA1(e2a7e20855501f240bcd22f5cc92fcb4a9806abe) )
+	ROM_LOAD16_BYTE( "095-c6.c6", 0x1000001, 0x400000, CRC(3e164718) SHA1(53217f938c8964c1ca68a6fd5249c4169a5ac8e6) )
+	ROM_LOAD16_BYTE( "095-c7.c7", 0x1800000, 0x200000, CRC(ca605e12) SHA1(5150b835247fd705bc1dece97d423d9c20a51416) )
+	ROM_LOAD16_BYTE( "095-c8.c8", 0x1800001, 0x200000, CRC(4e6beb6c) SHA1(c0ac7cfc832ace6ad52c58f5da3a8101baead749) )
+ROM_END
+
+ROM_START( ffury3an ) /* ACA NEOGEO Version */
+	ROM_REGION( 0x300000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "069-p1an.p1",     0x000000, 0x100000, CRC(077f391e) SHA1(29c20acc6beae2f9e0076ded21cc457ce59c48ae) )
+	ROM_LOAD16_WORD_SWAP( "069-p2.p2", 0x100000, 0x200000, CRC(dbe963ed) SHA1(8ece7f663cfe8e563576a397e41161d392cee67e) )
+
+	NEO_SFIX_128K( "069-s1.s1", CRC(0b33a800) SHA1(b7d2cc97da4f30ddebc7b801f5e1d17d2306b2db) )
+
+	NEO_BIOS_AUDIO_128K( "069-m1.m1", CRC(fce72926) SHA1(a40c74f793900b8542f0b8383ce4bf46fca112d4) )
+
+	ROM_REGION( 0xa00000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "069-v1.v1", 0x000000, 0x400000, CRC(2bdbd4db) SHA1(5f4fecf69c2329d699cbd45829c19303b1e2a80e) )
+	ROM_LOAD( "069-v2.v2", 0x400000, 0x400000, CRC(a698a487) SHA1(11b8bc53bc26a51f4a408e900e3769958625c4ed) )
+	ROM_LOAD( "069-v3.v3", 0x800000, 0x200000, CRC(581c5304) SHA1(e9550ec547b4f605afed996b22d711f49b48fa92) )
+
+	ROM_REGION( 0x1400000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "069-c1.c1", 0x0000000, 0x400000, CRC(e302f93c) SHA1(d8610b14900b2b8fe691b67ca9b1abb335dbff74) )
+	ROM_LOAD16_BYTE( "069-c2.c2", 0x0000001, 0x400000, CRC(1053a455) SHA1(69501bfac68739e63d798045b812badd251d57b8) )
+	ROM_LOAD16_BYTE( "069-c3.c3", 0x0800000, 0x400000, CRC(1c0fde2f) SHA1(cf6c2ef56c03a861de3b0b6dc0d7c9204d947f9d) )
+	ROM_LOAD16_BYTE( "069-c4.c4", 0x0800001, 0x400000, CRC(a25fc3d0) SHA1(83cb349e2f1032652060b233e741fb893be5af16) )
+	ROM_LOAD16_BYTE( "069-c5.c5", 0x1000000, 0x200000, CRC(b3ec6fa6) SHA1(7e4c8ee9dd8d9a25ff183d9d8b05f38769348bc7) )
+	ROM_LOAD16_BYTE( "069-c6.c6", 0x1000001, 0x200000, CRC(69210441) SHA1(6d496c549dba65caabeaffe5b762e86f9d648a26) )
+ROM_END
+
 /*    YEAR  NAME            PARENT    MACHINE        INPUT       INIT             MONITOR COMPANY                 FULLNAME FLAGS */
  // Fatal Fury Special
 GAME( 1993, fatfurspb2,    fatfursp, neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "Dodowang[EGCG]", "Fatal Fury Special (Optional Hidden Character First Edition)", MACHINE_SUPPORTS_SAVE )
@@ -1144,6 +1192,10 @@ GAME( 1992, fatfur2b,      fatfury2, neogeo_noslot, neogeo, neogeo_state, init_f
 GAME( 2015, fatfury2s01,    fatfury2, neogeo_noslot, neogeo, neogeo_state, init_fatfury2,  ROT0, "lichenzhao",    "Fatal Fury 2 (The New Legendary Simplified Version, 2015-03-11)", MACHINE_SUPPORTS_SAVE )
 GAME( 1992, fatfury2s02,    fatfury2, neogeo_noslot, neogeo, neogeo_state, init_fatfury2,  ROT0, "yumeji[2ch]",    "Fatal Fury 2 (Enable Hidden Characters)", MACHINE_SUPPORTS_SAVE )
 GAME( 1992, fatfury2s03,    fatfury2, neogeo_noslot, neogeo, neogeo_state, init_fatfury2,  ROT0, "lichenzhao",    "Fatal Fury 2 (Easy Special Attacks)", MACHINE_SUPPORTS_SAVE )
+ // Fatal Fury 3
+GAME( 1995, ffury3an,       fatfury3, neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "SNK", "Fatal Fury 3 - Road to the Final Victory / Garou Densetsu 3 - haruka-naru tatakai (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
+ // Real Bout Fatal Fury
+GAME( 1995, rbff1an,        rbff1,    neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "SNK", "Real Bout Fatal Fury / Real Bout Garou Densetsu (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
  // Real Bout Fatal Fury Special
 GAME( 1996, rbffsb,        rbffspec, neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "Creamymami", "Real Bout Fatal Fury Special (Add Geese Howard)", MACHINE_SUPPORTS_SAVE )
 GAME( 1996, rbffseh,       rbffspec, neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "Creamymami", "Real Bout Fatal Fury Special (Add Geese Howard - Ultra pow hack)", MACHINE_SUPPORTS_SAVE )

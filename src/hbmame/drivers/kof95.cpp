@@ -1184,6 +1184,36 @@ ROM_START( kof95s47 ) // kof95y - Hack by Ydmis - (Can choose Kusanagi and Rugal
 	ROM_LOAD16_BYTE( "084.c8",  0x1800001, 0x100000, CRC(78eb0f9b) SHA1(2925ea21ed2ce167f08a25589e94f28643379034) )
 ROM_END
 
+ROM_START( kof95an ) /* ACA NEOGEO VERSION */
+	/* This set uses NEO-MVS PROGSM board; same rom data as in kof95h is used */
+	ROM_REGION( 0x200000, "maincpu", ROMREGION_BE|ROMREGION_16BIT )
+	ROM_LOAD16_WORD_SWAP( "084-epr.an1", 0x000000, 0x080000, CRC(21a370a5) SHA1(7dd827a9c85a5c8343b8692b2c17bd445e61773e) ) /* ACA NEOGEO */
+	ROM_LOAD16_WORD_SWAP( "084-epr.ep2", 0x080000, 0x080000, CRC(30802a5d) SHA1(04109e7c4f8d171fcebbe1198f85a271b008f8f1) ) /* M27C4002 */
+	ROM_LOAD16_WORD_SWAP( "084-epr.ep3", 0x100000, 0x080000, CRC(21ae248a) SHA1(87318a1bc667f31a9824beefee94617b4724dc2d) ) /* M27C4002 */
+	ROM_LOAD16_WORD_SWAP( "084-epr.ep4", 0x180000, 0x080000, CRC(19d3fbee) SHA1(39225ec8a7ed5d2f5e83f5d575b9fa38800b0704) ) /* M27C4002 */
+	/* P's on eprom, correct chip label unknown */
+
+	NEO_SFIX_128K( "084-s1.s1", CRC(de716f8a) SHA1(f7386454a943ed5caf625f67ee1d0197b1c6fa13) ) /* TC531000 */
+
+	NEO_BIOS_AUDIO_128K( "084-m1.m1", CRC(6f2d7429) SHA1(6f8462e4f07af82a5ca3197895d5dcbb67bdaa61) ) /* TC531001 */
+
+	ROM_REGION( 0x900000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "084-v1.v1", 0x000000, 0x400000, CRC(84861b56) SHA1(1b6c91ddaed01f45eb9b7e49d9c2b9b479d50da6) ) /* TC5332201 */
+	ROM_LOAD( "084-v2.v2", 0x400000, 0x200000, CRC(b38a2803) SHA1(dbc2c8606ca09ed7ff20906b022da3cf053b2f09) ) /* TC5316200 */
+	/* 600000-7fffff empty */
+	ROM_LOAD( "084-v3.v3", 0x800000, 0x100000, CRC(d683a338) SHA1(eb9866b4b286edc09963cb96c43ce0a8fb09adbb) ) /* TC538200 */
+
+	ROM_REGION( 0x1a00000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "084-c1.c1", 0x0000000, 0x400000, CRC(fe087e32) SHA1(e8e89faa616027e4fb9b8a865c1a67f409c93bdf) ) /* Plane 0,1 */ /* TC5332202 */
+	ROM_LOAD16_BYTE( "084-c2.c2", 0x0000001, 0x400000, CRC(07864e09) SHA1(0817fcfd75d0735fd8ff27561eaec371e4ff5829) ) /* Plane 2,3 */ /* TC5332202 */
+	ROM_LOAD16_BYTE( "084-c3.c3", 0x0800000, 0x400000, CRC(a4e65d1b) SHA1(740a405b40b3a4b324697d2652cae29ffe0ac0bd) ) /* Plane 0,1 */ /* TC5332202 */
+	ROM_LOAD16_BYTE( "084-c4.c4", 0x0800001, 0x400000, CRC(c1ace468) SHA1(74ea2a3cfd7b744f0988a05baaff10016ca8f625) ) /* Plane 2,3 */ /* TC5332202 */
+	ROM_LOAD16_BYTE( "084-c5.c5", 0x1000000, 0x200000, CRC(8a2c1edc) SHA1(67866651bc0ce27122285a66b0aab108acf3d065) ) /* Plane 0,1 */ /* TC5316200 */
+	ROM_LOAD16_BYTE( "084-c6.c6", 0x1000001, 0x200000, CRC(f593ac35) SHA1(302c92c63f092a8d49429c3331e5e5678f0ea48d) ) /* Plane 2,3 */ /* TC5316200 */
+	/* 1400000-17fffff empty */
+	ROM_LOAD16_BYTE( "084-c7.c7", 0x1800000, 0x100000, CRC(9904025f) SHA1(eec770746a0ad073f7d353ab16a2cc3a5278d307) ) /* Plane 0,1 */ /* TC538200 */
+	ROM_LOAD16_BYTE( "084-c8.c8", 0x1800001, 0x100000, CRC(78eb0f9b) SHA1(2925ea21ed2ce167f08a25589e94f28643379034) ) /* Plane 2,3 */ /* TC538200 */
+ROM_END
 
 /*    YEAR  NAME            PARENT    MACHINE        INPUT   CLASS         INIT          MONITOR COMPANY        FULLNAME     FLAGS */
 // The King of Fighters '95
@@ -1232,4 +1262,5 @@ GAME( 2017, kof95s44,       kof95,    gsc,           neogeo, neogeo_state, init_
 GAME( 2017, kof95s45,       kof95,    gsc,           neogeo, neogeo_state, init_neogeo,    ROT0, "GSC2007", "Kof'95 (Special v1.0, 2017-06-13)", MACHINE_SUPPORTS_SAVE )
 GAME( 1995, kof95s46,       kof95,    neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "PPX Hack Team", "Kof'95 (Boss)", MACHINE_SUPPORTS_SAVE )
 GAME( 1995, kof95s47,       kof95,    neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "Ydmis", "Kof'95 (Add Char set 1)", MACHINE_SUPPORTS_SAVE )
+GAME( 1995, kof95an,        kof95,    neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "SNK", "The King of Fighters '95 (NGM-084, ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
 

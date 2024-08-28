@@ -5585,6 +5585,32 @@ ROM_START( kof99s106 ) // kof99ndbc
 	ROM_LOAD16_BYTE( "251bhp2.c8", 0x3000001, 0x800000, CRC(fbc1112c) SHA1(3f3789b8bbc335a4f9b66fc66a350767ec7bc32c) )
 ROM_END
 
+ROM_START( kof99kao ) /* ACA NEOGEO PROM decrypted Version */
+	ROM_REGION( 0x500000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "251-p1da.p1", 0x000000, 0x100000, CRC(e9b35003) SHA1(e797069b9b25efcf1c4f4204e51c674695dfe48a) )
+	ROM_LOAD16_WORD_SWAP( "152-p2.sp2" , 0x100000, 0x400000, CRC(274ef47a) SHA1(98654b68cc85c19d4a90b46f3110f551fa2e5357) )
+
+	NEO_SFIX_MT_128K
+
+	NEO_BIOS_AUDIO_128K( "251-m1a.m1", CRC(da5ec463) SHA1(c30b63a35d81b758434f36b5dffe096acb0bd317) )
+
+	ROM_REGION( 0x0e00000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "251-v1da.v1", 0x000000, 0x400000, CRC(69f93c86) SHA1(696efc2dc1a24609fa36e8c1ea646f603b5c8d90) )
+	ROM_LOAD( "251-v2da.v2", 0x400000, 0x400000, CRC(29a514f2) SHA1(aa3fa80e10645b02b9b62e9caa45c4ad6b5ef0ff) )
+	ROM_LOAD( "251-v3da.v3", 0x800000, 0x400000, CRC(c0404462) SHA1(8de9aae25cca86d80d2c4c5755f71018a326c00c) )
+	ROM_LOAD( "251-v4da.v4", 0xc00000, 0x200000, CRC(c9aa9daf) SHA1(37d35968b59e24af63ec54263a79aee1ac985f1c) )
+
+	ROM_REGION( 0x4000000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "251-c1.c1", 0x0000000, 0x800000, CRC(0f9e93fe) SHA1(c7d77f0833c6f526f632e4f2dce59e302f6b9a15) )
+	ROM_LOAD16_BYTE( "251-c2.c2", 0x0000001, 0x800000, CRC(e71e2ea3) SHA1(39c7a326fddbcca3b29c68cdc96aad4d62295c0f) )
+	ROM_LOAD16_BYTE( "251-c3.c3", 0x1000000, 0x800000, CRC(238755d2) SHA1(01125b5c7a28e350f091280b041954fd1ac7c98f) )
+	ROM_LOAD16_BYTE( "251-c4.c4", 0x1000001, 0x800000, CRC(438c8b22) SHA1(ffbc643f5b27dd00f2f95d4ef4c5f29ee814722b) )
+	ROM_LOAD16_BYTE( "251-c5.c5", 0x2000000, 0x800000, CRC(0b0abd0a) SHA1(d5ad324fe523bdc6f09209d236cc4932524a48f1) )
+	ROM_LOAD16_BYTE( "251-c6.c6", 0x2000001, 0x800000, CRC(65bbf281) SHA1(79ae174667a23dabcfe865b6cd6133c86098452e) )
+	ROM_LOAD16_BYTE( "251-c7.c7", 0x3000000, 0x800000, CRC(ff65f62e) SHA1(7cd335fede05b56e15db90ce407c1183a78da4e9) )
+	ROM_LOAD16_BYTE( "251-c8.c8", 0x3000001, 0x800000, CRC(8d921c68) SHA1(42acf1d27d52a8e3b6262eb7df50693c0b135565) )
+ROM_END
+
 /*    YEAR  NAME            PARENT    MACHINE        INPUT       INIT             MONITOR COMPANY                 FULLNAME FLAGS */
 // The King of Fighters '99
 GAME( 1999, kof99ab,    kof99,    neogeo_noslot, neogeo, neogeo_state, init_kof99,    ROT0, "Marcochen/PPX Hack Team", "Kof'99 (Rolls moves sideways ver)", MACHINE_SUPPORTS_SAVE )
@@ -5799,4 +5825,4 @@ GAME( 2020, kof99s103,      kof99,   neogeo_noslot,  neogeo, neogeo_state, init_
 GAME( 2020, kof99s104,      kof99,   neogeo_noslot,  neogeo, neogeo_state, init_neogeo,    ROT0, "hack",    "Kof'99 (Imitation PS Enhanced Edition Original, 2020-08-24)", MACHINE_SUPPORTS_SAVE )
 GAME( 2020, kof99s105,      kof99,   neogeo_noslot,  neogeo, neogeo_state, init_neogeo,    ROT0, "hack",    "Kof'99 (Imitation PS Enhanced Edition Simplified, 2020-08-24)", MACHINE_SUPPORTS_SAVE )
 GAME( 2020, kof99s106,      kof99,   neogeo_noslot,  neogeo, neogeo_state, init_neogeo,    ROT0, "hack",    "Kof'99 (Imitation 14 BC Version (AC open BC), 2020-09-30)", MACHINE_SUPPORTS_SAVE )
-
+GAME( 1999, kof99kao,       kof99,   neogeo_noslot,  neogeo, neogeo_state, init_kof99,     ROT0, "SNK", "Kof'99 (NGH-251)(Decrypted P ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
