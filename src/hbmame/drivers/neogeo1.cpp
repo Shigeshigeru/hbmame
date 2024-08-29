@@ -5718,6 +5718,28 @@ ROM_START( lresoran ) //ACA NEOGEO Version
 	ROM_LOAD16_BYTE( "024-c4.c4", 0x200001, 0x080000, CRC(7382fefb) SHA1(e916dec5bb5462eb9ae9711f08c7388937abb980) )
 ROM_END
 
+ROM_START( waku7wii ) // Wii Virtual Console Version
+	ROM_REGION( 0x300000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "225wiivc.p1", 0x000000, 0x100000, CRC(027AA9D6) SHA1(D1D93157BE1DF3297279A0798E6A960C9EF0F836) )
+	ROM_LOAD16_WORD_SWAP( "225-p2.p2", 0x100000, 0x200000, CRC(fe190665) SHA1(739d9a8fc2da34381654d9e291141eacc210ae5c) )
+
+	NEO_SFIX_128K( "225-s1.s1", CRC(71c4b4b5) SHA1(9410f13807f01082dc86f2d84051be4bed8e9f7c) )
+
+	NEO_BIOS_AUDIO_128K( "225-m1.m1", CRC(0634bba6) SHA1(153aaf016440500df7a4454f3f2f2911219cb7d8) )
+
+	ROM_REGION( 0x800000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "225-v1.v1", 0x000000, 0x400000, CRC(6195c6b4) SHA1(66c06b5904aedb256e3997bbec60f8ab50c6ff0c) )
+	ROM_LOAD( "225-v2.v2", 0x400000, 0x400000, CRC(6159c5fe) SHA1(9015e93416497f1ef877c717afed40f7ecfa42e4) )
+
+	ROM_REGION( 0x1800000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "225-c1.c1", 0x0000000, 0x400000, CRC(ee4fea54) SHA1(314b513a52b2cc88cbf2409d1934c357269a8bb2) )
+	ROM_LOAD16_BYTE( "225-c2.c2", 0x0000001, 0x400000, CRC(0c549e2d) SHA1(d8c4626231c92e43d9bf183202553ee2b5c532e6) )
+	ROM_LOAD16_BYTE( "225-c3.c3", 0x0800000, 0x400000, CRC(af0897c0) SHA1(2b8ec19b9dd0bd1f1171fb01b915e9d25ec8c421) )
+	ROM_LOAD16_BYTE( "225-c4.c4", 0x0800001, 0x400000, CRC(4c66527a) SHA1(6c8c9342fad70b456e282b0d52e7ad890e4673d3) )
+	ROM_LOAD16_BYTE( "225-c5.c5", 0x1000000, 0x400000, CRC(8ecea2b5) SHA1(cad51e6e76d8258a78becb6f4096dd061f537494) )
+	ROM_LOAD16_BYTE( "225-c6.c6", 0x1000001, 0x400000, CRC(0eb11a6d) SHA1(c6d4f978ff3ca190a3060ac52bd7347189194f76) )
+ROM_END
+
 GAME( 1991, 2020bbe,     2020bb,   neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "SNK / Pallas", "2020 Super Baseball (Earlier)", MACHINE_SUPPORTS_SAVE )
 GAME( 1993, 3countbe,    3countb,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "SNK", "3 Count Bout / Fire Suplex (Earlier)", MACHINE_SUPPORTS_SAVE )
 GAME( 1996, aof3e,       aof3,     neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "SNK", "Art of Fighting 3 - The Path of the Warrior / Art of Fighting - Ryuuko no Ken Gaiden (Earlier)", MACHINE_SUPPORTS_SAVE )
@@ -5754,4 +5776,5 @@ GAME( 2020, bstars2c,    bstars2,  neogeo_noslot, neogeo, neogeo_state, init_neo
 GAME( 1999, preisle2o,   preisle2, neogeo_noslot, neogeo, neogeo_state, init_preisle2, ROT0, "Yumekobo / Saurus", "Prehistoric Isle 2 Genshi-tou (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE ) /* Encrypted GFX */
 GAME( 1999, s1945po,     s1945p,   neogeo_noslot, neogeo, neogeo_state, init_s1945p,   ROT0, "Psikyo", "Strikers 1945 Plus (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )   /* Encrypted GFX */
 GAME( 1992, lresoran,    lresort,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "SNK", "Last Resort (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
+GAME( 1996, waku7wii,    wakuwak7, neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "Sunsoft", "Waku Waku 7 (Wii Virtual Console Version)", MACHINE_SUPPORTS_SAVE )
 
