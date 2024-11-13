@@ -1087,6 +1087,31 @@ ROM_START( kof94s40 ) // kof94te - Team Edit Edition v1.4.2 https://neorh.mattgr
 	ROM_LOAD16_BYTE( "055s40.c8", 0xc00001, 0x200000, CRC(7f680a75) SHA1(adc547d23d9f11412871b463202908120bb5bccf) )
 ROM_END
 
+ROM_START( kof94an ) /* ACA NEOGEO VERSION */
+	ROM_REGION( 0x200000, "maincpu", ROMREGION_BE|ROMREGION_16BIT )
+	ROM_LOAD16_WORD_SWAP( "055-p1an.p1", 0x100000, 0x100000, CRC(7de212c2) SHA1(8cf7066c24ae0adcaa04260627d45013a26103f8) ) /* ACA NEOGEO */
+	ROM_CONTINUE( 0x000000, 0x100000 )
+
+	NEO_SFIX_128K( "055-s1.s1", CRC(825976c1) SHA1(cb6a70bdd95d449d25196ca269b621c362db6743) ) /* mask rom TC531000 */
+
+	NEO_BIOS_AUDIO_128K( "055-m1.m1", CRC(f6e77cf5) SHA1(292a3e3a4918ffe72bd1c41acb927b91844e035e) ) /* mask rom TC531001 */
+
+	ROM_REGION( 0x600000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "055-v1.v1", 0x000000, 0x200000, CRC(8889596d) SHA1(c9ce713b720511438dbd3fe3bcc7c246f475c6a2) ) /* mask rom TC5316200 */
+	ROM_LOAD( "055-v2.v2", 0x200000, 0x200000, CRC(25022b27) SHA1(2b040a831c3c92ac6e4719de38009a0d55b64f6b) ) /* mask rom TC5316200 */
+	ROM_LOAD( "055-v3.v3", 0x400000, 0x200000, CRC(83cf32c0) SHA1(34a31a37eb10945b5169e96321bcea06eec33a00) ) /* mask rom TC5316200 */
+
+	ROM_REGION( 0x1000000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "055-c1.c1", 0x000000, 0x200000, CRC(b96ef460) SHA1(e52f5303c17b50ce165c008be2837336369c110b) ) /* Plane 0,1 */ /* mask rom TC5316200 */
+	ROM_LOAD16_BYTE( "055-c2.c2", 0x000001, 0x200000, CRC(15e096a7) SHA1(237c2a3d059de00bfca66e0016ed325d7a32bfec) ) /* Plane 2,3 */ /* mask rom TC5316200 */
+	ROM_LOAD16_BYTE( "055-c3.c3", 0x400000, 0x200000, CRC(54f66254) SHA1(c594384bcd8b03beb8c595591505fecc44b185ac) ) /* Plane 0,1 */ /* mask rom TC5316200 */
+	ROM_LOAD16_BYTE( "055-c4.c4", 0x400001, 0x200000, CRC(0b01765f) SHA1(ec1fdcc944611408367bf5023d4ebe7edd9dfa88) ) /* Plane 2,3 */ /* mask rom TC5316200 */
+	ROM_LOAD16_BYTE( "055-c5.c5", 0x800000, 0x200000, CRC(ee759363) SHA1(8a5621c1b1f8267b9b9b6a14ab4944de542e1945) ) /* Plane 0,1 */ /* mask rom TC5316200 */
+	ROM_LOAD16_BYTE( "055-c6.c6", 0x800001, 0x200000, CRC(498da52c) SHA1(1e6e6202ee053a5261db889177ce3a087e078bda) ) /* Plane 2,3 */ /* mask rom TC5316200 */
+	ROM_LOAD16_BYTE( "055-c7.c7", 0xc00000, 0x200000, CRC(62f66888) SHA1(ac91a0eab0753bee175ad40213a4ae5d38ed5b87) ) /* Plane 0,1 */ /* mask rom TC5316200 */
+	ROM_LOAD16_BYTE( "055-c8.c8", 0xc00001, 0x200000, CRC(fe0a235d) SHA1(a45c66836e4e3c77dfef9d4c6cc422cb59169149) ) /* Plane 2,3 */ /* mask rom TC5316200 */
+ROM_END
+
 /*    YEAR  NAME            PARENT    MACHINE        INPUT   CLASS         INIT          MONITOR COMPANY                 FULLNAME FLAGS */
 // The King of Fighters '94
 GAME( 1994, kof94k,         kof94,    neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "hack", "Kof'94 (Korean Edition)", MACHINE_SUPPORTS_SAVE )
@@ -1131,4 +1156,4 @@ GAME( 1994, kof94s37,       kof94,    neogeo_noslot, neogeo, neogeo_state, init_
 GAME( 1994, kof94s38,       kof94,    neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "Ydmis", "Kof'94 (Hidden Characters-Fix Boss's error)", MACHINE_SUPPORTS_SAVE )
 GAME( 2024, kof94s39,       kof94,    neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "Matt Greer", "Kof'94 (Team Edit Edition v1.3.0)", MACHINE_SUPPORTS_SAVE )
 GAME( 2024, kof94s40,       kof94,    neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "Matt Greer", "Kof'94 (Team Edit Edition v1.4.2)", MACHINE_SUPPORTS_SAVE )
-
+GAME( 1994, kof94an,        kof94,    neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "SNK", "The King of Fighters '94 (NGM-055 ~ NGH-055,ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )

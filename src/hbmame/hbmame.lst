@@ -2100,6 +2100,7 @@ kof94s37
 kof94s38
 kof94s39
 kof94s40
+kof94an
 
 @source:kof95.cpp
 kof95k
@@ -2147,6 +2148,7 @@ kof95s44
 kof95s45
 kof95s46
 kof95s47
+kof95an
 
 @source:kof96.cpp
 kof96a
@@ -3323,6 +3325,7 @@ kof99s103
 kof99s104
 kof99s105
 kof99s106
+kof99kao
 
 @source:kof2000.cpp
 kof2000d
@@ -4937,6 +4940,7 @@ mslug3rmg02
 mslug3rmg03
 mslug3rmg04
 mslug3unity
+mslug3hand
 
 @source:mslug4.cpp
 mslug4a
@@ -5356,6 +5360,7 @@ mslug5ervx15
 mslug5ervx16
 mslug5unity
 mslug5ast
+mslug5be
 
 @source:mslug6.cpp
 mslug6                                 //parent
@@ -5434,6 +5439,7 @@ mslug6pf03
 mslug6pf04
 
 @source:mslugx.cpp
+mslugxd
 mslugxce
 mslugxeb
 mslugxeh1
@@ -5944,7 +5950,7 @@ blazstar		// 239
 breakers		// 230
 breakrev		// 245
 bstars			// 002
-//bstars2		// 041  not needed
+bstars2			// 041
 burningf		// 018
 crsword			// 037
 crswd2bl		// 054
@@ -6475,6 +6481,13 @@ tws96e
 wakuwk7e
 whpe
 wjammere
+ridheran
+neodrifc
+bstars2c
+preisle2o
+s1945po
+lresoran
+waku7wii
 
 @source:ngdoubledr.cpp
 dbdehy
@@ -6813,6 +6826,8 @@ rbff2bs06
 rbff2bs07
 rbff2bs08
 rbff2bs09
+ffury3an
+rbff1an
 
 @source:ngrotd.cpp
 rotdb
@@ -7208,6 +7223,7 @@ wh2s02
 wh2js01
 wh2js02
 wh2js03
+wh2an
 
 @source:nmk16.cpp
 tdragon2		//parent
@@ -8665,6 +8681,7 @@ dankuga01
 dankuga02
 dariusg                                //parent
 dariusg01
+dariusgjcc
 elvactr                                //parent
 elvactr01
 gekiridn                               //parent
