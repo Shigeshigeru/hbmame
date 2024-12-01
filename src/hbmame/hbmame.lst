@@ -5932,6 +5932,7 @@ roishtarx
 salamand	//parent
 spclone		// v0.7.3
 spcloneo	// v0.7.2.2
+spclonec	// v0.7.3 and v0.7.2.2 from IPS unkown Chimera?
 
 @source:neogeo.cpp
 // These are the parents of our hacks
