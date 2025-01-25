@@ -3,11 +3,13 @@
 
 2025-xx-xx 0.245.22
 
+- NAM-1975: Enabled the demo in the attract mode
 
 New Games
 ---------------------------------
 - [cbarrel]             Captain Barrel
 - [galaxiann2]          Galaxians (beta 2, 2023-06-23) (Neo-Geo port)
+- [pakupaku]            Paku Paku (alpha)
 - [shinobin]            Shinobi v1.0 (Neo-Geo port)
 - [shinobin1]           Shinobi v1.1 (Neo-Geo port)
 - [shinobint]           Shinobi Test
@@ -46,7 +48,7 @@ New Games
 
 2024-06-20 0.245.20
 
-ngneo: expanded the software list
+- ngneo: expanded the software list
 
 
 New Games
@@ -111,7 +113,7 @@ New Games
 
 2024-02-21 0.245.17
 
-Set Neo-Geo Korean-language translations to actually show Korean text.
+- Set Neo-Geo Korean-language translations to actually show Korean text.
 
 New Games
 ---------------------------------
@@ -155,7 +157,7 @@ New Games
 
 2024-01-28 0.245.16
 
-Clockwork Aquario: Added sound, removed freeplay.
+- Clockwork Aquario: Added sound, removed freeplay.
 
 New Games
 ---------------------------------
