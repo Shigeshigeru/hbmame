@@ -204,7 +204,9 @@ NUM GAME YEAR COMPANY                 TITLE
 503 0722 2024 Pixelheart              Gladmort Demo
 503 0723 2024 Pixelheart              Gladmort Demo 2
 504 1337 2025 Hoffman                 Shinobi (Neo-Geo port)
-505 14A3 2025                         Double Dragon One demo
+505 14A3 2025 Neocvera                Double Dragon One demo
+506 0283 2025 iq_132                  Karnov (Neo-Geo port)
+507 1338 2025 Hoffman                 Golden Axe (Neo-Geo port)
 539 0539 2025 Shadow Gangs            Shadow Gangs demo
 
 
@@ -2180,6 +2182,43 @@ ROM_START( doubled1 ) // earlier
 ROM_END
 
 
+// 506: Karnov port by iq_132
+ROM_START( karnovn )
+	ROM_REGION( 0x500000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "506.p1", 0x000000, 0x80000, CRC(79fd92aa) SHA1(4a56a325c32be69a27443776055152a0a436c1eb) )
+
+	NEO_SFIX_128K( "506.s1", CRC(f6a144cf) SHA1(cd8d438431d54f1451b796410864caf299787278) )
+
+	NEO_BIOS_AUDIO_64K( "506.m1", CRC(089a15b5) SHA1(bdccbf1042e0d611e30178652fdeec01e00a5b44) )
+
+	ROM_REGION( 0x200000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "506.v1",   0x000000, 0x200000, CRC(51502fea) SHA1(cfb2bd316e2b05e8559d662569837c0ca72ff6bc) )
+
+	ROM_REGION( 0x100000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "506.c1",   0x0000000, 0x80000, CRC(a27d94ff) SHA1(1497a1e2a8b471edca7942201bd3e891f8fdb0b9) )
+	ROM_LOAD16_BYTE( "506.c2",   0x0000001, 0x80000, CRC(b9435703) SHA1(a0c309dc1d768c5182876883928588789eb1b372) )
+ROM_END
+
+
+// 507: Golden Axe port by Hoffman
+ROM_START( goldaxen )
+	ROM_REGION( 0x500000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "507.p1", 0x000000, 0x100000, CRC(3c3ed057) SHA1(4f3ba87fb85a6e79d9efd8da0cdf91515630e60a) )
+
+	NEO_SFIX_128K( "507.s1", CRC(707d91c0) SHA1(aa9c9c458116d5ca4c40def1f71934a1a94fcf7b) )
+
+	NEO_BIOS_AUDIO_64K( "507.m1", CRC(7805d21b) SHA1(15620425344ca4a4bea8364618586f84b3241321) )
+
+	ROM_REGION( 0x800000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "507.v1",   0x000000, 0x400000, CRC(5ed99267) SHA1(a720ed8942e88eb883b95f65f9fde10939b7b19a) )
+	ROM_LOAD( "507.v2",   0x400000, 0x400000, CRC(d30632dd) SHA1(8e3d17cc3054e842ba36cd4b872929c5163960ec) )
+
+	ROM_REGION( 0x400000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "507.c1",   0x0000000, 0x200000, CRC(7540f3d6) SHA1(a505201798f121d02278ca1761fc2dd451a16336) )
+	ROM_LOAD16_BYTE( "507.c2",   0x0000001, 0x200000, CRC(a78a6647) SHA1(19a9b65701935165bd972542f868b71b3d70cb47) )
+ROM_END
+
+
 // 539: Shadow Gangs demo by Shadow Gangs
 // bugs: screen goes black, sound stops after a few seconds
 ROM_START( sgz ) // demo
@@ -3600,11 +3639,13 @@ GAME( 2023, galaxiann2,   galaxiann,neogeo_noslot,   neogeo,  neogeo_state, init
 GAME( 2009, gbi,          neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "[Raregame]", "GhostBusters (Intro demo)", MACHINE_SUPPORTS_SAVE )
 GAME( 2024, gladmortd,    neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Pixelheart", "Gladmort (Demo)", MACHINE_SUPPORTS_SAVE )
 GAME( 2024, gladmortd2,   gladmortd,neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Pixelheart", "Gladmort (Demo 2)", MACHINE_SUPPORTS_SAVE )
+GAME( 2025, goldaxen,     neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Hoffman", "Golden Axe (Neo-Geo port)", MACHINE_SUPPORTS_SAVE )
 GAME( 2020, gxg,          neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Vasily Familiya", "Casanova She And She demo", MACHINE_IS_INCOMPLETE | MACHINE_SUPPORTS_SAVE )
 GAME( 2022, horekidb3,    neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT270, "iq132", "Kid no Hore Hore Daisakusen (Neo-Geo port)", MACHINE_SUPPORTS_SAVE )
 GAME( 2021, hypernoid,    neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "M.Priewe", "Hypernoid, 2021-11-28)", MACHINE_SUPPORTS_SAVE )
 GAME( 2018, igla,         neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Vasily Familiya", "Operation I.G.L.A. demo", MACHINE_IS_INCOMPLETE | MACHINE_SUPPORTS_SAVE )
 GAME( 2013, iocero,       neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "iocerom", "Primo Demo", MACHINE_SUPPORTS_SAVE )
+GAME( 2025, karnovn,      neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "iq132", "Karnov (Neo-Geo port)", MACHINE_SUPPORTS_SAVE )
 GAME( 2014, knightsch,    neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Neobitz", "Knight's Chance", MACHINE_SUPPORTS_SAVE )
 GAME( 2018, lernit,       neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Vasily Familiya", "Team Lernit", MACHINE_IS_INCOMPLETE | MACHINE_SUPPORTS_SAVE )
 GAME( 2020, lhbb,         lasthope, neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Elrayzeur", "Last Hope (Blue Bullets)", MACHINE_SUPPORTS_SAVE )

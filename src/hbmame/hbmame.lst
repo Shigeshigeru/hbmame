@@ -4237,6 +4237,7 @@ aliencha02
 @source:m52.cpp
 alpha1v		// Kyle Hodgetts
 mpatrol		//parent
+mpatrolut
 spatrol		/* Sponge Patrol - Gatinho 2008 */
 
 @source:m92.cpp
@@ -6153,11 +6154,13 @@ galaxiann2
 gbi
 gladmortd
 gladmortd2
+goldaxen
 gxg
 horekidb3
 hypernoid
 //igla
 iocero		// BEY
+karnovn
 knacki		// KnackiBalls by Furrtek
 knightsch
 lernit
@@ -6892,6 +6895,7 @@ samsho2emb
 samsho2hy
 samsho2mb
 samsho2pe
+samsho2pe1
 samsho2q
 samsho2s2
 samsho2sp
