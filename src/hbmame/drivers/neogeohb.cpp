@@ -164,7 +164,7 @@ NUM GAME YEAR COMPANY                 TITLE
 403 2003 2003 Neobitz                 Poker Night
 404 2000 2004 Neobitz                 Columns
 407 2000 2002 Blastar                 Neo no Panepon
-408*1234 2004 Blastar                 Neo Puzzle League (CD only) [nebula]
+408 1234 2004 Blastar                 Neo Puzzle League
 409 FFFF 2005 Blastar                 Jonas Indiana and the Lost Temple of Ra
 410 FFFF 2006 Blastar                 Codename: Blut Engel
 410 FFFF 2018 Blastar                 Codename: Blut Engel 2018
@@ -248,9 +248,7 @@ NUM GAME YEAR COMPANY                 TITLE
 641 0017 2013 Cristiano Bei           Neo Geo Sound Test
 642 7777 2017 Cristiano Bei           Bad Apple demo
 642 BADA 2017 Cristiano Bei           Bad Apple demo (badappleb)
-650*     2012 RKGAMES                 Neo-sprite demo (CD only)
-651*1234 2000 Martinez Fabrice        VIP2 demo (CD only) [nebula]
-652*0000 2011 Furrtek                 VUmeter (CD only) [nebula]
+643 0539 2023 Dekadence               68k Inside
 653 0052 2011 Furrtek                 Nyan Cat demo
 657 0052      Furrtek                 MVSTest01
 658 0052      Furrtek                 KnackiBalls
@@ -274,6 +272,40 @@ NUM GAME YEAR COMPANY                 TITLE
 689 7777 2019 Vasily Familiya         Venus Wars demo
 690 7777 2020 Vasily Familiya         Girl X Girl demo
 699 07E1 2021 Blastar                 Neo Driftout Tech Demo
+
+
+
+********************** CD-exclusive that exist (800-899) ************************
+(Will be removed/renumbered if MVS/AES version is found)
+
+NUM GAME YEAR COMPANY                 TITLE
+---.----.----.-----------------------.-------------------------------------------
+800 1234 2000 Fabrice Martinez        VIP2 [nebula]
+801 1234 2009                         Maths Test
+802 0000 2011 Furrtek                 VU Meter [nebula]
+803 1234 2012 NG:Dev:Group            NGD::ARK
+804 1234 2012 RKGAMES                 Neo-Sprite Test/Demo
+805 1234 2014                         Input Test
+806 1234 2014                         Process Test
+807 7777 2014                         Color Test
+808 1234 2014                         Fade Test
+809 1234 2014                         Hello
+810 0202 2014                         HelloFix
+811 0202 2014                         HelloSpr
+812 0202 2014                         Palette Basics
+813 1234 2014 Christiano Bei          Phoenix
+814 7777 2014 Neobitz                 NeoSub demo
+815 1234 2015 Resistance              Eira
+816 1234 2016 Christiano Bei (BEY)    Nata Demo
+817 09C6 2016 Blastar                 We Love Alice
+818 09C6 2016 Citavia                 Diff
+819 7777 2016 Trilobit                Visual Novel
+820 7777 2017 Visy                    Neo Fukkireta
+821 2019 2019 Citavia                 No Neo No Party
+822 2007 2020 Blastar                 Subspecies Unfinished
+823 2018 2021 Blastar                 N*Tris3D
+824 7777 2021 David Vandensteen       Flamble
+825 7777 2023 David Vandensteen       CD Pong
 
 
 
@@ -1246,6 +1278,25 @@ ROM_START( neonopon ) // v.0.2
 	ROM_REGION( 0x200000, "sprites", 0 )
 	ROM_LOAD16_BYTE( "407.c1", 0x000000, 0x100000, CRC(4a718ae3) SHA1(e59515bacd9065c4b2712710a6a9a647e42c31e6) )
 	ROM_LOAD16_BYTE( "407.c2", 0x000001, 0x100000, CRC(0e2cbc25) SHA1(3c45eedb2efc6a3a7ec65487f980e117485abc9f) )
+ROM_END
+
+
+// 408: Neo Puzzle League by Blastar, converted from CD by Robbbert, 2025-03-03.
+// Game is incomplete. No sound. Some graphics not implemented.
+ROM_START( neopl )
+	ROM_REGION( 0x100000, "maincpu", 0 )
+	ROM_LOAD( "408.p1", 0x000000, 0x00e7a8, CRC(66e41335) SHA1(acbe30ed2b6d18a85fa2e00d0d04a1791c9365ab) )
+
+	NEO_SFIX_MT(0x2000)
+	ROM_LOAD( "408.s1", 0x000000, 0x002000, CRC(18fc6ad9) SHA1(e9f0dee058c9a06f2db5fac8bf24485705ae4185) )
+
+	NEO_BIOS_AUDIO_128K( "098.m1", CRC(da4878cf) SHA1(ce13d18a4c5d01974df8542c67c4df00dbc6e7c1) ) // dummy m1
+
+	ROM_REGION( 0x100000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "098.v1", 0x000000, 0x100000, CRC(6f8ccddc) SHA1(696df2d0f416c2374b0eb7c858486054688c5bca) ) // dummy v1
+
+	ROM_REGION( 0x10000, "sprites", ROMREGION_ERASE00 )
+	ROM_LOAD( "408.c1",  0x000000, 0x00c900, CRC(1d3129b4) SHA1(54ac06c4c71b1500c39d7a823b328d569e6a7c43) )
 ROM_END
 
 
@@ -2472,7 +2523,7 @@ ROM_START( ngym2610 )
 ROM_END
 
 
-// 611: Neogeo 4 Player Multitab test (CD conversion)
+// 611: Neogeo 4 Player Multitab test (from CD by Robbbert)
 ROM_START( ng4ptest )
 	ROM_REGION( 0x100000, "maincpu", 0 )
 	ROM_LOAD( "611.p1", 0x000000, 0x0028b6, CRC(2326f2f4) SHA1(4c982e750d9ea2e29748f02d5b916b38548daaa5) )
@@ -3065,6 +3116,25 @@ ROM_START( badappleb )
 ROM_END
 
 
+// 643: 68k Inside intro by Dekadence
+// Bugs: At end, black screen. Pressing 5 will get it to run again, about halfway, before it internally crashes.
+ROM_START( 68kng )
+	ROM_REGION( 0x100000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "643.p1",       0x000000, 0x080000, CRC(b10d2cb6) SHA1(6a63f5424e3b5ae3e97fbf0e1841b8cdfd5740f2) )
+
+	NEO_SFIX_128K( "539.s1", CRC(2e4238d1) SHA1(f556cd9afcf53c3a1128cdaa639d49fb3abfa3ed) )
+
+	NEO_BIOS_AUDIO_64K( "643.m1", CRC(de1963da) SHA1(f133785dfe437a2a1235f39521c6a64949cf4823) )
+
+	ROM_REGION( 0x100000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "643.v1",       0x000000, 0x100000, CRC(d1b3294e) SHA1(1aa1cf1951b8848a5e5a58b155656101dc51298e) )
+
+	ROM_REGION( 0x200000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "643.c1",  0x000000, 0x100000, CRC(d1d755d8) SHA1(7d892886db756cae59474f619a814c97d4041154) )
+	ROM_LOAD16_BYTE( "643.c2",  0x000001, 0x100000, CRC(4d751816) SHA1(276d13a5a91e5f86f07d2cf644f898386846c435) )
+ROM_END
+
+
 // 653 : Nyan Cat demo by Furrtek
 // Movement keys will move nyancat around
 // Bugs: Insert Coin freezes HBMAME.
@@ -3298,7 +3368,7 @@ ROM_START( didemo )
 ROM_END
 
 
-// 678 : Demo by Mega Shocked (17-08-2016)
+// 678 : Demo by Mega Shocked (2016-08-17)
 ROM_START(akiradmo)
 	ROM_REGION( 0x400000, "maincpu", 0 )
 	ROM_LOAD( "678.p1", 0x000000, 0x003188, CRC(a87fa008) SHA1(89f41671f185fd5e92237fcf82e9ed60387fafad) )
@@ -3684,6 +3754,7 @@ GAME( 2010, zintrkm,      zintrckb, neogeo_noslot,   neogeo,  neogeo_state, init
 GAME( 2014, zintrkcd1,    zintrckb, neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Razoola", "ZinTricK (CD test)", MACHINE_SUPPORTS_SAVE )
 GAME( 2009, zintricks01,  zintrckb, neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "hack", "ZinTricK (Unknown Hack)", MACHINE_SUPPORTS_SAVE )
 
+GAME( 2023, 68kng,        neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Dekadence", "68k Inside intro", MACHINE_SUPPORTS_SAVE )
 GAME( 2022, 240ptest,     neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Dasutin/Artemio", "240p Test Suite v0.95", MACHINE_SUPPORTS_SAVE )
 GAME( 2023, 240ptest1,    neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Dasutin/Artemio", "240p Test Suite v1.0", MACHINE_SUPPORTS_SAVE )
 GAME( 2021, abyssal,      neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Kako Eimon", "Abyssal Infants", MACHINE_SUPPORTS_SAVE )
@@ -3762,6 +3833,7 @@ GAME( 2002, neonopon_d1,  neonopon, neogeo_noslot,   neogeo,  neogeo_state, init
 GAME( 2002, neonopon_d2,  neonopon, neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Blastar", "Neo No Panepon (demo 2, 2002-07-07)", MACHINE_NOT_WORKING | MACHINE_IS_INCOMPLETE | MACHINE_IMPERFECT_GRAPHICS | MACHINE_SUPPORTS_SAVE )
 GAME( 2002, neonopon_d3,  neonopon, neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Blastar", "Neo No Panepon (demo 3, 2002-08-22)", MACHINE_NOT_WORKING | MACHINE_IS_INCOMPLETE | MACHINE_IMPERFECT_GRAPHICS | MACHINE_SUPPORTS_SAVE )
 GAME( 2010, neopang,      neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "CeL", "Neo Pang", MACHINE_SUPPORTS_SAVE )
+GAME( 2004, neopl,        neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_cdc,      ROT0, "Blastar", "Neo Puzzle League (from CD)", MACHINE_IS_INCOMPLETE | MACHINE_SUPPORTS_SAVE )
 GAME( 2002, neopong,      neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Neodev", "Neo Pong (v1.1)", MACHINE_IMPERFECT_GRAPHICS | MACHINE_SUPPORTS_SAVE )
 GAME( 2002, neoponga,     neopong,  no_watchdog,     neogeo,  neogeo_state, init_neogeo,   ROT0, "Neodev", "Neo Pong (v1.0)", MACHINE_IMPERFECT_GRAPHICS | MACHINE_SUPPORTS_SAVE )
 GAME( 2010, neoromjb,     neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "CeL", "Neo Rom Jukebox", MACHINE_SUPPORTS_SAVE )
@@ -3771,7 +3843,7 @@ GAME( 2019, neotrisd1,    neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init
 GAME( 2020, neotrisd2,    neotrisd1,neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Totologic", "Neotris Demo 2", MACHINE_SUPPORTS_SAVE )
 GAME( 2020, neotrisd3,    neotrisd1,neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Totologic", "Neotris Demo 3", MACHINE_SUPPORTS_SAVE )
 GAME( 2020, nblktiger,    neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "OzzyOuzo", "Neo Black Tiger", MACHINE_IS_INCOMPLETE | MACHINE_SUPPORTS_SAVE )
-GAME( 2021, ng4ptest,     neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Blastar", "4 Player Multitab Test (CD)", MACHINE_SUPPORTS_SAVE )
+GAME( 2021, ng4ptest,     neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Blastar", "4 Player Multitab Test (from CD)", MACHINE_SUPPORTS_SAVE )
 GAME( 2006, ngem2k,       neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "Blastar", "NGEM2K (Beta, 2006-01-18)", MACHINE_SUPPORTS_SAVE )
 GAME( 2012, ngftdemo,     neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "CeL", "NGF Transparency Demo", MACHINE_SUPPORTS_SAVE )
 GAME( 2014, ngmontst,     neogeo,   neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "M.Priewe", "NeoGeo Monitor Test v1.0", MACHINE_SUPPORTS_SAVE )
