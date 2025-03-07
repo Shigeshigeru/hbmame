@@ -6140,8 +6140,9 @@ cyborg1
 ddsprdmo
 ddsprdmo1
 didemo
-doubled
 doubled1
+doubled1a
+doubled1b
 dti			// Duck Tales Intro
 dtia		// Duck Tales Intro
 dwi			/* DarkWing Duck Intro */
@@ -6171,8 +6172,7 @@ lernit
 lhbb
 lhcdb		/* 2007 (c) Last Hope CD beta */
 lhcdba
-//lhopecd                              // broken; not working
-//lhopecdh                             // broken; not working
+//lhopecd                              // broken
 looptris
 looptrsp
 ltorb
