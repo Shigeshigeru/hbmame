@@ -1466,6 +1466,8 @@ sf2prime3
 sf2prime4
 sf2prime41
 sf2prime45
+sf2prime5
+sf2prime55
 sfas01
 sfas02
 sfas03
@@ -1955,6 +1957,7 @@ ramokromok                             // HB
 galnamco	/* The Original Namco */
 andromd		/* hack - Renamed to avoid confusion with andromed (ex TestDriver) */
 buglaxn		/* The Dog hack of Galaxian */
+galapxis
 galaxiabh	/* unknown hack of Galaxian */
 galaxkyo	/* unknown hack of Galaxian Part X */
 galaxni		/* Petaco bootleg of Galaxian Part X */
@@ -4439,6 +4442,7 @@ nbajam01
 nbajam02                               // NBA Jam Tournament Edition Rewind r1.1
 nbajam03                               // NBA Jam Tournament Edition SE r5.0
 nbajam04                               // NBA Jam Tournament Edition Rewind r1.2
+nbajam05
 roadkill
 umk2s01                                // Ultimate MKII Tournament Edition r5.0.050
 umk2s02                                // Ultimate MKII Tournament Edition r5.0.051
@@ -6257,6 +6261,7 @@ shinobint
 smi
 snddemo
 spkick
+spkick2
 spriteex
 syscheck
 teot_1
