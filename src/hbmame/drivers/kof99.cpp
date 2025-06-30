@@ -5585,7 +5585,7 @@ ROM_START( kof99s106 ) // kof99ndbc
 	ROM_LOAD16_BYTE( "251bhp2.c8", 0x3000001, 0x800000, CRC(fbc1112c) SHA1(3f3789b8bbc335a4f9b66fc66a350767ec7bc32c) )
 ROM_END
 
-ROM_START( kof99kao ) /* ACA NEOGEO PROM decrypted Version */
+ROM_START( kof99an ) /* ACA NEOGEO PROM decrypted Version */
 	ROM_REGION( 0x500000, "maincpu", 0 )
 	ROM_LOAD16_WORD_SWAP( "251-p1da.p1", 0x000000, 0x100000, CRC(e9b35003) SHA1(e797069b9b25efcf1c4f4204e51c674695dfe48a) )
 	ROM_LOAD16_WORD_SWAP( "152-p2.sp2" , 0x100000, 0x400000, CRC(274ef47a) SHA1(98654b68cc85c19d4a90b46f3110f551fa2e5357) )
@@ -5825,4 +5825,4 @@ GAME( 2020, kof99s103,      kof99,   neogeo_noslot,  neogeo, neogeo_state, init_
 GAME( 2020, kof99s104,      kof99,   neogeo_noslot,  neogeo, neogeo_state, init_neogeo,    ROT0, "hack",    "Kof'99 (Imitation PS Enhanced Edition Original, 2020-08-24)", MACHINE_SUPPORTS_SAVE )
 GAME( 2020, kof99s105,      kof99,   neogeo_noslot,  neogeo, neogeo_state, init_neogeo,    ROT0, "hack",    "Kof'99 (Imitation PS Enhanced Edition Simplified, 2020-08-24)", MACHINE_SUPPORTS_SAVE )
 GAME( 2020, kof99s106,      kof99,   neogeo_noslot,  neogeo, neogeo_state, init_neogeo,    ROT0, "hack",    "Kof'99 (Imitation 14 BC Version (AC open BC), 2020-09-30)", MACHINE_SUPPORTS_SAVE )
-GAME( 1999, kof99kao,       kof99,   neogeo_noslot,  neogeo, neogeo_state, init_kof99,     ROT0, "SNK", "Kof'99 (NGH-251)(Decrypted P ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
+GAME( 1999, kof99an,        kof99,   neogeo_noslot,  neogeo, neogeo_state, init_kof99,     ROT0, "SNK", "Kof'99 (NGH-251)(Decrypted P ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
