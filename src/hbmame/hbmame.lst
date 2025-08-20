@@ -1033,6 +1033,7 @@ sf2mix100
 sf2mix110
 sf2mix120
 sf2mix130
+sf2mix140
 sf2mix
 sf2mkot01
 sf2red01
@@ -1469,11 +1470,12 @@ sf2prime3
 sf2prime4
 sf2prime41
 sf2prime45
-sf2prime5
+sf2prime50
 sf2prime55
 sf2prime56
 sf2prime57
 sf2prime59
+sf2prime60
 sfas01
 sfas02
 sfas03
@@ -4315,6 +4317,8 @@ pacmtest
 pacmtest1
 pacmtest2
 pactetris		// HB
+pacupacu                               // HB
+pacupacu1                              // HB
 pakupaku                               // HB
 pakupaku2                              // HB
 pakupaku3                              // HB
@@ -4436,6 +4440,7 @@ mk03
 mk04                                   // MK protection hack
 mk05                                   // Zenomorp 2012 Turbo Endurance
 mk06                                   // Zenomorp 2012 Turbo Projectile Insanity
+mk07
 mk2                                    //parent
 mk2s01
 mk2s02
