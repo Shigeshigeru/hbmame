@@ -1,18 +1,34 @@
 ﻿What's new in HBMAME
 ====================
 
-2025-xx-xx 0.245.27
+2025-1x-xx 0.245.28
+
+
+
+New Games
+---------------------------------
+- [maglord02]           Magician Lord (Again Changes From Hell v1.0.0)
+
+
+
+
+2025-10-10 0.245.27
 
 
 
 New Games
 ---------------------------------
 - [baddudesn]           Bad Dudes vs Dragonninja Burger Edition 2-stage demo (2025-06-28)
-- [doubled1c]           Double Dragon One demo (2025-06-29)
-- [doubled1d]           Double Dragon One beta 2 (2025-09-03)
-- [doubled1e]           Double Dragon One beta 3 (2025-09-14)
+- [bublboblu2]          Bubble Bobble (Ultra)
+- [doubled1]            Double Dragon One beta 3 (2025-09-16)
+- [foodfn]              Food Fight (Neo-Geo port) [iq_132]
 - [inthuntn]            In the Hunt 30-second demo (2025-05-18)
+- [jurl]                Jurl (2025-06-14)
+- [kof2001s49]          The King of Fighters 2001 (All Boss Plus 2025-05-31)
+- [kof2002s116]         Kof2002 (Plus 2025)
 - [pacupacu1]           Pacu Pacu (v1.1) [Sokurah]
+- [pbobblen04]          Puzzle Bobble (precise controls)
+- [sf2ce68]             Street Fighter II': Champion Edition (Re-edit v0.29.7)
 - [sf2mix]              Street Fighter II: Dream Battle (Mix 1.5)
 - [sf2prime]            Street Fighter II': Prime (v0.66) [zero800]
 - [sinistar01]          Sinistar (balanced ver) [Synamax]
