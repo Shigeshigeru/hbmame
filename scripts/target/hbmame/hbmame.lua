@@ -361,7 +361,10 @@ createHBMAMEProjects(_target, _subtarget, "atari")
 files {
 	MAME_DIR .. "src/hbmame/drivers/asteroid.cpp",
 	MAME_DIR .. "src/mame/machine/asteroid.cpp",
+	MAME_DIR .. "src/hbmame/drivers/atarigt.cpp",
+	MAME_DIR .. "src/mame/video/atarigt.cpp",
 	MAME_DIR .. "src/hbmame/drivers/atarisy1.cpp",
+	MAME_DIR .. "src/mame/video/atarirle.cpp",  -- for atarigt
 	MAME_DIR .. "src/mame/video/atarisy1.cpp",
 	MAME_DIR .. "src/mame/audio/asteroid.cpp",
 	MAME_DIR .. "src/hbmame/drivers/bwidow.cpp",
@@ -403,6 +406,8 @@ files {
 	MAME_DIR .. "src/hbmame/drivers/blktiger.cpp",
 	MAME_DIR .. "src/hbmame/drivers/commando.cpp",
 	MAME_DIR .. "src/mame/video/commando.cpp",
+	MAME_DIR .. "src/hbmame/drivers/sonson.cpp",
+	MAME_DIR .. "src/mame/video/sonson.cpp",
 	MAME_DIR .. "src/hbmame/drivers/cps1.cpp",
 	MAME_DIR .. "src/hbmame/video/cps1.cpp",
 	MAME_DIR .. "src/hbmame/drivers/cps2.cpp",
@@ -631,6 +636,8 @@ files {
 	MAME_DIR .. "src/mame/machine/konami1.cpp",
 	MAME_DIR .. "src/mame/audio/trackfld.cpp",
 	MAME_DIR .. "src/mame/video/trackfld.cpp",
+	MAME_DIR .. "src/hbmame/drivers/twin16.cpp",
+	MAME_DIR .. "src/mame/video/twin16.cpp",
 	MAME_DIR .. "src/mame/video/tutankhm.cpp",
 	MAME_DIR .. "src/hbmame/drivers/yiear.cpp",
 	MAME_DIR .. "src/mame/video/yiear.cpp",

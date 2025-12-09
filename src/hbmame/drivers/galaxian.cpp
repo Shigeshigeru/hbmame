@@ -864,7 +864,7 @@ GAME( 1979, andromd,    galnamco, galaxian, superg,   galaxian_hbmame, init_gala
 GAME( 1998, buglaxn,    galnamco, galaxian, galaxian, galaxian_hbmame, init_galaxian, ROT90, "The Dog", "Galaxian (Bug sprites)", MACHINE_SUPPORTS_SAVE )
 GAME( 19??, galapxis,   galnamco, galaxian, superg,   galaxian_hbmame, init_galaxian, ROT90, "International Scientific", "Galaxian Part X (Philip)", MACHINE_SUPPORTS_SAVE )
 GAME( 1981, galaxiabh,  galnamco, galaxian, galaxiab, galaxian_hbmame, init_galaxian, ROT90, "bootleg", "Galaxian (Edition Hack)", MACHINE_SUPPORTS_SAVE )
-GAME( 1979, galaxkyo,   galnamco, galaxian, superg,   galaxian_hbmame, init_galaxian, ROT90, "hack", "Galaxian (Kyoko)", MACHINE_SUPPORTS_SAVE )
+GAME( 1979, galaxkyo,   galnamco, galaxian, superg,   galaxian_hbmame, init_galaxian, ROT90, "hack", "Galaxian (Kyodo)", MACHINE_SUPPORTS_SAVE )
 GAME( 1980, galaxni,    galnamco, galaxian, superg,   galaxian_hbmame, init_galaxian, ROT90, "Petaco S.A.", "Galaxian (New Invasion)", MACHINE_SUPPORTS_SAVE )
 GAME( 1998, galinvad,   galnamco, galaxian, galaxian, galaxian_hbmame, init_galaxian, ROT90, "T-Bone", "Galaxian (Space Invaders sprites)", MACHINE_SUPPORTS_SAVE )
 GAME( 1979, galnamco,   0,        galaxian, galaxian, galaxian_hbmame, init_galaxian, ROT90, "Namco", "Galaxians", MACHINE_SUPPORTS_SAVE )
@@ -1109,17 +1109,16 @@ GAME( 2025, gmultic, galnamco, gmultib, gmultib, gmultib_state, init_gmultib, RO
 
 //******************************************************************************************************
 /* Problems:
-- Can't access game selection menu
 - Need bankswitch info for main rom
 - Super Cobra, Amidar, Turtles, The End - not working (runs Frogger)
+- Colours might be wrong
 
-To get to setup menu: Hold down 1 and hit F3
+* To get to setup menu: Hold down 1 and hit F3
 
-What works:
-- Can play scramble
+* To get to games menu: While a game is running, hold down 1, wait for game to freeze, let go.
 
 Game list: Scramble, Super Cobra, Anteater, Amidar, Frogger, Turtles, Armored Car, The End.
-- The gfx roms are segmented in the same order. Possibly the colour proms too.
+- The gfx roms and colour proms are segmented in the same order.
 */
 
 #include "machine/galser.h"
@@ -1138,11 +1137,7 @@ public:
 	void init_smulti();
 
 private:
-	void gfxbank_w(offs_t offset, uint8_t data);
-	void scl_w(offs_t, uint8_t data) { m_nvram->write_scl(data); };
-	void sda_w(offs_t, uint8_t data) { m_nvram->write_sda(data); };
-	void en_w(offs_t, uint8_t data) { m_nvram->write_en(data); };
-	uint8_t sda_r(offs_t) { return m_nvram->read_sda() ? 2 : 0; };
+	void rombank_w(offs_t offset, uint8_t data);
 	void smulti_extend_tile_info(uint16_t *code, uint8_t *color, uint8_t attrib, uint8_t x, uint8_t y);
 	void smulti_extend_sprite_info(const uint8_t *base, uint8_t *sx, uint8_t *sy, uint8_t *flipx, uint8_t *flipy, uint16_t *code, uint8_t *color);
 	void mem_map(address_map &map);
@@ -1156,15 +1151,15 @@ private:
 void smulti_state::init_smulti()
 {
 	m_rombank->configure_entries(0, 8, memregion("maincpu")->base(), 0x10000);
-	m_rombank->set_entry(0);
 
 	/* video extensions */
 	common_init(&galaxian_state::scramble_draw_bullet, &galaxian_state::scramble_draw_background, nullptr, nullptr);
 	m_extend_tile_info_ptr = extend_tile_info_delegate(&smulti_state::videight_extend_tile_info, this);
 	m_extend_sprite_info_ptr = extend_sprite_info_delegate(&smulti_state::videight_extend_sprite_info, this);
+	rombank_w(0,0);
 }
 
-void smulti_state::gfxbank_w(offs_t offset, uint8_t data)
+void smulti_state::rombank_w(offs_t offset, uint8_t data)
 {
 	m_rombank->set_entry(0);
 	galaxian_gfxbank_w(0, 0);
@@ -1223,10 +1218,11 @@ void smulti_state::mem_map(address_map &map)
 	map(0x7000,0x7000).r("watchdog", FUNC(watchdog_timer_device::reset_r));
 	map(0x8100,0x8103).rw(m_ppi8255[0], FUNC(i8255_device::read), FUNC(i8255_device::write));
 	map(0x8200,0x8203).rw(m_ppi8255[1], FUNC(i8255_device::read), FUNC(i8255_device::write));
-	map(0x3600,0x3600).w(FUNC(smulti_state::gfxbank_w));
-	map(0x7800,0x7800).rw(FUNC(smulti_state::sda_r),FUNC(smulti_state::en_w));
-	map(0x7a00,0x7a00).w(FUNC(smulti_state::scl_w));
-	map(0x7c00,0x7c00).w(FUNC(smulti_state::sda_w));
+	map(0x3600,0x3600).w(FUNC(smulti_state::rombank_w));
+	map(0x7800,0x7800).lr8(NAME([this] () {return m_nvram->read_sda() ? 2 : 0; }));
+	map(0x7800,0x7800).lw8(NAME([this] (u8 data) {m_nvram->write_en(data); }));
+	map(0x7a00,0x7a00).lw8(NAME([this] (u8 data) {m_nvram->write_scl(data); }));
+	map(0x7c00,0x7c00).lw8(NAME([this] (u8 data) {m_nvram->write_sda(data); }));
 	map(0x7e00,0x7e00).noprw();   // unknown (bit 1 must be high when read)
 }
 
@@ -1258,10 +1254,9 @@ void smulti_state::smulti(machine_config &config)
 
 	/* video hardware */
 	m_gfxdecode->set_info(gfx_smulti);
-	//m_palette->set_entries(32 * 32);
 
 	GALSER(config, m_nvram);
 }
 
-GAME( 2022, smulti, 0, smulti, scramble, smulti_state, init_smulti, ROT90, "<unknown>", "Scramble MultiKit", MACHINE_SUPPORTS_SAVE )
+GAME( 2022, smulti, 0, smulti, scramble, smulti_state, init_smulti, ROT90, "HighScoreSaves", "Scramble MultiKit v1.0", MACHINE_NOT_WORKING | MACHINE_SUPPORTS_SAVE )
 
