@@ -7,11 +7,15 @@
 
 New Games
 ---------------------------------
+- [bbb2d2]              Bang Bang Busters 2 (demo 2) [Pixelheart]
 - [gradius2s01]         Gradius II - GOFER no Yabou (Ver xH, 2008-08-28) [Tailsnic]
+- [karnovr05]           Karnov's Revenge (Revolution v0.2)
 - [maglord03]           Magician Lord (Again Changes From Hell v1.0.0, French/English)
 - [ng4psyschk]          MVS 4P Key System Check
 - [wrldracr]            World Racer (2025-11-14) [Blastar]
-- [xeviousn01]          Zetsu Xevious
+- [xeviousn01]          Zetsu Xevious (beta 1)
+- [xeviousn02]          Zetsu Xevious (beta 2)
+- [xeviousn03]          Zetsu Xevious (beta 3)
 
 
 
@@ -22,7 +26,7 @@ New Games
 
 New Games
 ---------------------------------
-- [bbb2]                Bang Bang Busters 2 (demo) [Pixelheart]
+- [bbb2d1]              Bang Bang Busters 2 (demo 1) [Pixelheart]
 - [dinos284]            Cadillacs and Dinosaurs (with kod sound)
 - [drluigi]             Dr. Luigi
 - [gmultib]             Galaxian Multigame (2022) [Macro]
