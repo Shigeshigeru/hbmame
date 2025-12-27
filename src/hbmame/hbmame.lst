@@ -4457,6 +4457,7 @@ nbajam02                               // NBA Jam Tournament Edition Rewind r1.1
 nbajam03                               // NBA Jam Tournament Edition SE r5.0
 nbajam04                               // NBA Jam Tournament Edition Rewind r1.2
 nbajam05
+nbajam06
 roadkill
 umk2s01                                // Ultimate MKII Tournament Edition r5.0.050
 umk2s02                                // Ultimate MKII Tournament Edition r5.0.051
@@ -6312,6 +6313,7 @@ totc		// Treasure of the Caribbean
 twister		// Blastar 2015
 vaporous
 //venuswars
+violentv
 //vlad2000
 wrldracr
 //ww2demo
@@ -8521,11 +8523,12 @@ nrallyv
 
 @source:rastan.cpp
 rastan                                 //parent
-rastandh
-rastand2
-rastaneh
-rastane2
-rastwack
+rastan01
+rastan02
+rastan03
+rastan04
+rastan05
+rastsaga01
 
 @source:retofinv.cpp
 retofinv                               //parent
