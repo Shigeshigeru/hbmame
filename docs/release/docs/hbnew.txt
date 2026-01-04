@@ -1,9 +1,20 @@
 ﻿What's new in HBMAME
 ====================
 
-2025-12-xx 0.245.29
+2026-0x-xx 0.245.30
 
 
+
+New Games
+---------------------------------
+- [galaxian09]          Galaxian (bootleg 09)
+
+
+
+
+2026-01-02 0.245.29
+
+Fixed crackly sound in various Neo-Geo homebrew.
 
 New Games
 ---------------------------------
@@ -15,9 +26,14 @@ New Games
 - [karnovr05]           Karnov's Revenge (Revolution v0.2)
 - [kof2001s50]          The King of Fighters 2001 (All Boss Plus 2025-12-17)
 - [maglord03]           Magician Lord (Again Changes From Hell v1.0.0, French/English)
+- [mkyawdim6]           Mortal Kombat (Yawdim bootleg, set 6)
+- [mspacman05]          Ms Pac-Man (alt bootleg dump)
 - [nbajam06]            NBA Jam Tournament Edition SE (rev 5.05, 2025-12-23)(Wolf h/w, preview)
+- [nbajam07]            NBA Rewind 4 Jam (unprotected, v1.2)
 - [ng4psyschk]          MVS 4P Key System Check
 - [rastsaga01]          Rastan Saga (Brazil)
+- [sfpp]                Street Fighter (Plus Plus)
+- [sf2s16]              Street Fighter II: The World Warrior (Plus Plus)
 - [toki01]              Toki (Brazil)
 - [violentv]            Violent Vengeance: the universe hero (beta)
 - [wrldracr]            World Racer (2025-11-14) [Blastar]

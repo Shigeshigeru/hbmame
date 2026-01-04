@@ -1058,6 +1058,7 @@ sf2s12
 sf2s13
 sf2s14
 sf2s15
+sf2s16
 sf2tlona01
 sf2tlona02
 sf2tlona03
@@ -1939,12 +1940,28 @@ sxeviouss01
 
 @source:galaxian.cpp
 amidar                                 //parent
-amidarf		/* ArkaMAME */
-amidargr	/* GreekRoms 2004 */
-amidars01
+amidar01
+amidar02
+amidar03
+galnamco	/* The Original Namco */
+galaxian01
+galaxian02
+galaxian03
+galaxian04
+galaxian05
+galaxian06
+galaxian07
+galaxian08
+galaxian09
+galapx01
+galapx02
+galapx03
+galapx04
+galxtest1
+galxtest2
 mooncrst                               //parent
-mooncmst
-mooncrs5f	/* clone of fantazia */
+mooncrst01
+mooncrst02
 moontest
 pisces                                 //parent
 starfgh2	/* Bootleg of Pisces */
@@ -1967,20 +1984,6 @@ cosmicw
 pandajump                              // HB
 pandajump2                             // HB
 ramokromok                             // HB
-galnamco	/* The Original Namco */
-andromd		/* hack - Renamed to avoid confusion with andromed (ex TestDriver) */
-buglaxn		/* The Dog hack of Galaxian */
-galaxian01
-galaxian02
-galapxis
-galaxiabh	/* unknown hack of Galaxian */
-galaxkyo	/* unknown hack of Galaxian Part X */
-galaxni		/* Petaco bootleg of Galaxian Part X */
-galinvad	/* T-Bone hack of Galaxian */
-galxtest1
-galxtest2
-gaylaxn		/* The Dog hack of Galaxian Part X */
-vectrgal	/* T-Bone hack of Galaxian */
 fourplay
 videight	/* 8in1 multigame */
 wbeast		/* Bootleg of War-of-Bug */
@@ -4460,7 +4463,7 @@ nbajam02                               // NBA Jam Tournament Edition Rewind r1.1
 nbajam03                               // NBA Jam Tournament Edition SE r5.0
 nbajam04                               // NBA Jam Tournament Edition Rewind r1.2
 nbajam05
-nbajam06
+nbajam07                               //06 is in midwunit
 roadkill
 umk2s01                                // Ultimate MKII Tournament Edition r5.0.050
 umk2s02                                // Ultimate MKII Tournament Edition r5.0.051
@@ -4472,6 +4475,7 @@ umk2s05                                // Ultimate MKII Tournament Edition r5.0.
 mk3                                    //parent
 mk3s01
 mk3s02
+nbajam06
 wwfmania                               //parent
 wwfmania01
 umk3                                   //parent
@@ -4528,6 +4532,8 @@ umk3plus20220307                       // umk3pb2
 @source:midyunit.cpp
 smashtv                                //parent
 mkla4d                                 // MK protection hack
+mk                                     //parent
+mkyawdim6
 y_test
 
 @source:missile.cpp
@@ -5889,10 +5895,11 @@ zolapac		/* PacMAME Hacks */
 zolaslow	/* PacMAME Hacks */
 zolatunl	/* PacMAME Hacks */
 zolavect	/* PacMAME Hacks */
-mspacmans01
-mspacmans02
-mspacmans03
-mspacmans04
+mspacman01
+mspacman02
+mspacman03
+mspacman04
+mspacman05
 mspacmabscre
 mspacmadp
 mspacatttur
@@ -8652,6 +8659,10 @@ grdians38
 grdians39
 grdians40
 grdians41
+
+@source:sf.cpp
+sf                                     //parent
+sfpp
 
 @source:shadfrce.cpp
 shadfrce                               //parent
