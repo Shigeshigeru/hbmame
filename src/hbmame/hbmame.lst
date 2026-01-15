@@ -150,7 +150,7 @@ spacwarp		/* HB Jeff Hendrix - Proto on Space Duel HW */
 
 @source:bzone.cpp
 //bzone                                  //parent
-//bzone01
+//bzone01          full of bugs
 
 @source:cabal.cpp
 cabal                                  //parent
@@ -1770,6 +1770,7 @@ dkong20
 dkong21
 dkong22
 dkong23
+dkong24
 dkong2m
 dkongbcc				//Jeffs Rom Hacks
 dkongex					//Jeffs Hack with Foundry Level
@@ -1901,6 +1902,10 @@ asurablds04
 asurabus				//parent
 asurabuss01
 asurabuss02
+
+@source:galactic.cpp
+galactic                               // extra sounds
+spacmiss                               // extra sounds
 
 @source:galaga.cpp
 galaga		//parent
@@ -6327,6 +6332,7 @@ violentv
 //vlad2000
 wrldracr
 wrldracr01
+wrldracr02
 //ww2demo
 xeno
 xeviousn
@@ -8052,6 +8058,7 @@ ketarr151	// trap15 hack
 ketarrf		// trap15 hack
 ketarrs15	// trap15 hack
 ketarrs151	// trap15 hack
+//ket01    black screen
 
 @source:phoenix.cpp
 phoenix                                //parent
@@ -8710,9 +8717,6 @@ solomon01
 @source:sonson.cpp
 sonson                                 //parent
 sonson01
-
-@source:spacmiss.cpp
-spacmissx                              // extra sounds
 
 @source:spcenctr.cpp
 spcenctr                               //parent
