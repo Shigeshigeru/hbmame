@@ -131,7 +131,6 @@ public:
 	void init_kof2k3hd();
 	void init_kof2k3pcd();
 	void init_kof2k3df();
-	void init_kof2003d();
 	void init_kof2k4pls();
 	void init_kof2k4se();
 	void init_kof96ep();
