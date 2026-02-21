@@ -2131,7 +2131,6 @@ kof94s40
 kof94s41
 kof94s42
 kof94s43
-kof94an
 
 @source:kof95.cpp
 kof95s01
@@ -2180,7 +2179,6 @@ kof95s46
 kof95s47
 kof95s48
 kof95s49
-kof95an
 
 @source:kof96.cpp
 kof96s01
@@ -3361,7 +3359,6 @@ kof99s103
 kof99s104
 kof99s105
 kof99s106
-kof99an
 
 @source:kof2000.cpp
 kof2000d
@@ -4247,10 +4244,6 @@ kof2004p27
 kof2004p28
 kof2004p29
 kof2004p31
-kf2k3mdf
-kf2k3hdf
-kf2k3mdp
-kf2k3hdp
 
 @source:konamigx.cpp
 konamigx                               //required bios
@@ -5000,7 +4993,6 @@ mslug3rmg02
 mslug3rmg03
 mslug3rmg04
 mslug3unity
-mslug3hand
 
 @source:mslug4.cpp
 mslug4a
@@ -5420,7 +5412,6 @@ mslug5ervx15
 mslug5ervx16
 mslug5unity
 mslug5ast
-mslug5be
 
 @source:mslug6.cpp
 mslug6                                 //parent
@@ -5786,7 +5777,6 @@ mslugxece12
 mslugxece13
 mslugxece14
 mslugxunity
-mslugxd
 
 @source:mspacman.cpp
 mspacman	//parent
@@ -5993,7 +5983,6 @@ roishtarx
 salamand	//parent
 spclone		// v0.7.3
 spcloneo	// v0.7.2.2
-spclonec	// v0.7.3 and v0.7.2.2 from IPS unkown Chimera?
 
 @source:neogeo.cpp
 // These are the parents of our hacks
@@ -6016,7 +6005,7 @@ blazstar		// 239
 breakers		// 230
 breakrev		// 245
 bstars			// 002
-bstars2			// 041
+//bstars2		// 041  not needed
 burningf		// 018
 crsword			// 037
 crswd2bl		// 054
@@ -6601,13 +6590,6 @@ tws96e
 wakuwk7e
 whpe
 wjammere
-ridheran
-neodrifc
-bstars2c
-preisle2o
-s1945po
-lresoran
-waku7wii
 
 @source:ngdoubledr.cpp
 doubledr01
@@ -6956,8 +6938,6 @@ rbffs09
 rbffs10
 rbffs11
 rbffs12
-ffury3an
-rbff1an
 
 @source:ngrotd.cpp
 rotdb
@@ -6992,8 +6972,6 @@ rotds07
 rotds08
 rotds09
 rotds10
-rotdc
-rotddc
 
 @source:ngsamsho.cpp
 fswords01
@@ -7359,7 +7337,6 @@ wh2s02
 wh2js01
 wh2js02
 wh2js03
-wh2an
 
 @source:nmk16.cpp
 tdragon2		//parent
@@ -8830,7 +8807,6 @@ dankuga01
 dankuga02
 dariusg                                //parent
 dariusg01
-dariusgjcc
 elvactr                                //parent
 elvactr01
 gekiridn                               //parent
