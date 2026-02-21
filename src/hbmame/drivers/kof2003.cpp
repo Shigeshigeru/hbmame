@@ -4,16 +4,16 @@
 #include "includes/neogeo.h"
 
 
-void neogeo_state::init_kof2k3hd()
-{
-	init_neogeo();
-	m_sprgen->m_fixed_layer_bank_type = 2;
-	m_pvc_prot->kof2003h_decrypt_68k(cpuregion, cpuregion_size);  // different to kof2k3d
-	m_pvc_prot->install_pvc_protection(m_maincpu, m_banked_cart);
-	m_cmc_prot->neogeo_cmc50_m1_decrypt(audiocrypt_region, audiocrypt_region_size, audiocpu_region, audio_region_size);
-	m_pcm2_prot->neo_pcm2_swap(ym_region, ym_region_size, 5);
-	m_cmc_prot->neogeo_sfix_decrypt(spr_region, spr_region_size, fix_region, fix_region_size);
-}
+//void neogeo_state::init_kof2k3hd()
+//{
+//	init_neogeo();
+//	m_sprgen->m_fixed_layer_bank_type = 2;
+//	m_pvc_prot->kof2003h_decrypt_68k(cpuregion, cpuregion_size);  // different to kof2k3d
+//	m_pvc_prot->install_pvc_protection(m_maincpu, m_banked_cart);
+//	m_cmc_prot->neogeo_cmc50_m1_decrypt(audiocrypt_region, audiocrypt_region_size, audiocpu_region, audio_region_size);
+//	m_pcm2_prot->neo_pcm2_swap(ym_region, ym_region_size, 5);
+//	m_cmc_prot->neogeo_sfix_decrypt(spr_region, spr_region_size, fix_region, fix_region_size);
+//}
 
 void neogeo_state::init_kof2k3pcd() // decrypted C & decrypted Bios
 {
