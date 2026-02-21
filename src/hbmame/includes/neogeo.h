@@ -128,7 +128,10 @@ public:
 	void init_kof2k2bd();
 	void init_kof2k2pl17();
 	void init_kof2k3fd();
+	void init_kof2k3hd();
 	void init_kof2k3pcd();
+	void init_kof2k3df();
+	void init_kof2003d();
 	void init_kof2k4pls();
 	void init_kof2k4se();
 	void init_kof96ep();
@@ -178,6 +181,7 @@ public:
 	void init_rotd();
 	void init_rotdb();
 	void init_rotdd();
+	void init_rotddc();
 	void init_rotdnd();
 	void init_s1945p();
 	void init_sam5hb();
