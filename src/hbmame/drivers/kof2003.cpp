@@ -3614,30 +3614,6 @@ ROM_START( kf2k3mdf ) // Fully decrypted version of kof2003 MVS
 	ROM_LOAD16_BYTE( "271-c8d.c8", 0x3000001, 0x800000, CRC(6d8d2d60) SHA1(841698eead0f7d422937ce2f2329e17c383d90a6) )
 ROM_END
 
-ROM_START( kf2k3mdp ) // Decrypted P version of kof2003 MVS
-	ROM_REGION( 0x800000, "maincpu", 0 )
-	ROM_LOAD16_WORD_SWAP( "271-p1d.p1", 0x000000, 0x400000, CRC(08689be0) SHA1(958c0990b1149a7ecd5e81ce56050d4a87ee83c4) )
-	ROM_LOAD16_WORD_SWAP( "271-p2d.p2", 0x400000, 0x400000, CRC(61cf0139) SHA1(af62ec0aa60ee8c7dbc04658066105add23e4274) )
-
-	NEO_SFIX_MT_512K
-
-	NEO_BIOS_AUDIO_ENCRYPTED_512K( "271-m1.m1", CRC(f5515629) SHA1(7516bf1b0207a3c8d41dc30c478f8d8b1f71304b) )
-
-	ROM_REGION( 0x1000000, "ymsnd:adpcma", 0 )
-	ROM_LOAD( "271-v1c.v1", 0x000000, 0x800000, CRC(ffa3f8c7) SHA1(7cf4a933973ca23b7f87c81151d8659e6ec4bd20) )
-	ROM_LOAD( "271-v1c.v2", 0x800000, 0x800000, CRC(5382c7d1) SHA1(1bf999705eda80ba1e7b0d6bdd010d9bfb18bd76) )
-
-	ROM_REGION( 0x4000000, "sprites", 0 )
-	ROM_LOAD16_BYTE( "271-c1c.c1", 0x0000000, 0x800000, CRC(b1dc25d0) SHA1(50adc3c60d5b4b3abd10a49db2267306c6dbd772) )
-	ROM_LOAD16_BYTE( "271-c2c.c2", 0x0000001, 0x800000, CRC(d5362437) SHA1(66db36522dc09106388c707252df9fe1c88b4856) )
-	ROM_LOAD16_BYTE( "271-c3c.c3", 0x1000000, 0x800000, CRC(0a1fbeab) SHA1(9fe30d36ba98d00fda010832ff2f27783dd577c1) )
-	ROM_LOAD16_BYTE( "271-c4c.c4", 0x1000001, 0x800000, CRC(87b19a0c) SHA1(b72a8e7d9124ce859b5149bb4381ba481c161ea5) )
-	ROM_LOAD16_BYTE( "271-c5c.c5", 0x2000000, 0x800000, CRC(704ea371) SHA1(e75b80422f0d72eac826f8ffadf79efeccaab124) )
-	ROM_LOAD16_BYTE( "271-c6c.c6", 0x2000001, 0x800000, CRC(20a1164c) SHA1(c9843b37612a16fc95f6851793b1cfb5d49d811d) )
-	ROM_LOAD16_BYTE( "271-c7c.c7", 0x3000000, 0x800000, CRC(189aba7f) SHA1(7152195a57ad36b28290810fe87ed8c206262ba9) )
-	ROM_LOAD16_BYTE( "271-c8c.c8", 0x3000001, 0x800000, CRC(20ec4fdc) SHA1(deb5f7ec5a090e419b9d1a6a74877bee081198e2) )
-ROM_END
-
 ROM_START( kf2k3hdf ) // Fully decrypted version of kof2003h
 	ROM_REGION( 0x800000, "maincpu", 0 )
 	ROM_LOAD16_WORD_SWAP( "271-p1hd.p1", 0x000000, 0x400000, CRC(3eb63d66) SHA1(cf97c598e47a54782b9a9095c9907d05613cc19c) )
@@ -3667,29 +3643,6 @@ ROM_START( kf2k3hdf ) // Fully decrypted version of kof2003h
 	ROM_LOAD16_BYTE( "271-c8hd.c8", 0x3000001, 0x800000, CRC(c015cdb7) SHA1(baa1bf179f13e07bd93d33bf40b37deaf65d0b0c) )
 ROM_END
 
-ROM_START( kf2k3hdp ) // Decrypted P version of kof2003h
-	ROM_REGION( 0x800000, "maincpu", 0 )
-	ROM_LOAD16_WORD_SWAP( "271-p1hd.p1", 0x000000, 0x400000, CRC(3eb63d66) SHA1(cf97c598e47a54782b9a9095c9907d05613cc19c) )
-	ROM_LOAD16_WORD_SWAP( "271-p2d.p2",  0x400000, 0x400000, CRC(61cf0139) SHA1(af62ec0aa60ee8c7dbc04658066105add23e4274) )
-
-	NEO_SFIX_MT_512K
-
-	NEO_BIOS_AUDIO_ENCRYPTED_512K( "271-m1k.m1", CRC(48d9affe) SHA1(68f01560b91bbada39001ce01bdeeed5c9bb29f2) )
-
-	ROM_REGION( 0x1000000, "ymsnd:adpcma", 0 )
-	ROM_LOAD( "271-v1c.v1", 0x000000, 0x800000, CRC(ffa3f8c7) SHA1(7cf4a933973ca23b7f87c81151d8659e6ec4bd20) )
-	ROM_LOAD( "271-v1c.v2", 0x800000, 0x800000, CRC(5382c7d1) SHA1(1bf999705eda80ba1e7b0d6bdd010d9bfb18bd76) )
-
-	ROM_REGION( 0x4000000, "sprites", 0 )
-	ROM_LOAD16_BYTE( "271-c1k.c1", 0x0000000, 0x800000, CRC(efb9dd24) SHA1(1c6fe10fdbfc3306c3b7321c731f28ffdbfb15b8) )
-	ROM_LOAD16_BYTE( "271-c2k.c2", 0x0000001, 0x800000, CRC(3fb90447) SHA1(04d196de7c54c77bc75eba56d3060d46efc2d406) )
-	ROM_LOAD16_BYTE( "271-c3k.c3", 0x1000000, 0x800000, CRC(27950f28) SHA1(924f4de61c86b9efde6f1104b986886f1117055d) )
-	ROM_LOAD16_BYTE( "271-c4k.c4", 0x1000001, 0x800000, CRC(735177f8) SHA1(c95da1bc256995a7f44c9cc3312879ab6cbc15d6) )
-	ROM_LOAD16_BYTE( "271-c5k.c5", 0x2000000, 0x800000, CRC(a51b7c0f) SHA1(53dcf692b35b8d32abe5962ac799b8d641f04710) )
-	ROM_LOAD16_BYTE( "271-c6k.c6", 0x2000001, 0x800000, CRC(d5cae4e0) SHA1(248cd9eaac7a04d6b5d80c7534de90b057d566d7) )
-	ROM_LOAD16_BYTE( "271-c7k.c7", 0x3000000, 0x800000, CRC(e65ae2d0) SHA1(39744e10697d7ac539ecfcfa597e75597f321955) )
-	ROM_LOAD16_BYTE( "271-c8k.c8", 0x3000001, 0x800000, CRC(312f528c) SHA1(b4ad75f54f730ada6cb00112b74022250f055725) )
-ROM_END
 
 /*    YEAR  NAME            PARENT    MACHINE        INPUT       INIT             MONITOR COMPANY                FULLNAME FLAGS */
 // The King of Fighters '2003
@@ -3701,8 +3654,6 @@ GAME( 2003, kof2003nrx,     kof2003,  neogeo_noslot, neogeo, neogeo_state, init_
 GAME( 2003, kof2003pcd,     kf2k3pcb, neogeo_noslot, neogeo, neogeo_state, init_kof2k3pcd, ROT0, "hack", "Kof2003 (Japan, JAMMA PCB / decrypted C&Bios)", MACHINE_SUPPORTS_SAVE )
 GAME( 2003, kf2k3mdf,       kof2003,  neogeo_noslot, neogeo, neogeo_state, init_kof2k3df,  ROT0, "SNK Playmore", "The King of Fighters 2003 (NGM-2710, Fully decrypted)", MACHINE_SUPPORTS_SAVE )
 GAME( 2003, kf2k3hdf,       kof2003,  neogeo_noslot, neogeo, neogeo_state, init_kof2k3df,  ROT0, "SNK Playmore", "The King of Fighters 2003 (NGH-2710, Fully decrypted)", MACHINE_SUPPORTS_SAVE )
-GAME( 2003, kf2k3mdp,       kof2003,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "SNK Playmore", "The King of Fighters 2003 (NGM-2710, Decrypted P)", MACHINE_SUPPORTS_SAVE )
-GAME( 2003, kf2k3hdp,       kof2003,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "SNK Playmore", "The King of Fighters 2003 (NGH-2710, Decrypted P)", MACHINE_SUPPORTS_SAVE )
 // Kof 2003 hacks
 GAME( 2003, kof2003s02,     kof2003,  neogeo_noslot, neogeo, neogeo_state, init_kof2003,   ROT0, "Jason",    "Kof2003 (Always Change Ok)", MACHINE_SUPPORTS_SAVE )
 GAME( 2003, kof2003s03,     kof2003,  neogeo_noslot, neogeo, neogeo_state, init_kof2003,   ROT0, "kof1996",    "Kof2003 (Enable Zoom)", MACHINE_SUPPORTS_SAVE )
