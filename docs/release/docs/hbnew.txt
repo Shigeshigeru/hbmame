@@ -1,7 +1,7 @@
 ﻿What's new in HBMAME
 ====================
 
-2026-0x-xx 0.245.31
+2026-03-01 0.245.31
 
 
 
@@ -18,6 +18,15 @@ New Games
 - [hypernoid01]         Hypernoid (2022-02-24)
 - [jumpnrund01]         Jump n Run Tech Demo (Dez 2020)
 - [kabukikl14]          Far East of Eden (Enhanced, 2023-03-22)
+- [kof2000s68]          Kof2000 (OTC, 2022-07-20)
+- [kof2000s69]          Kof2000 (Special, 2023-03-06)
+- [kof2000s70]          Kof2000 SP (Imitation BC 14 System Version, 2021-02-24)
+- [kof2001s51]          Kof2001 (PS2 Krizalid Edition, 2021-01-30)
+- [kof2002s322]         Kof2002 (Plus 2017, 2020-10-22)
+- [kof2002s323]         Kof2002 (The Rise of The World War Edition, 2022-09-23)
+- [kof2002s324]         Kof2002 (Infinite Energy, 2022-05-02)
+- [kof2002s325]         Kof2002 (Battle with Orochi, 2021-03-30)
+- [kof2002s326]         Kof2002 (Mugen, 2023-01-20)
 - [kof2003s77]          Kof2003 (PlayStation 2 Style Portraits, 2022-04-13)
 - [kf2k5u19]            Kof 10th Anniversary 2005 Unique (Optimised, 2025-03-28)
 - [kof94s43]            Kof'94 (Team Edit Edition v1.2.4 Style Portraits, 2024-06-03)
@@ -31,6 +40,12 @@ New Games
 - [kof97s643]           Kof'97 (Randomised, 2022-07-18)
 - [kof97s644]           Kof'97 (Strengthen Innovation, 2023-12-18)
 - [kof97s645]           Kof'97 (Ultimate Battle Plus, 2020-03-27)
+- [kof98s53]            Kof'98 (BC 2002 Style Edition, 2022-09-22)
+- [kof98s54]            Kof'98 (Boss Chinese Edition, 2023-05-01)
+- [kof98s56]            Kof'98 (Easy Combo Edition, 2024-12-01)
+- [kof98s57]            Kof'98 (Plus Final Edition, 2019-09-10)
+- [kof98s58]            Kof'98 (Plus Chinese Edition, 2023-06-18)
+- [kof98s59]            Kof'98 (Ratio)
 - [kof99s185]           Kof'99 (Anniversary Edition Original, 2020-04-07)
 - [kof99s186]           Kof'99 (Evolution Edition Original Edition, 2023-02-13)
 - [kof99s187]           Kof'99 (Infinite Energy, 2024-01-01)
