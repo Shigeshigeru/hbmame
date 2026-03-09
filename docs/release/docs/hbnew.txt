@@ -7,6 +7,8 @@
 
 New Games
 ---------------------------------
+- [adcanoe]             Adventure Canoe
+- [blazstar02]          Blazing Star (remove "bonus" sound)
 - [grime]               Grime 68000
 
 

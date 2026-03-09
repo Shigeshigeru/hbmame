@@ -6399,6 +6399,7 @@ bangbead01
 bangbead02
 bjourney01
 blazstar01
+blazstar02
 breakers01
 breakers02
 breakers03
@@ -8807,6 +8808,7 @@ suikoenb                               //parent
 suikoenb01
 
 @source:taitosj.cpp
+adcanoe
 alpine                                 //parent
 alpine01
 frontlin                               //parent
