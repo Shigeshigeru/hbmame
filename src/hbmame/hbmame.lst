@@ -4495,6 +4495,7 @@ umk2s05                                // Ultimate MKII Tournament Edition r5.0.
 
 @source:midwunit.cpp
 mk08
+mk09
 mk2s07
 mk3                                    //parent
 mk3s01
@@ -6365,11 +6366,12 @@ xeviousn03
 xeviousn04
 xmas2017
 yoyoshkn
-zintrckbh
-zintrkcd
-zintrkcd1
-zintrkm
-zintricks01
+zintrick01
+zintrick02
+zintrick03
+zintrick04
+zintrick05
+zintrick06
 
 @source:neogeo1.cpp
 2020bb01
