@@ -25180,6 +25180,24 @@ GAME( 2025, doubled1c,    doubled1, neogeo_noslot,   neogeo,  neogeo_state, init
 GAME( 2025, doubled1d,    doubled1, neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "La Casa De Ruivo / Neo Byte Force", "Double Dragon One beta 2 (2025-09-03)", MACHINE_SUPPORTS_SAVE )
 GAME( 2025, doubled1e,    doubled1, neogeo_noslot,   neogeo,  neogeo_state, init_neogeo,   ROT0, "La Casa De Ruivo / Neo Byte Force", "Double Dragon One beta 3 (2025-09-14)", MACHINE_SUPPORTS_SAVE )
 
+ROM_START( zintrick06 ) // zintrckb v2
+	ROM_REGION( 0x100000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "211s06.p1", 0x000000, 0x100000, CRC(654342e6) SHA1(3755b0c6d263b8d4da3cb2ee7dd2a9984f418066) )
+
+	NEO_SFIX_128K( "211s02.s1", CRC(56d16afa) SHA1(6e1f960a781f5ef1f858c51507fe573bead8ea66) )
+
+	NEO_BIOS_AUDIO_128K( "211s06.m1", CRC(d06dc450) SHA1(b8d9f5e0d58791e9329f7510076da101900085d8) )
+
+	ROM_REGION( 0x1000000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "211s06.v1", 0x000000, 0x400000, CRC(6254951a) SHA1(5a0a92dec167f6ce4253a4b0b5131fe4208f2fa9) )
+	ROM_LOAD( "211s06.v2", 0x400000, 0x400000, CRC(2f5a94e0) SHA1(ee743d005f86e5a2683baecdda11b0aa314cf056) )
+	ROM_LOAD( "211s06.v3", 0x800000, 0x400000, CRC(7205c60f) SHA1(5066cf524ed502c5fa74d23367d2171d954452c5) )
+	ROM_LOAD( "211s06.v4", 0xc00000, 0x400000, CRC(8389e589) SHA1(d901a21133669e52a134a32c8b1f5d52f8d93f93) )
+
+	ROM_REGION( 0x400000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "211.c1", 0x000000, 0x200000, CRC(76aee189) SHA1(ad6929804c5b9a59aa609e6baebc6aa37e858a47) )
+	ROM_LOAD16_BYTE( "211.c2", 0x000001, 0x200000, CRC(844ed4b3) SHA1(fb7cd057bdc6cbe8b78097dd124118bae7402256) )
+ROM_END
 
 ROM_START( sf2mix96 ) // 0.96
 	ROM_REGION( CODE_SIZE, "maincpu", 0 )
@@ -26169,6 +26187,27 @@ ROM_START( sf2prime ) // v0.72 - press 9 to insert coin
 	ROM_LOAD16_WORD_SWAP( "c88pr.q1",   0x000000, 0x800000, CRC(cd8b2d9f) SHA1(bc4965b1cb6c211cdcf29ab5988702abd82effbc) ) // 11m
 ROM_END
 
+ROM_START( sf2prime ) // v0.73 - press 9 to insert coin
+	ROM_REGION( CODE_SIZE, "maincpu", ROMREGION_ERASEFF )
+	ROM_LOAD16_WORD_SWAP( "c88pr.p1", 0x000000, 0x80000, CRC(26ccedec) SHA1(3c641323ab2124853f612a14f3861c8fe03db36b) ) // 03
+	ROM_LOAD16_WORD_SWAP( "c88pr.p2", 0x080000, 0x80000, CRC(59cd077b) SHA1(33380368e58e6722329389912fc2d2520d53c3b2) ) // 04
+	ROM_LOAD16_WORD_SWAP( "c88pr.p3", 0x100000, 0x80000, CRC(6066037b) SHA1(7ce22f89ba6e96cc25aa29f8f86916ac663421a9) ) // 05
+	ROM_LOAD16_WORD_SWAP( "c88pr.p4", 0x180000, 0x80000, CRC(759890d3) SHA1(a6de221b31d6cd61fe7202cf43c37ddc3f305cbc) ) // 06
+
+	ROM_REGION( 0x2000000, "gfx", 0 )
+	ROM_LOAD64_WORD( "c88pr.c1",   0x0000000, 0x800000, CRC(6bfc4dff) SHA1(53cdf10d3379f07a0783ba54965b3ade3f3a22be) ) // 13m
+	ROM_LOAD64_WORD( "c88pr.c2",   0x0000002, 0x800000, CRC(3bfda169) SHA1(9cd41731c175b62bce54c95c07c27632a105a898) ) // 15m
+	ROM_LOAD64_WORD( "c88pr.c3",   0x0000004, 0x800000, CRC(081470b1) SHA1(b54b985e13c5ed0b2cdf3aeb89229d2bc185649f) ) // 17m
+	ROM_LOAD64_WORD( "c88pr.c4",   0x0000006, 0x800000, CRC(1214f11c) SHA1(54c280453e63d099ee24169867890b36635f55eb) ) // 19m
+
+	ROM_REGION( QSOUND_SIZE, "audiocpu", 0 )
+	ROM_LOAD( "c88pr.m1",   0x00000, 0x08000, CRC(6ce233a7) SHA1(5ff00de2fa8f31e66c9518049828d532554cb316) ) // 01
+	ROM_CONTINUE(           0x10000, 0x18000 )
+	ROM_LOAD( "c88.m2",     0x28000, 0x20000, CRC(2d8794aa) SHA1(c634affdc2568020cce6af97b4fa79925d9943f3) ) // 02
+
+	ROM_REGION( 0x800000, "qsound", 0 )
+	ROM_LOAD16_WORD_SWAP( "c88pr.q1",   0x000000, 0x800000, CRC(cd8b2d9f) SHA1(bc4965b1cb6c211cdcf29ab5988702abd82effbc) ) // 11m
+ROM_END
 
 GAME( 2025, sf2prime3,  hsf2,     dead_cps2, cps2_2p6b, cps2_state, init_cps2, ROT0, "Zero800", "Street Fighter II': Prime (v0.3)", MACHINE_SUPPORTS_SAVE )
 GAME( 2025, sf2prime4,  hsf2,     dead_cps2, cps2_2p6b, cps2_state, init_cps2, ROT0, "Zero800", "Street Fighter II': Prime (v0.4)", MACHINE_SUPPORTS_SAVE )
@@ -26186,6 +26225,7 @@ GAME( 2025, sf2prime66, hsf2,     dead_cps2, cps2_2p6b, cps2_state, init_cps2, R
 GAME( 2026, sf2prime,   hsf2,     dead_cps2, cps2_2p6b, cps2_state, init_cps2, ROT0, "Zero800", "Street Fighter II': Prime (v0.70)", MACHINE_SUPPORTS_SAVE )
 GAME( 2026, sf2prime,   hsf2,     dead_cps2, cps2_2p6b, cps2_state, init_cps2, ROT0, "Zero800", "Street Fighter II': Prime (v0.71)", MACHINE_SUPPORTS_SAVE )
 GAME( 2026, sf2prime,   hsf2,     dead_cps2, cps2_2p6b, cps2_state, init_cps2, ROT0, "Zero800", "Street Fighter II': Prime (v0.72)", MACHINE_SUPPORTS_SAVE )
+GAME( 2026, sf2prime,   hsf2,     dead_cps2, cps2_2p6b, cps2_state, init_cps2, ROT0, "Zero800", "Street Fighter II': Prime (v0.73)", MACHINE_SUPPORTS_SAVE )
 
 
 // ------------------------------------- DONKEY KONG --------------- These work, but are old versions -----------------
