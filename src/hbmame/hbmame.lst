@@ -1688,6 +1688,7 @@ futari15bc
 futaribl                               //parent
 futariblc
 futaribljc
+msmatsuri
 
 @source:ddragon.cpp
 ddragon2                               //parent
@@ -2915,6 +2916,7 @@ kof97s641
 kof97s643
 kof97s644
 kof97s645
+kof97s646
 
 @source:kof98.cpp
 kof98aas
@@ -3630,6 +3632,7 @@ kof2001s48
 kof2001s49
 kof2001s50
 kof2001s51
+kof2001s52
 
 @source:kof2002.cpp
 kof200215
@@ -6055,7 +6058,7 @@ bstars			// 002
 bstars2			// 041
 burningf		// 018
 crsword			// 037
-crswd2bl		// 054
+//crswd2bl		// 054 crswd2bl
 ctomaday		// 249
 cyberlip		// 010
 diggerma                               // HB
@@ -6077,7 +6080,7 @@ gowcaizr		// 094
 gpilots			// 020
 //gururin		// 067  not needed
 ironclad		// 220
-//irrmaze		// 236  not needed
+irrmaze			// 236
 //janshin		// 048  not needed
 jockeygp		// 331
 joyjoy			// 021
@@ -6236,7 +6239,8 @@ cnbe2018
 cphd
 columnsn	/* 2000 (c) 1990 Sega */
 columnsncd
-//csw2                                 //not working & roms missing
+csw2
+//csw2s01    // not fully dumped, not working
 cyborg
 cyborg1
 ddsprdmo
@@ -6252,8 +6256,9 @@ ffeastd		// Frog Feast demo
 flapchck
 foodfn
 fr2			// 098 Idol Mahjong - final romance 2
-fr2cd		/* 098 (c) 1995 Video Systems Co. */
-fr2ch		/* 098 (c) 1995 Video Systems Co. */
+fr2s01
+fr2s02
+fr2s03
 galaxiann
 galaxiann2
 gbi
@@ -6435,7 +6440,7 @@ breakrev08
 breakrev09
 burningf01
 ctomaday01
-dragons1
+dragonsh01
 eightman01
 fightfev01
 fightfev02
@@ -6455,6 +6460,7 @@ gpilots01
 gpilots02
 gpilots03
 ironclad01
+irrmaze01
 jockeygp01
 joyjoy01
 joyjoy02
@@ -6598,7 +6604,7 @@ tophuntr02
 tpgolf01
 trally01
 turfmast01
-turfmast02
+turfmast03
 twinspri01
 viewpoin01
 viewpoin02
