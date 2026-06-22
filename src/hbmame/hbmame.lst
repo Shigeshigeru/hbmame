@@ -7004,6 +7004,8 @@ rbffs09
 rbffs10
 rbffs11
 rbffs12
+ffury3an
+rbff1an
 
 @source:ngrotd.cpp
 rotdb
@@ -7038,6 +7040,8 @@ rotds07
 rotds08
 rotds09
 rotds10
+rotdc
+rotddc
 
 @source:ngsamsho.cpp
 fswords01
@@ -7403,6 +7407,7 @@ wh2s02
 wh2js01
 wh2js02
 wh2js03
+wh2an
 
 @source:nmk16.cpp
 tdragon2		//parent

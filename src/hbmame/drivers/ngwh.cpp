@@ -712,6 +712,28 @@ ROM_START( wh2js03 )
 	ROM_LOAD16_BYTE( "064.c8", 0xc00001, 0x200000, CRC(fc092367) SHA1(69ff4ae909dd857de3ca8645d63f8b4bde117448) )
 ROM_END
 
+ROM_START( wh2an ) /* ACA NEOGEO Version */
+	ROM_REGION( 0x200000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "057-p1an.p1", 0x100000, 0x100000, CRC(1b51fc5c) SHA1(2641078170eebf8d469f7fef257e8278cc55464f) )
+	ROM_CONTINUE( 0x000000, 0x100000 )
+
+	NEO_SFIX_128K( "057-s1.s1", CRC(fcaeb3a4) SHA1(1f3f85e38b8552333261c04ae5af0d6e3b310622) )
+
+	NEO_BIOS_AUDIO_128K( "057-m1.m1", CRC(8fa3bc77) SHA1(982f92978671e4ee66630948e6bb7565b37b5dc0) )
+
+	ROM_REGION( 0x400000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "057-v1.v1", 0x000000, 0x200000, CRC(8877e301) SHA1(1bab988d74ea8fd12db201c257ec844622cf5f4e) )
+	ROM_LOAD( "057-v2.v2", 0x200000, 0x200000, CRC(c1317ff4) SHA1(4c28b2b5998abaeaa5143f2f3a9ba52c6041f4f3) )
+
+	ROM_REGION( 0xc00000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "057-c1.c1", 0x000000, 0x200000, CRC(21c6bb91) SHA1(a2c17d0c91dd59528d8fa7fe110af8b20b25ff99) )
+	ROM_LOAD16_BYTE( "057-c2.c2", 0x000001, 0x200000, CRC(a3999925) SHA1(0ee861a77850d378d03c1bf00b9692abd860c759) )
+	ROM_LOAD16_BYTE( "057-c3.c3", 0x400000, 0x200000, CRC(b725a219) SHA1(4857687d156a9150a69b97d2729245a51c144a0c) )
+	ROM_LOAD16_BYTE( "057-c4.c4", 0x400001, 0x200000, CRC(8d96425e) SHA1(0f79c868a6a33ad25e38d842f30ec4440d809033) )
+	ROM_LOAD16_BYTE( "057-c5.c5", 0x800000, 0x200000, CRC(b20354af) SHA1(da7609fd467f2f4d71d92970f438a04d11ab1cc1) )
+	ROM_LOAD16_BYTE( "057-c6.c6", 0x800001, 0x200000, CRC(b13d1de3) SHA1(7d749c23a33d90fe50279e884540d71cf1aaaa6b) )
+ROM_END
+
 /*    YEAR  NAME            PARENT    MACHINE        INPUT       INIT             MONITOR COMPANY                 FULLNAME FLAGS */
 // World Heroes Perfect
 GAME( 1995, whpb,           whp,      neogeo_noslot, neogeo, neogeo_state, init_neogeo, ROT0, "Creamymami, Dodowang", "World Heroes Perfect (Add Char)", MACHINE_SUPPORTS_SAVE )
@@ -740,6 +762,7 @@ GAME( 1993, wh2s01,         wh2,      neogeo_noslot, neogeo, neogeo_state, init_
 GAME( 2018, wh2s02,         wh2,      neogeo_noslot, neogeo, neogeo_state, init_neogeo, ROT0, "hack",     "World Heroes 2 (Boss With Simple Attack Edition, 2018-09-12)", MACHINE_SUPPORTS_SAVE )
 GAME( 1993, wh2bs,          wh2,      neogeo_noslot, neogeo, neogeo_state, init_neogeo, ROT0, "yumeji[2ch]", "World Heroes 2 (Enable Hidden Characters)", MACHINE_SUPPORTS_SAVE )
 GAME( 1993, wh2ey,          wh2,      neogeo_noslot, neogeo, neogeo_state, init_neogeo, ROT0, "ZKW", "World Heroes 2 (Boss, PPX hack, remixed)", MACHINE_SUPPORTS_SAVE )
+GAME( 1993, wh2an,          wh2,      neogeo_noslot, neogeo, neogeo_state, init_neogeo, ROT0, "ADK", "World Heroes 2 (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
 GAME( 1994, wh2ja,          wh2j,     neogeo_noslot, neogeo, neogeo_state, init_neogeo, ROT0, "ADK / SNK", "World Heroes 2 Jet (Old set)", MACHINE_SUPPORTS_SAVE )
 GAME( 1994, wh2jb,          wh2j,     neogeo_noslot, neogeo, neogeo_state, init_neogeo, ROT0, "0 DAY-S[EGCG]", "World Heroes 2 Jet (Enable Hidden Characters V1)", MACHINE_SUPPORTS_SAVE )
 GAME( 1994, wh2js01,        wh2j,     neogeo_noslot, neogeo, neogeo_state, init_neogeo, ROT0, "yumeji[2ch]",     "World Heroes 2 Jet (Enable Hidden Characters V2)", MACHINE_SUPPORTS_SAVE )
