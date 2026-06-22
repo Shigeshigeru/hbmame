@@ -2,7 +2,7 @@
 // copyright-holders:Robbbert
 #include "../mame/konami/nemesis.cpp"
 
-#if 0
+// #if 0
 static INPUT_PORTS_START( spclone )
 	PORT_START("IN0")
 	PORT_BIT( 0x01, IP_ACTIVE_HIGH, IPT_COIN1 )
@@ -94,7 +94,7 @@ static INPUT_PORTS_START( spclone )
 	PORT_DIPSETTING(    0x80, DEF_STR( Off ) )
 	PORT_DIPSETTING(    0x00, DEF_STR( On ) )
 INPUT_PORTS_END
-#endif
+// #endif
 
 ROM_START( spclone )
 	ROM_REGION( 0x80000, "maincpu", 0 )
