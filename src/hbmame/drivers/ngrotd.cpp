@@ -28,6 +28,15 @@ void neogeo_state::init_rotdnd()
 	m_cmc_prot->neogeo_sfix_decrypt(spr_region, spr_region_size, fix_region, fix_region_size);
 }
 
+void neogeo_state::init_rotddc()
+{
+	init_neogeo();
+	m_sprgen->m_fixed_layer_bank_type = 1;
+	m_cmc_prot->neogeo_sfix_decrypt(spr_region, spr_region_size, fix_region, fix_region_size);
+	m_cmc_prot->neogeo_cmc50_m1_decrypt(audiocrypt_region, audiocrypt_region_size, audiocpu_region,audio_region_size);
+	m_pcm2_prot->neo_pcm2_snk_1999(ym_region, ym_region_size, 16);
+}
+
 
 
 ROM_START( rotdb ) /* Rage of the Dragons - Hack by Ydmis - (Console mode enabled - can choose Abubo and Johann) */
@@ -773,6 +782,70 @@ ROM_START( rotds10 )
 	ROM_LOAD16_BYTE( "264s10.c8", 0x3000001, 0x800000, CRC(29ee5c04) SHA1(a208d6e02ba444aa96b9712b43a4d673087010c1) )
 ROM_END
 
+// Rage of the Dragons (Rage of the Dragons NEO Version)
+
+ROM_START( rotdc )
+// This ROM will not boot.
+// To fix P1(OriginalCRC:747023ea), change the 0xb9 of the 0x2400 to 0x71
+
+	ROM_REGION( 0x800000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "264-p1np.p1", 0x000000, 0x800000, CRC(b32f7fd8) SHA1(3a4971f5fb747dd229f83edf12edfe0dd2ce9d35) )
+
+	NEO_SFIX_MT_128K
+
+	NEO_BIOS_AUDIO_ENCRYPTED_128K( "264-m1.m1", CRC(4dbd7b43) SHA1(6b63756b0d2d30bbf13fbd219833c81fd060ef96) )
+
+	ROM_REGION( 0x1000000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "264-v1.v1", 0x000000, 0x800000, CRC(fa005812) SHA1(73723126dab5a640ac11955ed6da1bf7a91394f5) )
+	ROM_LOAD( "264-v2.v2", 0x800000, 0x800000, CRC(c3dc8bf0) SHA1(a105e37262d9500a30fb8a5dac05aa4fab2562a3) )
+
+// Encrypted C
+	ROM_REGION( 0x4000000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "264-c1n.c1", 0x0000000, 0x800000, CRC(11de989c) SHA1(a3d9ab8c28f75eeeae65dbc4cd1f20ca2905343d) )
+	ROM_LOAD16_BYTE( "264-c2n.c2", 0x0000001, 0x800000, CRC(e70eaf48) SHA1(4b1171ff28f90d86d9bf2b041e1b34409320fb49) )
+	ROM_LOAD16_BYTE( "264-c3n.c3", 0x1000000, 0x800000, CRC(4637842c) SHA1(dd665f0d2c6f0f6ad540ea51bf951b0573f1fc43) )
+	ROM_LOAD16_BYTE( "264-c4n.c4", 0x1000001, 0x800000, CRC(d638367b) SHA1(ac7988959726eb27e41248f0882b3fe2914d73dc) )
+	ROM_LOAD16_BYTE( "264-c5n.c5", 0x2000000, 0x800000, CRC(16fe4f9f) SHA1(3589380e3ce5403446740d5e4b28f3565565accb) )
+	ROM_LOAD16_BYTE( "264-c6n.c6", 0x2000001, 0x800000, CRC(e8e4ebbf) SHA1(ae6dcd1217214ed545037d31650b2bd661d6b741) )
+	ROM_LOAD16_BYTE( "264-c7n.c7", 0x3000000, 0x800000, CRC(1705a3ca) SHA1(23c66cf1e187a9cf3fb690be9cb7017b00ad6e55) )
+	ROM_LOAD16_BYTE( "264-c8n.c8", 0x3000001, 0x800000, CRC(ae10d1af) SHA1(7c9f66a916c1359b425a93cb9f0894deac3f3441) )
+ROM_END
+
+// Rage of the Dragons (Decrypted C, Rage of the Dragons NEO Version)
+
+ROM_START( rotddc )
+// This ROM will not boot.
+// To fix P1(OriginalCRC:747023ea), change the 0xb9 of the 0x2400 to 0x71
+
+	ROM_REGION( 0x800000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "264-p1np.p1", 0x000000, 0x800000, CRC(b32f7fd8) SHA1(3a4971f5fb747dd229f83edf12edfe0dd2ce9d35) )
+
+// Original S1 data is used in C7,C8
+// Extract it with IQ's tool
+// https://neo-source.com/index.php?topic=241.msg3110#msg3110
+// https://neo-source.com/index.php?action=dlattach;topic=241.0;attach=154S1
+// Data segment (0x060000~0x07ffff) in s1 (512KB) from C7,C8 128Kb(CRC32:c155d4ff)
+
+//	NEO_SFIX_128K( "264-s1d.s1", CRC(c155d4ff) SHA1(cc20d4e30004ca82da2ba075c084d294c94651d0) )
+	NEO_SFIX_MT_128K
+
+	NEO_BIOS_AUDIO_ENCRYPTED_128K( "264-m1.m1", CRC(4dbd7b43) SHA1(6b63756b0d2d30bbf13fbd219833c81fd060ef96) )
+
+	ROM_REGION( 0x1000000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "264-v1.v1", 0x000000, 0x800000, CRC(fa005812) SHA1(73723126dab5a640ac11955ed6da1bf7a91394f5) )
+	ROM_LOAD( "264-v2.v2", 0x800000, 0x800000, CRC(c3dc8bf0) SHA1(a105e37262d9500a30fb8a5dac05aa4fab2562a3) )
+
+	ROM_REGION( 0x4000000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "264-c1d.c1", 0x0000000, 0x800000, CRC(ec9d18c0) SHA1(83ebedae9655b6c64421cd131930b27d252853ec) )
+	ROM_LOAD16_BYTE( "264-c2d.c2", 0x0000001, 0x800000, CRC(b1069066) SHA1(0b4e2249efc782b572b589f72aadbd8007e8778c) )
+	ROM_LOAD16_BYTE( "264-c3dn.c3", 0x1000000, 0x800000, CRC(eec3345a) SHA1(bfbf29900098b1fe03e0819950328d107bc4cb47) )
+	ROM_LOAD16_BYTE( "264-c4dn.c4", 0x1000001, 0x800000, CRC(94cabe9b) SHA1(93a0add0bc40ff86cbdcd8aa94beb9cfce002676) )
+	ROM_LOAD16_BYTE( "264-c5dn.c5", 0x2000000, 0x800000, CRC(550479cf) SHA1(71c66269c5165d3010368094ac4157d42762861c) )
+	ROM_LOAD16_BYTE( "264-c6dn.c6", 0x2000001, 0x800000, CRC(34575f18) SHA1(1fc2c50f00ec5a44d5ff601272d9bb2ee70ad93c) )
+	ROM_LOAD16_BYTE( "264-c7dn.c7", 0x3000000, 0x800000, CRC(b2e5461f) SHA1(56d31d9de10e77f4ad5fb8c2c8644489bbdca275) )
+	ROM_LOAD16_BYTE( "264-c8dn.c8", 0x3000001, 0x800000, CRC(d563aa3b) SHA1(24c3f758dd06596e196cd1d9d3a35e0939fb0c7f) )
+ROM_END
+
 /*    YEAR  NAME            PARENT    MACHINE        INPUT       INIT             MONITOR COMPANY                 FULLNAME FLAGS */
 //Rage of the Dragons
 GAME( 2002, rotdb,     rotd, neogeo_noslot, neogeo, neogeo_state, init_rotdb,  ROT0, "Ydmis", "Rage of the Dragons (Add Char - Console mode enabled set 4)", MACHINE_SUPPORTS_SAVE )
@@ -808,4 +881,6 @@ GAME( 2002, rotds07,        rotd,     neogeo_noslot, neogeo, neogeo_state, init_
 GAME( 2002, rotds08,        rotd,     neogeo_noslot, neogeo, neogeo_state, init_rotd,      ROT0, "HappyASR[EGCG]",    "Rage of the Dragons (Same Character In A Team)", MACHINE_SUPPORTS_SAVE )
 GAME( 2002, rotds09,        rotd,     neogeo_noslot, neogeo, neogeo_state, init_rotd,      ROT0, "DDJ",    "Rage of the Dragons (Easy Move)", MACHINE_SUPPORTS_SAVE )
 GAME( 2018, rotds10,        rotd,     neogeo_noslot, neogeo, neogeo_state, init_rotd,      ROT0, "Gaston90",    "Rage of the Dragons (Super Remix Edition 1.0)", MACHINE_SUPPORTS_SAVE )
+GAME( 2024, rotdc,          rotd,     neogeo_noslot, neogeo, neogeo_state, init_rotd,      ROT0, "QUByte / PIKO",    "Rage of the Dragons (Rage of the Dragons NEO Version)", MACHINE_SUPPORTS_SAVE )
+GAME( 2024, rotddc,         rotd,     neogeo_noslot, neogeo, neogeo_state, init_rotddc,    ROT0, "QUByte / PIKO",    "Rage of the Dragons (Decrypted C, Rage of the Dragons NEO Version)", MACHINE_SUPPORTS_SAVE )
 

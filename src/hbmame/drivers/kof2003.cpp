@@ -44,6 +44,16 @@ void neogeo_state::init_xs02()
 	init_kof2003b();
 }
 
+void neogeo_state::init_kof2k3df()
+{
+	init_neogeo();
+	m_sprgen->m_fixed_layer_bank_type = 2;
+	m_pvc_prot->install_pvc_protection(m_maincpu, m_banked_cart);
+//	m_cmc_prot->neogeo_cmc50_m1_decrypt(audiocrypt_region, audiocrypt_region_size, audiocpu_region, audio_region_size);
+//	m_pcm2_prot->neo_pcm2_swap(ym_region, ym_region_size, 5);
+	m_cmc_prot->neogeo_sfix_decrypt(spr_region, spr_region_size, fix_region, fix_region_size);
+}
+
 
 /**********************
  King of Fighters 2003
@@ -3564,6 +3574,64 @@ ROM_START( kof2004p31 ) // kf2k3upd
 	ROM_LOAD16_BYTE( "271b.c8", 0x3000001, 0x800000, CRC(75211f4d) SHA1(d82f044e816ee539ff131d9c931200c818d34cd0) )
 ROM_END
 
+ROM_START( kf2k3mdf ) // Fully decrypted version of kof2003 MVS
+	ROM_REGION( 0x800000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "271-p1d.p1", 0x000000, 0x400000, CRC(08689be0) SHA1(958c0990b1149a7ecd5e81ce56050d4a87ee83c4) )
+	ROM_LOAD16_WORD_SWAP( "271-p2d.p2", 0x400000, 0x400000, CRC(61cf0139) SHA1(af62ec0aa60ee8c7dbc04658066105add23e4274) )
+
+	NEO_SFIX_MT_512K
+
+//	NEO_BIOS_AUDIO_ENCRYPTED_512K( "271-m1.m1", CRC(f5515629) SHA1(7516bf1b0207a3c8d41dc30c478f8d8b1f71304b) )
+	NEO_BIOS_AUDIO_512K( "271-m1d.m1", CRC(cc8b54c0) SHA1(c0dabaad7a8e9e57774af8fa1009296af5c60005) )
+
+//	ROM_REGION( 0x1000000, "ymsnd:adpcma", 0 )
+//	ROM_LOAD( "271-v1c.v1", 0x000000, 0x800000, CRC(ffa3f8c7) SHA1(7cf4a933973ca23b7f87c81151d8659e6ec4bd20) )
+//	ROM_LOAD( "271-v1c.v2", 0x800000, 0x800000, CRC(5382c7d1) SHA1(1bf999705eda80ba1e7b0d6bdd010d9bfb18bd76) )
+
+	ROM_REGION( 0x1000000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "271-v1d.v1", 0x000000, 0x800000, CRC(dd6c6a85) SHA1(e32b16d0b716a4f3b95868457347303d020147fb) )
+	ROM_LOAD( "271-v2d.v2", 0x800000, 0x800000, CRC(0e84f8c1) SHA1(28c964fe89c800b445d3a65c965de32b4e504726) )
+
+	ROM_REGION( 0x4000000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "271-c1d.c1", 0x0000000, 0x800000, CRC(e42fc226) SHA1(1cd9364993e141facdcdd53ec2277df7b275d8a7) )
+	ROM_LOAD16_BYTE( "271-c2d.c2", 0x0000001, 0x800000, CRC(1b5e3b58) SHA1(0eb254477a9479541291e43e415310852a0f0bed) )
+	ROM_LOAD16_BYTE( "271-c3d.c3", 0x1000000, 0x800000, CRC(d334fdd9) SHA1(1efe30b4f56a55e25ab518cf6999de797b5e407c) )
+	ROM_LOAD16_BYTE( "271-c4d.c4", 0x1000001, 0x800000, CRC(0d457699) SHA1(ec73d0c9fc7094d0ac6c0986a6e07cde25893e57) )
+	ROM_LOAD16_BYTE( "271-c5d.c5", 0x2000000, 0x800000, CRC(8a91aae4) SHA1(802f4baacf801646be1ef686e105b2e867a6a5df) )
+	ROM_LOAD16_BYTE( "271-c6d.c6", 0x2000001, 0x800000, CRC(9f8674b8) SHA1(65964f40b2227d020023fb436579927e65807dcd) )
+	ROM_LOAD16_BYTE( "271-c7d.c7", 0x3000000, 0x800000, CRC(8ee6b43c) SHA1(c78b749c7c8e1d8ab8335b96da03764cc8e9eb21) )
+	ROM_LOAD16_BYTE( "271-c8d.c8", 0x3000001, 0x800000, CRC(6d8d2d60) SHA1(841698eead0f7d422937ce2f2329e17c383d90a6) )
+ROM_END
+
+ROM_START( kf2k3hdf ) // Fully decrypted version of kof2003h
+	ROM_REGION( 0x800000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "271-p1hd.p1", 0x000000, 0x400000, CRC(3eb63d66) SHA1(cf97c598e47a54782b9a9095c9907d05613cc19c) )
+	ROM_LOAD16_WORD_SWAP( "271-p2d.p2",  0x400000, 0x400000, CRC(61cf0139) SHA1(af62ec0aa60ee8c7dbc04658066105add23e4274) )
+
+	NEO_SFIX_MT_512K
+
+//	NEO_BIOS_AUDIO_ENCRYPTED_512K( "271-m1k.m1", CRC(48d9affe) SHA1(68f01560b91bbada39001ce01bdeeed5c9bb29f2) )
+	NEO_BIOS_AUDIO_512K( "271-m1hd.m1", CRC(5edcbaee) SHA1(014e98b2dc2fdc817ea847cdb0ec787dad10e60a) )
+
+//	ROM_REGION( 0x1000000, "ymsnd:adpcma", 0 )
+//	ROM_LOAD( "271-v1c.v1", 0x000000, 0x800000, CRC(ffa3f8c7) SHA1(7cf4a933973ca23b7f87c81151d8659e6ec4bd20) )
+//	ROM_LOAD( "271-v1c.v2", 0x800000, 0x800000, CRC(5382c7d1) SHA1(1bf999705eda80ba1e7b0d6bdd010d9bfb18bd76) )
+
+	ROM_REGION( 0x1000000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "271-v1d.v1", 0x000000, 0x800000, CRC(dd6c6a85) SHA1(e32b16d0b716a4f3b95868457347303d020147fb) )
+	ROM_LOAD( "271-v2d.v2", 0x800000, 0x800000, CRC(0e84f8c1) SHA1(28c964fe89c800b445d3a65c965de32b4e504726) )
+
+	ROM_REGION( 0x4000000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "271-c1d.c1", 0x0000000, 0x800000, CRC(e42fc226) SHA1(1cd9364993e141facdcdd53ec2277df7b275d8a7) )
+	ROM_LOAD16_BYTE( "271-c2d.c2", 0x0000001, 0x800000, CRC(1b5e3b58) SHA1(0eb254477a9479541291e43e415310852a0f0bed) )
+	ROM_LOAD16_BYTE( "271-c3d.c3", 0x1000000, 0x800000, CRC(d334fdd9) SHA1(1efe30b4f56a55e25ab518cf6999de797b5e407c) )
+	ROM_LOAD16_BYTE( "271-c4d.c4", 0x1000001, 0x800000, CRC(0d457699) SHA1(ec73d0c9fc7094d0ac6c0986a6e07cde25893e57) )
+	ROM_LOAD16_BYTE( "271-c5d.c5", 0x2000000, 0x800000, CRC(8a91aae4) SHA1(802f4baacf801646be1ef686e105b2e867a6a5df) )
+	ROM_LOAD16_BYTE( "271-c6d.c6", 0x2000001, 0x800000, CRC(9f8674b8) SHA1(65964f40b2227d020023fb436579927e65807dcd) )
+	ROM_LOAD16_BYTE( "271-c7hd.c7", 0x3000000, 0x800000, CRC(efe714f8) SHA1(c239744cf372f6f7b2cd1b539a59f792038fe179) )
+	ROM_LOAD16_BYTE( "271-c8hd.c8", 0x3000001, 0x800000, CRC(c015cdb7) SHA1(baa1bf179f13e07bd93d33bf40b37deaf65d0b0c) )
+ROM_END
+
 
 /*    YEAR  NAME            PARENT    MACHINE        INPUT       INIT             MONITOR COMPANY                FULLNAME FLAGS */
 // The King of Fighters '2003
@@ -3573,6 +3641,8 @@ GAME( 2003, kof2003fd,      kof2003,  neogeo_noslot, neogeo, neogeo_state, init_
 GAME( 2003, kof2003nd,      kof2003,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "hack", "Kof2003 (Fully decrypted)", MACHINE_SUPPORTS_SAVE )
 GAME( 2003, kof2003nrx,     kof2003,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,    ROT0, "hack", "Kof2003 (Neoragex)", MACHINE_SUPPORTS_SAVE )
 GAME( 2003, kof2003pcd,     kf2k3pcb, neogeo_noslot, neogeo, neogeo_state, init_kof2k3pcd, ROT0, "hack", "Kof2003 (Japan, JAMMA PCB / decrypted C&Bios)", MACHINE_SUPPORTS_SAVE )
+GAME( 2003, kf2k3mdf,       kof2003,  neogeo_noslot, neogeo, neogeo_state, init_kof2k3df,  ROT0, "SNK Playmore", "The King of Fighters 2003 (NGM-2710, Fully decrypted)", MACHINE_SUPPORTS_SAVE )
+GAME( 2003, kf2k3hdf,       kof2003,  neogeo_noslot, neogeo, neogeo_state, init_kof2k3df,  ROT0, "SNK Playmore", "The King of Fighters 2003 (NGH-2710, Fully decrypted)", MACHINE_SUPPORTS_SAVE )
 // Kof 2003 hacks
 GAME( 2003, kof2003s02,     kof2003,  neogeo_noslot, neogeo, neogeo_state, init_kof2003,   ROT0, "Jason",    "Kof2003 (Always Change Ok)", MACHINE_SUPPORTS_SAVE )
 GAME( 2003, kof2003s03,     kof2003,  neogeo_noslot, neogeo, neogeo_state, init_kof2003,   ROT0, "kof1996",    "Kof2003 (Enable Zoom)", MACHINE_SUPPORTS_SAVE )

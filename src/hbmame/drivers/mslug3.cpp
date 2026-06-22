@@ -7544,6 +7544,31 @@ ROM_START( mslug3unity )
 	ROM_LOAD16_BYTE( "256.c8", 0x3000001, 0x800000, CRC(4d9be34c) SHA1(a737bdfa2b815aea7067e7af2636e83a9409c414) )
 ROM_END
 
+ROM_START( mslug3hand ) // Metal Slug 3 (NGH-2560, Fully Decrypted ACA NEOGEO Version)
+	ROM_REGION( 0x500000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "256-ph1.p1",  0x000000, 0x100000, CRC(9c42ca85) SHA1(7a8f77a89867b889295ae9b9dfd4ba28f02d234d) )
+	ROM_LOAD16_WORD_SWAP( "256-ph2.sp2", 0x100000, 0x400000, CRC(1f3d8ce8) SHA1(08b05a8abfb86ec09a5e758d6273acf1489961f9) )
+
+	NEO_SFIX_128K( "256-s1d.128", CRC(f7441179) SHA1(ce9ecad54cf57dcb696f0a8aa1b20c23a9785b62) )
+
+	NEO_BIOS_AUDIO_512K( "256-m1.m1", CRC(eaeec116) SHA1(54419dbb21edc8c4b37eaac2e7ad9496d2de037a) )
+
+	ROM_REGION( 0x1000000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "256-v1.v1", 0x000000, 0x400000, CRC(f2690241) SHA1(fd56babc1934d10e0d27c32f032f9edda7ca8ce9) )
+	ROM_LOAD( "256-v2.v2", 0x400000, 0x400000, CRC(7e2a10bd) SHA1(0d587fb9f64cba0315ce2d8a03e2b8fe34936dff) )
+	ROM_LOAD( "256-v3.v3", 0x800000, 0x400000, CRC(0eaec17c) SHA1(c3ed613cc6993edd6fc0d62a90bcd85de8e21915) )
+	ROM_LOAD( "256-v4.v4", 0xc00000, 0x400000, CRC(9b4b22d4) SHA1(9764fbf8453e52f80aa97a46fb9cf5937ef15a31) )
+
+	ROM_REGION( 0x4000000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "256-c1d.c1",  0x0000000, 0x800000, CRC(3540398c) SHA1(0a96f2360eb26c66bf02bbc6f52230b55cc95e4e) )
+	ROM_LOAD16_BYTE( "256-c2d.c2",  0x0000001, 0x800000, CRC(bdd220f0) SHA1(f52851023f3bc120b05f622af0e0ab1bedc41604) )
+	ROM_LOAD16_BYTE( "256-c3d.c3",  0x1000000, 0x800000, CRC(bfaade82) SHA1(66b07e592c9a9b35567fe463496f8f75c32a7db9) )
+	ROM_LOAD16_BYTE( "256-c4d.c4",  0x1000001, 0x800000, CRC(1463add6) SHA1(4db91b46d6430da272d27d00a6dc0eb25949bea1) )
+	ROM_LOAD16_BYTE( "256-c5d.c5",  0x2000000, 0x800000, CRC(48ca7f28) SHA1(e903876be5fb4fa582c988d74c6bef1c3b9c7083) )
+	ROM_LOAD16_BYTE( "256-c6d.c6",  0x2000001, 0x800000, CRC(806eb36f) SHA1(a412a9cab80c326733dde7652d1db2a46afb3ebb) )
+	ROM_LOAD16_BYTE( "256-c7da.c7", 0x3000000, 0x800000, CRC(1861dfc5) SHA1(66de295f25cb124b6b4b76ef449b0ebd649dfd0c) )
+	ROM_LOAD16_BYTE( "256-c8da.c8", 0x3000001, 0x800000, CRC(bc18f71d) SHA1(e1427c6e7ef4f356cbfcb6e6348868440e7b6b19) )
+ROM_END
 
 /*    YEAR  NAME            PARENT    MACHINE        INPUT       INIT             MONITOR COMPANY                 FULLNAME FLAGS */
 GAME( 2000, mslug3e02,   mslug3,   neogeo_noslot,   neogeo, neogeo_state, init_mslug3n,  ROT0, "Ydmis", "Metal Slug 3 (Style remix set 02)", MACHINE_SUPPORTS_SAVE )
@@ -7578,6 +7603,7 @@ GAME( 2004, mslug3fr,    mslug3,   neogeo_noslot,   neogeo, neogeo_state, init_m
 GAME( 2003, mslug3fro,   mslug3,   neogeo_noslot,   neogeo, neogeo_state, init_mslug3fr, ROT0, "Arkatrad", "Metal Slug 3 (Traduction French)(Old)", MACHINE_SUPPORTS_SAVE )
 GAME( 2015, mslug3hev,   mslug3,   neogeo_noslot,   neogeo, neogeo_state, init_mslug3n,  ROT0, "hack", "Metal Slug 3 (Enhanced Version, 2015-05-07)", MACHINE_SUPPORTS_SAVE )
 GAME( 2000, mslug3nd,    mslug3,   neogeo_noslot,   neogeo, neogeo_state, init_cmc42sfix,ROT0, "SNK", "Metal Slug 3 (Fully Decrypted C)", MACHINE_SUPPORTS_SAVE )
+GAME( 2000, mslug3hand,  mslug3,   neogeo_noslot,   neogeo, neogeo_state, init_neogeo,  ROT0, "SNK", "Metal Slug 3 (NGH-2560, Fully Decrypted ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
 GAME( 2021, mslug3rb,    mslug3,   neogeo_noslot,   neogeo, neogeo_state, init_neogeo,  ROT0, "hack", "Metal Slug 3 (Last Warhead)", MACHINE_SUPPORTS_SAVE )
 GAME( 2012, mslug3v,     mslug3,   neogeo_noslot,   neogeo, neogeo_state, init_mslug6,  ROT0, "Eezezy", "Metal Slug 3 (Violence Edition, 2012-03-01)", MACHINE_SUPPORTS_SAVE )
 GAME( 2020, mslug3h01,      mslug3,   neogeo_noslot, neogeo, neogeo_state, init_mslug3h,   ROT0, "Robert/Gaston90",    "Metal Slug 3 (Zombie Players Mode Edition, 2020-09-18)", MACHINE_SUPPORTS_SAVE )
