@@ -6135,7 +6135,7 @@ ROM_START( bstars2c ) //Steam Censored Version
 	ROM_LOAD16_BYTE( "041-c4.c4", 0x200001, 0x100000, CRC(70457a0c) SHA1(a1e307f11ddab85d2e9c09d0428fac2e6da774b1) )
 ROM_END
 
-ROM_START( preisle2o ) /* ACA NEOGEO Version, Encrypted GFX */ /* MVS ONLY RELEASE */
+ROM_START( preis2an ) /* ACA NEOGEO Version, Encrypted GFX */ /* MVS ONLY RELEASE */
 	ROM_REGION( 0x500000, "maincpu", 0 )
 	ROM_LOAD16_WORD_SWAP( "255-p1.p1",  0x000000, 0x100000, CRC(dfa3c0f3) SHA1(793c6a46f3a794536dc0327a3f3fad20e25ab661) )
 	ROM_LOAD16_WORD_SWAP( "255-p2.p2", 0x100000, 0x400000, CRC(42050b80) SHA1(0981a8295d43b264c2b95e5d7568bdda4e64c976) )
@@ -6157,7 +6157,7 @@ ROM_START( preisle2o ) /* ACA NEOGEO Version, Encrypted GFX */ /* MVS ONLY RELEA
 	ROM_LOAD16_BYTE( "255-c6.c6", 0x2000001, 0x800000, CRC(b001bdd3) SHA1(394ba8004644844ee97a120cfda48aeac685af8a) )
 ROM_END
 
-ROM_START( s1945po ) /* ACA NEOGEOl Version, Encrypted GFX Roms */ /* MVS ONLY RELEASE */
+ROM_START( s1945pan ) /* ACA NEOGEOl Version, Encrypted GFX Roms */ /* MVS ONLY RELEASE */
 	ROM_REGION( 0x500000, "maincpu", 0 )
 	ROM_LOAD16_WORD_SWAP( "254-p1an.p1",  0x000000, 0x100000, CRC(ff8efcff) SHA1(dcaeaca573385c172ecc43ee6bee355359091893) )
 	ROM_LOAD16_WORD_SWAP( "254-p2.p2", 0x100000, 0x400000, CRC(efdfd4dd) SHA1(254f3e1b546eed788f7ae919be9d1bf9702148ce) )
@@ -6262,3 +6262,8 @@ GAME( 1999, preisle2o,   preisle2, neogeo_noslot, neogeo, neogeo_state, init_pre
 GAME( 1999, s1945po,     s1945p,   neogeo_noslot, neogeo, neogeo_state, init_s1945p,   ROT0, "Psikyo", "Strikers 1945 Plus (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )   /* Encrypted GFX */
 GAME( 1992, lresoran,    lresort,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "SNK", "Last Resort (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
 GAME( 1996, waku7wii,    wakuwak7, neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "Sunsoft", "Waku Waku 7 (Wii Virtual Console Version)", MACHINE_SUPPORTS_SAVE )
+GAME( 1999, preis2an,    preisle2, neogeo_noslot, neogeo, neogeo_state, init_preisle2, ROT0, "Yumekobo / Saurus", "Prehistoric Isle 2 Genshi-tou (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE ) /* Encrypted GFX */
+GAME( 1999, s1945pan,    s1945p,   neogeo_noslot, neogeo, neogeo_state, init_s1945p,   ROT0, "Psikyo", "Strikers 1945 Plus (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )   /* Encrypted GFX */
+GAME( 1992, lresoran,    lresort,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "SNK", "Last Resort (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
+GAME( 1996, waku7wii,    wakuwak7, neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "Sunsoft", "Waku Waku 7 (Wii Virtual Console Version)", MACHINE_SUPPORTS_SAVE )
+

@@ -1,7 +1,8 @@
 // license:GPL_2.0
 // copyright-holders:Robbbert
-#include "../mame/drivers/nemesis.cpp"
+#include "../mame/konami/nemesis.cpp"
 
+// #if 0
 static INPUT_PORTS_START( spclone )
 	PORT_START("IN0")
 	PORT_BIT( 0x01, IP_ACTIVE_HIGH, IPT_COIN1 )
@@ -93,6 +94,7 @@ static INPUT_PORTS_START( spclone )
 	PORT_DIPSETTING(    0x80, DEF_STR( Off ) )
 	PORT_DIPSETTING(    0x00, DEF_STR( On ) )
 INPUT_PORTS_END
+// #endif
 
 ROM_START( spclone )
 	ROM_REGION( 0x80000, "maincpu", 0 )
@@ -150,4 +152,6 @@ ROM_END
 GAME( 2007, spclone,  salamand, salamand, spclone, nemesis_state, empty_init, ROT0, "Konami", "Salamander (version YY 0.7.3) ", MACHINE_SUPPORTS_SAVE )
 GAME( 2007, spcloneo, salamand, salamand, spclone, nemesis_state, empty_init, ROT0, "Konami", "Salamander (version YY 0.7.2.2)", MACHINE_SUPPORTS_SAVE )
 GAME( 2007, spclonec, salamand, salamand, spclone, nemesis_state, empty_init, ROT0, "Konami", "Salamander (version YY 0.7.3 unkown Chimera?)", MACHINE_SUPPORTS_SAVE )
-
+GAME( 2007, spclone,  salamand, salamand, spclone, salamand_state, empty_init, ROT0, "Konami", "Salamander (version YY 0.7.3) ", MACHINE_SUPPORTS_SAVE )
+GAME( 2007, spcloneo, salamand, salamand, spclone, salamand_state, empty_init, ROT0, "Konami", "Salamander (version YY 0.7.2.2)", MACHINE_SUPPORTS_SAVE )
+GAME( 2007, spclonec, salamand, salamand, spclone, salamand_state, empty_init, ROT0, "Konami", "Salamander (version YY 0.7.3 unkown Chimera?)", MACHINE_SUPPORTS_SAVE )
