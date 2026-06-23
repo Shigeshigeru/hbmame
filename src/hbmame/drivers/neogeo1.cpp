@@ -6258,10 +6258,6 @@ GAME( 1995, stakwindev,  neogeo,   no_watchdog,   neogeo, neogeo_state, init_neo
 GAME( 1990, ridheran,    ridhero,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "SNK", "Riding Hero (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
 GAME( 2023, neodrifc,    neodrift, neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "Visco", "Neo Drift Out - New Technology (Visco Collection Censored Version)", MACHINE_SUPPORTS_SAVE )
 GAME( 2020, bstars2c,    bstars2,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "SNK", "Baseball Stars 2 (Censored Version)", MACHINE_SUPPORTS_SAVE )
-GAME( 1999, preisle2o,   preisle2, neogeo_noslot, neogeo, neogeo_state, init_preisle2, ROT0, "Yumekobo / Saurus", "Prehistoric Isle 2 Genshi-tou (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE ) /* Encrypted GFX */
-GAME( 1999, s1945po,     s1945p,   neogeo_noslot, neogeo, neogeo_state, init_s1945p,   ROT0, "Psikyo", "Strikers 1945 Plus (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )   /* Encrypted GFX */
-GAME( 1992, lresoran,    lresort,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "SNK", "Last Resort (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
-GAME( 1996, waku7wii,    wakuwak7, neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "Sunsoft", "Waku Waku 7 (Wii Virtual Console Version)", MACHINE_SUPPORTS_SAVE )
 GAME( 1999, preis2an,    preisle2, neogeo_noslot, neogeo, neogeo_state, init_preisle2, ROT0, "Yumekobo / Saurus", "Prehistoric Isle 2 Genshi-tou (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE ) /* Encrypted GFX */
 GAME( 1999, s1945pan,    s1945p,   neogeo_noslot, neogeo, neogeo_state, init_s1945p,   ROT0, "Psikyo", "Strikers 1945 Plus (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )   /* Encrypted GFX */
 GAME( 1992, lresoran,    lresort,  neogeo_noslot, neogeo, neogeo_state, init_neogeo,   ROT0, "SNK", "Last Resort (ACA NEOGEO Version)", MACHINE_SUPPORTS_SAVE )
