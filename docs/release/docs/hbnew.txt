@@ -1,13 +1,18 @@
 ﻿What's new in HBMAME
 ====================
 
-2026-0x-xx 0.xxx.2
+2026-08-xx 0.289.1
 
+- Restored the PGM homebrew (pgmfrog, pgmdemo, pgemeni)
+- HBMAMEUI: Fixed the splash screen
+- HBMAMEUI: Improved plugins process
+- HBMAMEUI: Fixed icon issues
 
 
 New Games
 ---------------------------------
 - [adkw]                ADK World
+- [blueandr]            Blue and Red Fight the Robots v1.7
 - [cabaln02]            Cabal (NeoGeo port) improvements
 - [dino281]             Cadillacs and Dinosaurs (Readjusted v1.1)
 - [dino282]             Cadillacs and Dinosaurs (Readjusted v1.2)
@@ -18,7 +23,7 @@ New Games
 - [samsho2s21]          Samurai Shodown II (Perfect v2.4, 2025-01-27)
 - [samsho2s22]          Samurai Shodown II (Perfect v2.9, 2026-06-29)
 - [sengoku2s01]         Sengoku 2 (Red Blood)
-- [sf2prime]            Street Fighter II': Prime (v0.78)
+- [sf2prime]            Street Fighter II': Prime (v0.79)
 - [sfiii3ns15]          Street Fighter III 3rd Strike: Fight for the Future (4rd Strike 2011-07-17)
 - [xeviousn05]          Xevious (Neo-Geo port, gfx fix)
 - [zintrick07]          ZinTricK (Music tracks) improvements
