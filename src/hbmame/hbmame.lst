@@ -592,6 +592,12 @@ cps1testsa                             // HB
 //cps1xx                               // corrupt gfx
 daimakb
 daimakaik
+ghoulsmaiden
+ghoulsknight
+ghoulsumaiden
+ghoulsuknight
+daimakaimaiden
+daimakaiknight
 dinod01                                // Dinosaur hunter
 dinoj01                                // Cadillacs
 dinoj02
@@ -3639,6 +3645,7 @@ kof2001s49
 kof2001s50
 kof2001s51
 kof2001s52
+kof2001s53
 
 @source:kof2002.cpp
 kof200215
@@ -6257,6 +6264,7 @@ cyborg1
 ddsprdmo
 ddsprdmo1
 didemo
+doomgeo
 doubled1
 dti			// Duck Tales Intro
 dtia		// Duck Tales Intro
@@ -6270,6 +6278,7 @@ fr2			// 098 Idol Mahjong - final romance 2
 fr2s01
 fr2s02
 fr2s03
+freedoom
 galaxiann
 galaxiann2
 gbi
@@ -6354,6 +6363,7 @@ poknightfr
 pown
 //raroggame
 rci			/* Robocop intro */
+rickdx
 samantha
 santabll
 sbpf
@@ -6631,6 +6641,7 @@ wakuwak7s05
 wjammers01
 wjammers02
 wjammers03
+wjammers04
 zupapa01
 zupapa02
 2020bbe
@@ -6668,6 +6679,30 @@ preis2an
 s1945pan
 lresoran
 waku7wii
+
+@source:neogeocd.cpp
+neocdz
+cd_alice
+cd_chelnov
+cd_diff
+cd_eira
+cd_ffury
+cd_fukkireta
+cd_gaxe
+cd_gaxearr
+cd_natademo
+cd_ngdark
+cd_noneon
+cd_ntris3d
+cd_phoenix
+cd_pong
+cd_pow
+cd_pow2
+cd_shinobiarr
+cd_speedball
+cd_ssrpg
+cd_subspecies
+cd_visualnovel
 
 @source:ngdoubledr.cpp
 doubledr01

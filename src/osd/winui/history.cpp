@@ -23,12 +23,6 @@
  *      - Each table must contain at least MAX_HFILES members (extra lines
  *             are ignored)
  *      - Software comes first, followed by Game then Source.
- 
- *      2023-06: Robbbert
- *      - Added support for history.xml
- *      - Dropped support for history.dat
- *      - HBMAME: Dropped support for messinfo.dat, sysinfo.dat, story.dat, marp.dat
- 
 ***************************************************************************/
 
 #include <windows.h>
@@ -68,35 +62,47 @@ HSOURCEINFO;
 
 /*************************** START CONFIGURABLE AREA *******************************/
 // number of dats we support
-#define MAX_HFILES 4
+#define MAX_HFILES 5
 // The order of these is the order they are displayed
 const HGAMEINFO m_gameInfo[MAX_HFILES] =
 {
 	{ "gameinit.dat", "\n**** :GAMEINIT: ****\n\n",         "$mame",  0 },
-	{ "history.xml",  "\n**** :HISTORY: ****\n\n",          "<text>", 1 },
+	{ "history.xml",  "\n**** :HISTORY: ****\n\n",          "<text>",   1 },
+//	{ "sysinfo.dat",  "\n**** :SYSINFO: ****\n\n",          "$bio",   1 },
+	{ "messinfo.dat", "\n**** :MESSINFO: ****\n\n",         "$mame",  1 },
 	{ "mameinfo.dat", "\n**** :MAMEINFO: ****\n\n",         "$mame",  1 },
 	{ "command.dat",  "\n**** :COMMANDS: ****\n\n",         "$cmd",   1 },
+//	{ "story.dat",    "\n**** :HIGH SCORES: ****\n\n",      "$story", 0 },
+//	{ "marp.dat",     "\n**** :MARP HIGH SCORES: ****\n\n", "$marp",  0 },
 };
 
 const HSOURCEINFO m_sourceInfo[MAX_HFILES] =
 {
 	{ NULL },
+	{ NULL },
+//	{ NULL },
+	{ "messinfo.dat", "\n***:MESSINFO DRIVER: ",  "$drv" },
 	{ "mameinfo.dat", "\n***:MAMEINFO DRIVER: ",  "$drv" },
 	{ NULL },
-	{ NULL },
+//	{ NULL },
+//	{ NULL },
 };
 
 const HSOURCEINFO m_swInfo[MAX_HFILES] =
 {
+	{ NULL },
 	{ "history.xml",  "\n**** :HISTORY item: ",     "<text>" },
+//	{ NULL },
 	{ NULL },
 	{ NULL },
 	{ NULL },
+//	{ NULL },
+//	{ NULL },
 };
 
 /*************************** END CONFIGURABLE AREA *******************************/
 
-int file_sizes[MAX_HFILES] = { 0, };
+int file_sizes[MAX_HFILES] = { };
 std::map<std::string, std::streampos> mymap[MAX_HFILES];
 const size_t npos = std::string::npos;
 
@@ -261,7 +267,7 @@ static bool create_index(const char* datsdir, std::ifstream &fp, int filenum)
 	fp.seekg(0);
 	std::string file_line;
 	std::getline(fp, file_line);
-	if (filenum == 0)
+	if (filenum == 1)
 		create_index_history(datsdir, fp, file_line, filenum);
 	else
 	{
@@ -290,7 +296,7 @@ static bool create_index(const char* datsdir, std::ifstream &fp, int filenum)
 		}
 	}
 	// check contents
-//	if (filenum == 6)
+//	if (filenum == 4)
 //		for (auto const &it : mymap[filenum])
 //			printf("%s = %X\n", it.first.c_str(), int(it.second));
 	return true;
@@ -367,7 +373,7 @@ static std::string load_datafile_text(std::ifstream &fp, std::string keycode, in
 		// read text until buffer is full or end of entry is encountered
 		while (std::getline(fp, file_line))
 		{
-			//if (filenum == 6) ("*******2: %s\n",file_line.c_str());
+			//if (filenum == 4) printf("*******2: %s\n",file_line.c_str());
 			if (file_line == "- CONTRIBUTE -")
 				break;
 
@@ -511,6 +517,7 @@ std::string load_driver_geninfo(const game_driver *drv, int drvindex)
 	const game_driver *parent = NULL;
 	char name[512];
 	bool is_bios = false;
+	int count = 0;
 	buffer = "\n**** :GENERAL MACHINE INFO: ****\n\n";
 
 	// List the game info 'flags'
@@ -537,6 +544,8 @@ std::string load_driver_geninfo(const game_driver *drv, int drvindex)
 		buffer.append("The sound emulation isn't 100% accurate.\n");
 
 	if (BIT(cache, 7))
+		buffer.append("Save state supported.\n");
+	else
 		buffer.append("Save state not supported.\n");
 
 	if (BIT(cache, 14))
@@ -569,7 +578,7 @@ std::string load_driver_geninfo(const game_driver *drv, int drvindex)
 		if (!exectags.insert(exec.device().tag()).second)
 			continue;
 
-		int count = 1;
+		count = 1;
 		int clock = exec.device().clock();
 		const char *cpu_name = exec.device().name();
 
@@ -604,7 +613,7 @@ std::string load_driver_geninfo(const game_driver *drv, int drvindex)
 			continue;
 
 		has_sound = 1;
-		int count = 1;
+		count = 1;
 		int clock = sound.device().clock();
 		const char *sound_name = sound.device().name();
 
@@ -646,39 +655,50 @@ std::string load_driver_geninfo(const game_driver *drv, int drvindex)
 
 		buffer.append(name);
 	}
+	else
+		buffer.append("No Sound\n");
 
+	count = 0;
 	buffer.append("\nVIDEO:\n");
 	video_output_interface_enumerator screeniter(config.root_device());
-	if (screeniter.count() == 0)
-		buffer.append("Screenless\n");
-	else
-	for (device_video_output_interface &screendev : video_output_interface_enumerator(config.root_device()))
+	if (screeniter.count())
 	{
-		if (strcmp(screendev.device().tag(), config.root_device().tag()))
+		for (device_video_output_interface &screendev : video_output_interface_enumerator(config.root_device()))
 		{
-			if (screendev.is_vector())
+			if (strcmp(screendev.device().tag(), config.root_device().tag()))
 			{
-				if (DriverIsVertical(drvindex))
-					buffer.append("Vector (V)");
+				if (screendev.is_vector())
+				{
+					count++;
+					if (DriverIsVertical(drvindex))
+						buffer.append("Vector (V)");
+					else
+						buffer.append("Vector (H)");
+				}
 				else
-					buffer.append("Vector (H)");
+				{
+					auto *screen = dynamic_cast<screen_device *>(&screendev);
+					if (screen)
+					{
+						count++;
+						const rectangle &visarea = screen->visible_area();
+
+						if (drv->flags & ORIENTATION_SWAP_XY)
+							snprintf(name, std::size(name), "%d x %d (V) %f Hz", visarea.width(), visarea.height(), screen->frame_period().as_hz());
+						else
+							snprintf(name, std::size(name), "%d x %d (H) %f Hz", visarea.width(), visarea.height(), screen->frame_period().as_hz());
+
+						buffer.append(name);
+					}
+				}
+
+				if (count)
+					buffer.append("\n");
 			}
-			else
-			{
-				auto *screen = dynamic_cast<screen_device *>(&screendev);
-				const rectangle &visarea = screen->visible_area();
-
-				if (drv->flags & ORIENTATION_SWAP_XY)
-					snprintf(name, std::size(name), "%d x %d (V) %f Hz", visarea.width(), visarea.height(), ATTOSECONDS_TO_HZ(screen->refresh_attoseconds()));
-				else
-					snprintf(name, std::size(name), "%d x %d (H) %f Hz", visarea.width(), visarea.height(), ATTOSECONDS_TO_HZ(screen->refresh_attoseconds()));
-
-				buffer.append(name);
-			}
-
-			buffer.append("\n");
 		}
 	}
+	if (count == 0)
+		buffer.append("Screenless\n");
 
 	buffer.append("\nROM REGION:\n");
 	int g = driver_list::clone(*drv);
