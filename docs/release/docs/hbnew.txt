@@ -7,6 +7,22 @@
 
 New Games
 ---------------------------------
+- [lhpb]                Last Hope Pink Bullets (hack)
+
+
+Updated Games
+---------------------------------
+- [cd_ssrpg]            Samurai Spirits RPG (English) v1.1
+
+
+
+
+2026-09-03 0.289.2
+
+
+
+New Games
+---------------------------------
 - [cd_alice]            We Love Alice demo[CD]
 - [cd_chelnov]          Atomic Runner Chelnov (Neo-Geo port)[CD]
 - [cd_diff]             DIFF demo[CD]
@@ -45,12 +61,13 @@ New Games
 - [sfa2g]               Street Fighter Alpha 2 Gold (960826, PS2 Backport, 2026-08-27)
 - [sfz2d]               Street Fighter Zero 2 Dash (960805J, PS2 Backport, 2026-08-27)
 - [sfz2da]              Street Fighter Zero 2 Dash (960826, English, PS2 Backport, 2026-08-27)
+- [smbn]                Super Mario Bros. (Neo Geo)
 - [wjammers04]          Windjammers (Endless Breeze)
 
 
 Updated Games
 ---------------------------------
-- [sengoku2s01]         Sengoku 2 (Red Blood, v1.17)
+- [sengoku2s01]         Sengoku 2 (Red Blood, v1.18)
 - [sf2prime]            Street Fighter II': Prime (v0.80)
 
 
