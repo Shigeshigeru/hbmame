@@ -23,6 +23,7 @@ BASE_TARGETOS       = "unix"
 local os_version = str_to_version(backtick("sw_vers -productVersion"))
 links {
 	"Cocoa.framework",
+	"IOKit.framework"
 }
 linkoptions {
 	"-framework QuartzCore",
@@ -57,7 +58,6 @@ project ("qtdbg_" .. _OPTIONS["osd"])
 	qtdebuggerbuild()
 
 project ("osd_" .. _OPTIONS["osd"])
-	targetsubdir(_OPTIONS["target"] .."_" .._OPTIONS["subtarget"])
 	uuid (os.uuid("osd_" .. _OPTIONS["osd"]))
 	kind (LIBTYPE)
 
@@ -102,6 +102,8 @@ project ("osd_" .. _OPTIONS["osd"])
 		MAME_DIR .. "src/osd/modules/debugger/osx/disassemblyview.h",
 		MAME_DIR .. "src/osd/modules/debugger/osx/errorlogviewer.mm",
 		MAME_DIR .. "src/osd/modules/debugger/osx/errorlogviewer.h",
+		MAME_DIR .. "src/osd/modules/debugger/osx/exceptionpointsview.mm",
+		MAME_DIR .. "src/osd/modules/debugger/osx/exceptionpointsview.h",
 		MAME_DIR .. "src/osd/modules/debugger/osx/memoryview.mm",
 		MAME_DIR .. "src/osd/modules/debugger/osx/memoryview.h",
 		MAME_DIR .. "src/osd/modules/debugger/osx/memoryviewer.mm",
@@ -137,7 +139,6 @@ project ("osd_" .. _OPTIONS["osd"])
 
 
 project ("ocore_" .. _OPTIONS["osd"])
-	targetsubdir(_OPTIONS["target"] .."_" .. _OPTIONS["subtarget"])
 	uuid (os.uuid("ocore_" .. _OPTIONS["osd"]))
 	kind (LIBTYPE)
 
@@ -153,9 +154,12 @@ project ("ocore_" .. _OPTIONS["osd"])
 		MAME_DIR .. "src/lib",
 		MAME_DIR .. "src/lib/util",
 		MAME_DIR .. "src/osd/mac",
+		ext_includedir("asio"),
 	}
 
 	files {
+		MAME_DIR .. "src/osd/asio.cpp",
+		MAME_DIR .. "src/osd/asio.h",
 		MAME_DIR .. "src/osd/osdcore.cpp",
 		MAME_DIR .. "src/osd/osdcore.h",
 		MAME_DIR .. "src/osd/osdfile.h",

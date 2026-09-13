@@ -22,6 +22,7 @@ public:
 	auto intrq_wr_callback() { return intrq_cb.bind(); }
 	auto drq_wr_callback() { return drq_cb.bind(); }
 	auto hdl_wr_callback() { return hdl_cb.bind(); }
+	auto mtr0_wr_callback() { return mtr0_cb.bind(); }
 	auto us_wr_callback() { return us_cb.bind(); }
 	auto idx_wr_callback() { return idx_cb.bind(); }
 	auto ts_rd_callback() { return ts_cb.bind(); }
@@ -240,7 +241,7 @@ protected:
 	int main_phase;
 
 	live_info cur_live, checkpoint_live;
-	devcb_write_line intrq_cb, drq_cb, hdl_cb, idx_cb;
+	devcb_write_line intrq_cb, drq_cb, hdl_cb, mtr0_cb, idx_cb;
 	devcb_read_line ts_cb;
 	devcb_write8 us_cb;
 	bool cur_irq, irq, drq, internal_drq, tc, tc_done, locked, mfm, scan_done;
@@ -257,6 +258,7 @@ protected:
 	int cur_rate;
 	int selected_drive;
 	u8 drive_busy;
+	bool xfer_in_progress;
 
 	emu_timer *poll_timer;
 
@@ -286,6 +288,8 @@ protected:
 		C_SLEEP,
 		C_ABORT,
 		C_SPECIFY2,
+		C_NSC,
+		C_SET_TRACK,
 
 		C_INVALID,
 		C_INCOMPLETE
@@ -313,6 +317,9 @@ protected:
 	virtual void execute_command(int cmd);
 	virtual void command_end(floppy_info &fi, bool data_completion);
 	virtual uint8_t get_st3(floppy_info &fi);
+
+	int check_command_set_track() const;
+	void execute_command_set_track();
 
 	void recalibrate_start(floppy_info &fi);
 	void seek_start(floppy_info &fi);
@@ -379,6 +386,19 @@ public:
 		set_select_lines_connected(select);
 	}
 	upd765b_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
+
+	virtual void map(address_map &map) override ATTR_COLD;
+};
+
+class upd7265_device : public upd765_family_device {
+public:
+	upd7265_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock, bool ready, bool select)
+		: upd7265_device(mconfig, tag, owner, clock)
+	{
+		set_ready_line_connected(ready);
+		set_select_lines_connected(select);
+	}
+	upd7265_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
 
 	virtual void map(address_map &map) override ATTR_COLD;
 };
@@ -535,6 +555,8 @@ public:
 
 protected:
 	virtual void soft_reset() override;
+	virtual int check_command() override;
+	virtual void execute_command(int cmd) override;
 };
 
 class pc8477a_device : public ps2_fdc_device {
@@ -547,6 +569,10 @@ public:
 	pc8477a_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
 
 	virtual void map(address_map &map) override ATTR_COLD;
+
+protected:
+	virtual int check_command() override;
+	virtual void execute_command(int cmd) override;
 };
 
 class pc8477b_device : public ps2_fdc_device {
@@ -559,6 +585,10 @@ public:
 	pc8477b_device(const machine_config &mconfig, const char *tag, device_t *owner, uint32_t clock);
 
 	virtual void map(address_map &map) override ATTR_COLD;
+
+protected:
+	virtual int check_command() override;
+	virtual void execute_command(int cmd) override;
 };
 
 class wd37c65_device : public upd765_family_device {
@@ -669,6 +699,7 @@ private:
 
 DECLARE_DEVICE_TYPE(UPD765A,        upd765a_device)
 DECLARE_DEVICE_TYPE(UPD765B,        upd765b_device)
+DECLARE_DEVICE_TYPE(UPD7265,        upd7265_device)
 DECLARE_DEVICE_TYPE(I8272A,         i8272a_device)
 DECLARE_DEVICE_TYPE(UPD72065,       upd72065_device)
 DECLARE_DEVICE_TYPE(UPD72066,       upd72066_device)

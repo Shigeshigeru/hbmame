@@ -230,6 +230,7 @@ const double XTAL::known_xtals[] = {
 	 12'672'000, // 12.672_MHz_XTAL        TRS-80 Model 4 80*24 video
 	 12'800'000, // 12.8_MHz_XTAL          Cave CV1000
 	 12'854'400, // 12.8544_MHz_XTAL       Alphatronic P3
+	 12'875'000, // 12.875_MHz_XTAL        EACA Genie III video board
 	 12'936'000, // 12.936_MHz_XTAL        CDC 721
 	 12'979'200, // 12.9792_MHz_XTAL       Exidy 440
 	 13'000'000, // 13_MHz_XTAL            STM Pied Piper dot clock
@@ -442,7 +443,7 @@ const double XTAL::known_xtals[] = {
 	 32'317'400, // 32.3174_MHz_XTAL       DEC VT330, VT340
 	 32'530'470, // 32.53047_MHz_XTAL      Seta 2
 	 32'640'000, // 32.64_MHz_XTAL         Vector 4
-	 32'768'000, // 32.768_MHz_XTAL        Roland D-50 audio clock
+	 32'768'000, // 32.768_MHz_XTAL        Roland D-50/U-220 audio clock
 	 33'000'000, // 33_MHz_XTAL            Sega Model 3 video board
 	 33'264'000, // 33.264_MHz_XTAL        Hazeltine 1500 terminal
 	 33'330'000, // 33.33_MHz_XTAL         Sharp X68000 XVI
@@ -452,6 +453,7 @@ const double XTAL::known_xtals[] = {
 	 33'868'800, // 33.8688_MHz_XTAL       Usually used to drive 90's Yamaha OPL/FM chips with /2 divider
 	 34'000'000, // 34_MHz_XTAL            Gaelco PCBs
 	 34'291'712, // 34.291712_MHz_XTAL     Fairlight CMI master card
+	 34'816'000, // 34.816_MHz_XTAL        Roland U-110 audio clock
 	 34'846'000, // 34.846_MHz_XTAL        Visual 550
 	 35'452'500, // 35.4525_MHz_XTAL       Nokia MikroMikko 2
 	 35'469'000, // 35.469_MHz_XTAL        ZX Spectrum +2/+3 (~8x PAL subcarrier)
@@ -477,6 +479,7 @@ const double XTAL::known_xtals[] = {
 	 44'000'000, // 44_MHz_XTAL            VGame slots
 	 44'100'000, // 44.1_MHz_XTAL          Subsino's Bishou Jan
 	 44'236'800, // 44.2368_MHz_XTAL       ReCo6502, Fortune 32:16
+	 44'444'000, // 44.444_MHz_XTAL        Zilog System 8000 CPU boards
 	 44'452'800, // 44.4528_MHz_XTAL       TeleVideo 965
 	 44'900'000, // 44.9_MHz_XTAL          IBM 8514 1024x768 43.5Hz graphics
 	 45'000'000, // 45_MHz_XTAL            Eolith with Hyperstone CPUs

@@ -6,8 +6,8 @@
 #
 ###########################################################################
 
-BARE_VERS := 0.288
-LONG_VERS := $(BARE_VERS).x
+BARE_VERS := 0.289
+LONG_VERS := $(BARE_VERS).2
 
 ###########################################################################
 #################   BEGIN USER-CONFIGURABLE OPTIONS   #####################
@@ -29,6 +29,7 @@ EMULATOR = 1
 # NO_OPENGL = 0
 # USE_DISPATCH_GL = 0
 # USE_SDL = 1
+# USE_SDL3 = 1
 # SDL_INI_PATH = .;$HOME/.mame/;ini;
 # SDL2_MULTIAPI = 1
 # NO_USE_MIDI = 1
@@ -469,7 +470,7 @@ OSD := sdl
 else ifeq ($(TARGETOS),macosx)
 OSD := sdl3
 else ifeq ($(TARGETOS),asmjs)
-OSD := sdl
+OSD := sdl3
 endif # TARGETOS
 
 endif # OSD
@@ -749,6 +750,10 @@ endif
 
 ifdef USE_SDL
 PARAMS += --USE_SDL='$(USE_SDL)'
+endif
+
+ifdef USE_SDL3
+PARAMS += --USE_SDL3='$(USE_SDL3)'
 endif
 
 ifdef SDL_INI_PATH
@@ -1054,7 +1059,7 @@ else
 FULLTARGET := $(TARGET)$(SUBTARGET_FULL)
 endif
 PROJECTDIR := $(BUILDDIR)/projects/$(OSD)/$(FULLTARGET)
-PROJECTDIR_SDL := $(BUILDDIR)/projects/sdl/$(FULLTARGET)
+PROJECTDIR_SDL := $(BUILDDIR)/projects/sdl3/$(FULLTARGET)
 PROJECTDIR_WIN := $(BUILDDIR)/projects/windows/$(FULLTARGET)
 
 .PHONY: all clean regenie generate FORCE
@@ -1181,7 +1186,7 @@ endif
 #-------------------------------------------------
 
 $(PROJECTDIR_SDL)/$(MAKETYPE)-android-arm/Makefile: makefile $(SCRIPTS) $(GENIE)
-	$(SILENT) $(GENIE) $(PARAMS) --gcc=android-arm --gcc_version=$(CLANG_VERSION) --osd=sdl --targetos=android --PLATFORM=arm --NOASM=1 $(MAKETYPE)
+	$(SILENT) $(GENIE) $(PARAMS) --gcc=android-arm --gcc_version=$(CLANG_VERSION) --osd=sdl3 --targetos=android --PLATFORM=arm --NOASM=1 $(MAKETYPE)
 
 .PHONY: android-arm
 android-arm: android-ndk generate $(PROJECTDIR_SDL)/$(MAKETYPE)-android-arm/Makefile
@@ -1193,7 +1198,7 @@ android-arm: android-ndk generate $(PROJECTDIR_SDL)/$(MAKETYPE)-android-arm/Make
 #-------------------------------------------------
 
 $(PROJECTDIR_SDL)/$(MAKETYPE)-android-arm64/Makefile: makefile $(SCRIPTS) $(GENIE)
-	$(SILENT) $(GENIE) $(PARAMS) --gcc=android-arm64 --gcc_version=$(CLANG_VERSION) --osd=sdl --targetos=android --PLATFORM=arm64 --NOASM=1 $(MAKETYPE)
+	$(SILENT) $(GENIE) $(PARAMS) --gcc=android-arm64 --gcc_version=$(CLANG_VERSION) --osd=sdl3 --targetos=android --PLATFORM=arm64 --NOASM=1 $(MAKETYPE)
 
 .PHONY: android-arm64
 android-arm64: android-ndk generate $(PROJECTDIR_SDL)/$(MAKETYPE)-android-arm64/Makefile
@@ -1205,7 +1210,7 @@ android-arm64: android-ndk generate $(PROJECTDIR_SDL)/$(MAKETYPE)-android-arm64/
 #-------------------------------------------------
 
 $(PROJECTDIR_SDL)/$(MAKETYPE)-android-x86/Makefile: makefile $(SCRIPTS) $(GENIE)
-	$(SILENT) $(GENIE) $(PARAMS) --gcc=android-x86 --gcc_version=$(CLANG_VERSION) --osd=sdl --targetos=android --PLATFORM=x86 $(MAKETYPE)
+	$(SILENT) $(GENIE) $(PARAMS) --gcc=android-x86 --gcc_version=$(CLANG_VERSION) --osd=sdl3 --targetos=android --PLATFORM=x86 $(MAKETYPE)
 
 .PHONY: android-x86
 android-x86: android-ndk generate $(PROJECTDIR_SDL)/$(MAKETYPE)-android-x86/Makefile
@@ -1217,7 +1222,7 @@ android-x86: android-ndk generate $(PROJECTDIR_SDL)/$(MAKETYPE)-android-x86/Make
 #-------------------------------------------------
 
 $(PROJECTDIR_SDL)/$(MAKETYPE)-android-x64/Makefile: makefile $(SCRIPTS) $(GENIE)
-	$(SILENT) $(GENIE) $(PARAMS) --gcc=android-x64 --gcc_version=$(CLANG_VERSION) --osd=sdl --targetos=android --PLATFORM=x64 $(MAKETYPE)
+	$(SILENT) $(GENIE) $(PARAMS) --gcc=android-x64 --gcc_version=$(CLANG_VERSION) --osd=sdl3 --targetos=android --PLATFORM=x64 $(MAKETYPE)
 
 .PHONY: android-x64
 android-x64: android-ndk generate $(PROJECTDIR_SDL)/$(MAKETYPE)-android-x64/Makefile
@@ -1229,15 +1234,15 @@ android-x64: android-ndk generate $(PROJECTDIR_SDL)/$(MAKETYPE)-android-x64/Make
 #-------------------------------------------------
 
 $(PROJECTDIR)/$(MAKETYPE)-asmjs/Makefile: makefile $(SCRIPTS) $(GENIE)
-ifndef EMSCRIPTEN
-	$(error EMSCRIPTEN is not set)
+ifndef EMSDK
+	$(error EMSDK is not set)
 endif
 	$(SILENT) $(GENIE) $(PARAMS) $(TARGET_PARAMS) --gcc=asmjs --gcc_version=$(CLANG_VERSION) $(MAKETYPE)
 
 .PHONY: asmjs
 asmjs: generate $(PROJECTDIR)/$(MAKETYPE)-asmjs/Makefile
-ifndef EMSCRIPTEN
-	$(error EMSCRIPTEN is not set)
+ifndef EMSDK
+	$(error EMSDK is not set)
 endif
 	$(SILENT) $(MAKE) $(MAKEPARAMS) -C $(PROJECTDIR)/$(MAKETYPE)-asmjs config=$(CONFIG) precompile
 	$(SILENT) $(MAKE) $(MAKEPARAMS) -C $(PROJECTDIR)/$(MAKETYPE)-asmjs config=$(CONFIG)
@@ -1564,16 +1569,19 @@ ifeq (posix,$(SHELLTYPE))
 		-name \*.lay -o \
 		-name \*.lst \
 		\) -print0 | xargs -0 -n 20 ./srcclean >&2
-	$(SILENT)- find hash    \( -name \*.hsi -o -name \*.xml  \) -print0 | xargs -0 -n 20 ./srcclean >&2
-	$(SILENT)- find bgfx    \( -name \*.json                 \) -print0 | xargs -0 -n 20 ./srcclean >&2
-	$(SILENT)- find plugins \( -name \*.lua -o -name \*.json \) -print0 | xargs -0 -n 20 ./srcclean >&2
-	$(SILENT)- find scripts \( -name \*.lua                  \) -print0 | xargs -0 -n 20 ./srcclean >&2
+	$(SILENT)- find hash                     \( -name \*.hsi -o -name \*.xml  \) -print0 | xargs -0 -n 20 ./srcclean >&2
+	$(SILENT)- find bgfx                     \( -name \*.json                 \) -print0 | xargs -0 -n 20 ./srcclean >&2
+	$(SILENT)- find plugins                  \( -name \*.lua -o -name \*.json \) -print0 | xargs -0 -n 20 ./srcclean >&2
+	$(SILENT)- find scripts                  \( -name \*.lua                  \) -print0 | xargs -0 -n 20 ./srcclean >&2
+	$(SILENT)- find ini/examples ini/presets \( -name \*.ini                  \) -print0 | xargs -0 -n 20 ./srcclean >&2
 else
-	$(shell for /r src     %%i in (*.c, *.cpp, *.h, *.hpp, *.hxx, *.ipp, *.mm, *.lay, *.lst) do srcclean %%i >&2 )
-	$(shell for /r hash    %%i in (*.hsi, *.xml)  do srcclean %%i >&2 )
-	$(shell for /r bgfx    %%i in (*.json)        do srcclean %%i >&2 )
-	$(shell for /r plugins %%i in (*.lua, *.json) do srcclean %%i >&2 )
-	$(shell for /r scripts %%i in (*.lua)         do srcclean %%i >&2 )
+	$(shell for /r src          %%i in (*.c, *.cpp, *.h, *.hpp, *.hxx, *.ipp, *.mm, *.lay, *.lst) do srcclean %%i >&2 )
+	$(shell for /r hash         %%i in (*.hsi, *.xml)  do srcclean %%i >&2 )
+	$(shell for /r bgfx         %%i in (*.json)        do srcclean %%i >&2 )
+	$(shell for /r plugins      %%i in (*.lua, *.json) do srcclean %%i >&2 )
+	$(shell for /r scripts      %%i in (*.lua)         do srcclean %%i >&2 )
+	$(shell for /r ini/examples %%i in (*.ini)         do srcclean %%i >&2 )
+	$(shell for /r ini/presets  %%i in (*.ini)         do srcclean %%i >&2 )
 endif
 
 #-------------------------------------------------

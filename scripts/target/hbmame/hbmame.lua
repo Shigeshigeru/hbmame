@@ -68,7 +68,7 @@ CPUS["Z8000"] = true  -- polepos
 -- specify available sound cores
 --------------------------------------------------
 
---SOUNDS["ASTROCADE"] = true
+SOUNDS["FLOPPYSOUND"] = true
 
 --------------------------------------------------
 -- specify available video cores
@@ -367,16 +367,14 @@ files {
 	MAME_DIR .. "src/mame/dataeast/deco16ic.cpp", -- cninja
 	MAME_DIR .. "src/mame/dataeast/deco104.cpp",  -- cninja
 	MAME_DIR .. "src/mame/dataeast/deco146.cpp", -- cninja
+	MAME_DIR .. "src/mame/dataeast/deco156.cpp", -- cninja
 	MAME_DIR .. "src/mame/shared/decospr.cpp",  -- cninja
 	MAME_DIR .. "src/mame/dataeast/deco_irq.cpp",  -- cninja
 	MAME_DIR .. "src/mame/dataeast/decocrpt.cpp",  -- cninja
 	MAME_DIR .. "src/hbmame/drivers/deco_mlc.cpp",  -- mlc
 	MAME_DIR .. "src/mame/dataeast/deco_mlc_v.cpp",    -- mlc
-	MAME_DIR .. "src/mame/dataeast/deco156.cpp",   -- mlc
-	MAME_DIR .. "src/mame/dataeast/deco156.cpp",   -- mlc, deco32
-	MAME_DIR .. "src/mame/dataeast/deco156_m.cpp",   -- mlc, deco32
-	MAME_DIR .. "src/hbmame/drivers/deco32.cpp",
-	MAME_DIR .. "src/mame/dataeast/deco32_v.cpp",
+	MAME_DIR .. "src/hbmame/drivers/fghthist.cpp",
+	MAME_DIR .. "src/mame/dataeast/fghthist_v.cpp",
 	MAME_DIR .. "src/mame/shared/decobsmt.cpp", -- deco32
 	MAME_DIR .. "src/mame/dataeast/deco_ace.cpp", -- deco32
 	MAME_DIR .. "src/hbmame/drivers/rohga.cpp",
@@ -600,6 +598,7 @@ files {
 	MAME_DIR .. "src/mame/namco/polepos_v.cpp",
 	MAME_DIR .. "src/hbmame/drivers/rallyx.cpp",
 	MAME_DIR .. "src/mame/namco/rallyx_v.cpp",
+	MAME_DIR .. "src/mame/namco/nl_rallyx.cpp",
 	MAME_DIR .. "src/mame/namco/namcoio.cpp",
 	MAME_DIR .. "src/mame/namco/namco06.cpp",
 	MAME_DIR .. "src/mame/namco/namco50.cpp",
@@ -667,7 +666,7 @@ files {
 	MAME_DIR .. "src/hbmame/video/neogeo.cpp",
 	MAME_DIR .. "src/hbmame/drivers/neogeo_noslot.cpp",
 	MAME_DIR .. "src/hbmame/video/neogeo_spr.cpp",
-	MAME_DIR .. "src/hbmame/machine/ng_memcard.cpp",
+	MAME_DIR .. "src/hbmame/machine/hbng_memcard.cpp",
 	MAME_DIR .. "src/hbmame/bus/neogeo/prot.cpp",
 	MAME_DIR .. "src/hbmame/bus/neogeo/banked_cart.cpp",
 	MAME_DIR .. "src/hbmame/bus/neogeo_ctrl/ctrl.cpp",
@@ -676,7 +675,6 @@ files {
 	MAME_DIR .. "src/hbmame/bus/neogeo_ctrl/dial.cpp",
 	MAME_DIR .. "src/hbmame/bus/neogeo_ctrl/irrmaze.cpp",
 	MAME_DIR .. "src/hbmame/bus/neogeo_ctrl/kizuna4p.cpp",
---	MAME_DIR .. "src/mame/drivers/neogeocd.cpp",
 }
 
 createHBMAMEProjects(_target, _subtarget, "nichibutsu")
@@ -689,6 +687,7 @@ files {
 
 createHBMAMEProjects(_target, _subtarget, "nintendo")
 files {
+	MAME_DIR .. "src/hbmame/drivers/cothello.cpp",
 	MAME_DIR .. "src/hbmame/drivers/dkong.cpp",
 	MAME_DIR .. "src/mame/nintendo/dkong_a.cpp",
 	MAME_DIR .. "src/mame/nintendo/dkong_v.cpp",
@@ -796,10 +795,11 @@ files {
 	MAME_DIR .. "src/hbmame/drivers/segahang.cpp",
 	MAME_DIR .. "src/hbmame/drivers/segaxbd.cpp",
 	MAME_DIR .. "src/hbmame/drivers/stv.cpp", -- from here, for stv
-	MAME_DIR .. "src/mame/sega/saturn_m.cpp",
-	MAME_DIR .. "src/mame/sega/saturn_v.cpp",
+	MAME_DIR .. "src/mame/sega/saturn.cpp",
 	MAME_DIR .. "src/mame/sega/saturn_scu.cpp",
 	MAME_DIR .. "src/mame/sega/saturn_cd_hle.cpp",
+	MAME_DIR .. "src/mame/sega/saturn_dcc.cpp",
+	MAME_DIR .. "src/mame/sega/saturn_vdp2.cpp",
 	MAME_DIR .. "src/mame/sega/segabill.cpp",
 	MAME_DIR .. "src/mame/sega/smpc.cpp",
 	MAME_DIR .. "src/hbmame/drivers/model1.cpp", -- from here, for model1
@@ -850,6 +850,13 @@ files {
 	MAME_DIR .. "src/hbmame/drivers/snk6502.cpp",
 	MAME_DIR .. "src/mame/snk/snk6502_a.cpp",
 	MAME_DIR .. "src/mame/snk/snk6502_v.cpp",
+	MAME_DIR .. "src/hbmame/drivers/neogeocd.cpp",
+	MAME_DIR .. "src/mame/shared/megacdcd.cpp",
+	MAME_DIR .. "src/mame/snk/neogeo_spr.cpp",
+	MAME_DIR .. "src/mame/snk/neogeo.cpp",
+	MAME_DIR .. "src/mame/snk/neogeo_v.cpp",
+	MAME_DIR .. "src/devices/bus/neogeo/slot.cpp",
+	MAME_DIR .. "src/mame/snk/ng_memcard.cpp",
 }
 
 createHBMAMEProjects(_target, _subtarget, "sony")
@@ -1002,6 +1009,7 @@ files {
 	MAME_DIR .. "src/hbmame/drivers/vamphalf.cpp",
 	MAME_DIR .. "src/mame/misc/vamphalf_prot.cpp",
 	MAME_DIR .. "src/hbmame/drivers/hh_sm510.cpp",
+	MAME_DIR .. "src/hbmame/drivers/pgm_hb.cpp",
 }
 
 createHBMAMEProjects(_target, _subtarget, "devices")

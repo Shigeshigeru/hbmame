@@ -1,12 +1,139 @@
 ﻿What's new in HBMAME
 ====================
 
-2026-0x-xx 0.xxx.2
+2026-xx-xx 0.290.1
 
 
 
 New Games
 ---------------------------------
+- [dkongt]              Donkey Kong Test Rom v1.00
+- [dkongjrt]            Donkey Kong Junior Test Rom v1.00
+- [gngaenh]             Ghosts'n Goblins (Enhanced) (World? set 2)
+- [gngbenh]             Ghosts'n Goblins (Enhanced) (World? set 3)
+- [gngcenh]             Ghosts'n Goblins (Enhanced) (World? set 4)
+- [gngenh]              Ghosts'n Goblins (Enhanced) (World? set 1)
+- [gngknightaenh]       Ghosts'n Goblins - Knight Artoria Edition (Enhanced) (World? 2)
+- [gngknightbenh]       Ghosts'n Goblins - Knight Artoria Edition (Enhanced) (World? 3)
+- [gngknightcenh]       Ghosts'n Goblins - Knight Artoria Edition (Enhanced) (World? 4)
+- [gngknightenh]        Ghosts'n Goblins - Knight Artoria Edition (Enhanced) (World? 1)
+- [gngknighttenh]       Ghosts'n Goblins - Knight Artoria Edition (Enhanced) (US)
+- [gngmaidenaenh]       Ghosts'n Goblins - Maiden Artoria Edition (Enhanced) (World? 2)
+- [gngmaidenbenh]       Ghosts'n Goblins - Maiden Artoria Edition (Enhanced) (World? 3)
+- [gngmaidencenh]       Ghosts'n Goblins - Maiden Artoria Edition (Enhanced) (World? 4)
+- [gngmaidenenh]        Ghosts'n Goblins - Maiden Artoria Edition (Enhanced) (World? 1)
+- [gngmaidentenh]       Ghosts'n Goblins - Maiden Artoria Edition (Enhanced) (US)
+- [gngtenh]             Ghosts'n Goblins (Enhanced) (US)
+- [lhpb]                Last Hope Pink Bullets (hack)
+- [makaimurbenh]        Makaimura (Enhanced) (Japan revision B)
+- [makaimurcenh]        Makaimura (Enhanced) (Japan revision C)
+- [makaimurenh]         Makaimura (Enhanced) (Japan revision A?)
+- [makaimurgenh]        Makaimura (Enhanced) (Japan revision G)
+- [makknightbenh]       Makaimura - Knight Artoria Edition (Enhanced) (Japan revision B)
+- [makknightcenh]       Makaimura - Knight Artoria Edition (Enhanced) (Japan revision C)
+- [makknightenh]        Makaimura - Knight Artoria Edition (Enhanced)
+- [makknightgenh]       Makaimura - Knight Artoria Edition (Enhanced) (Japan revision G)
+- [makmaidenbenh]       Makaimura - Maiden Artoria Edition (Enhanced) (Japan revision B)
+- [makmaidencenh]       Makaimura - Maiden Artoria Edition (Enhanced) (Japan revision C)
+- [makmaidenenh]        Makaimura - Maiden Artoria Edition (Enhanced)
+- [makmaidengenh]       Makaimura - Maiden Artoria Edition (Enhanced) (Japan revision G)
+- [mslug5s01]           Metal Slug 5 Remake v2
+- [mslug5s02]           Metal Slug 5 Extend Ver
+- [ssf2tgmc]            Super Street Fighter II Turbo: Grand Master Challenge (940311J, English Restoration, 2026-09-10)
+
+
+Updated Games
+---------------------------------
+- [cd_ssrpg]            Samurai Spirits RPG (English) v1.1
+
+
+
+
+2026-09-03 0.289.2
+
+
+
+New Games
+---------------------------------
+- [cd_alice]            We Love Alice demo[CD]
+- [cd_chelnov]          Atomic Runner Chelnov (Neo-Geo port)[CD]
+- [cd_diff]             DIFF demo[CD]
+- [cd_eira]             Eira demo[CD]
+- [cd_ffury]            Fatal Fury - Album Edition[CD]
+- [cd_fukkireta]        Neo Fukkireta demo[CD]
+- [cd_gaxe]             Golden Axe (Neo-Geo port)[CD]
+- [cd_gaxearr]          Golden Axe (v1.0) (PS2 Sega Ages Arranged)[CD]
+- [cd_natademo]         NATADEMO Rel.05[CD]
+- [cd_ngdark]           NGD::ARK(2012-05-04)[CD]
+- [cd_noneon]           No Neo - No Party demo[CD]
+- [cd_ntris3d           N*tris3D Techdemo[CD]
+- [cd_phoenix]          Phoenix(v013)[CD]
+- [cd_pong]             Pong[CD]
+- [cd_pow]              P.O.W. (Neo-Geo port)[CD]
+- [cd_pow2]             P.O.W. (update)[CD]
+- [cd_shinobiarr]       Shinobi Arranged v1.1 (Neo-Geo port)[CD]
+- [cd_speedball]        Speedball2 v1.0.0 demo[CD]
+- [cd_ssrpg]            Samurai Spirits RPG (English)[CD]
+- [cd_subspecies]       Subspecies_Unfinished demo[CD]
+- [cd_visualnovel]      Visual Novel demo (2016-03-31)[CD]
+- [cothello01]          Computer Othello (English)
+- [doomgeo]             Doom Geo demo
+- [ffightjs01]          Final Fight (Japan, CD cutscenes, 2026-08-25)
+- [ffightus01]          Final Fight (USA, CD cutscenes, 2026-08-25)
+- [freedoom]            Freedoom demo (v0.13.0)
+- [ghoulsknight]        Ghouls'n Ghosts - Knight Artoria Edition (World)
+- [ghoulsmaiden]        Ghouls'n Ghosts - Maiden Artoria Edition (World)
+- [ghoulsuknight]       Ghouls'n Ghosts - Knight Artoria Edition (USA)
+- [ghoulsumaiden]       Ghouls'n Ghosts - Maiden Artoria Edition (USA)
+- [daimakaiknight]      Ghouls'n Ghosts - Knight Artoria Edition (Japan)
+- [daimakaimaiden]      Ghouls'n Ghosts - Maiden Artoria Edition (Japan)
+- [kof2001s53]          Kof2001 (Red Arrener, 2026-08-14)
+- [rickdx]              Rick Dangerous DX
+- [sfa2d]               Street Fighter Alpha 2 Dash (960826, PS2 Backport, 2026-08-27)
+- [sfa2g]               Street Fighter Alpha 2 Gold (960826, PS2 Backport, 2026-08-27)
+- [sfz2d]               Street Fighter Zero 2 Dash (960805J, PS2 Backport, 2026-08-27)
+- [sfz2da]              Street Fighter Zero 2 Dash (960826, English, PS2 Backport, 2026-08-27)
+- [smbn]                Super Mario Bros. (Neo Geo)
+- [wjammers04]          Windjammers (Endless Breeze)
+
+
+Updated Games
+---------------------------------
+- [sengoku2s01]         Sengoku 2 (Red Blood, v1.18)
+- [sf2prime]            Street Fighter II': Prime (v0.80)
+
+
+
+
+2026-08-03 0.289.1
+
+- Added the saving of overclocking adjustments [BlackDeath]
+- Restored the PGM homebrew (pgmfrog, pgmdemo, pgemeni)
+- HBMAMEUI: Fixed the splash screen
+- HBMAMEUI: Improved plugins process
+- HBMAMEUI: Fixed icon issues
+
+
+New Games
+---------------------------------
+- [adkw]                ADK World
+- [blueandr]            Blue and Red Fight the Robots v1.7
+- [cabaln02]            Cabal (NeoGeo port) improvements
+- [dino281]             Cadillacs and Dinosaurs (Readjusted v1.1)
+- [dino282]             Cadillacs and Dinosaurs (Readjusted v1.2)
+- [dino283]             Cadillacs and Dinosaurs (Readjusted v1.4)
+- [gladmortcm]          Gladmort (Caravan Mode)
+- [hyxevious]           Hyper Xevious (2026-07-30)
+- [midnight]            Midnight Wanderers 2-level demo (Neo-Geo port)
+- [nbamht01]            NBA Maximum Hangtime (Custom Rebuild, 2026-07-02)
+- [samsho2s21]          Samurai Shodown II (Perfect v2.4, 2025-01-27)
+- [samsho2s22]          Samurai Shodown II (Perfect v2.9, 2026-06-29)
+- [sengoku2s01]         Sengoku 2 (Red Blood, v1.14)
+- [sf2prime]            Street Fighter II': Prime (v0.79)
+- [sfiii3ns15]          Street Fighter III 3rd Strike: Fight for the Future (4rd Strike 2011-07-17)
+- [turfmast03]          Neo Turf Masters with Scotland course v1.10
+- [xeviousn05]          Xevious (Neo-Geo port, gfx fix)
+- [zintrick07]          ZinTricK (Music tracks) improvements
 
 
 

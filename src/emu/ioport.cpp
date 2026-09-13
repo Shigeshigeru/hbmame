@@ -18,6 +18,7 @@
 #include "main.h"
 #include "natkeyboard.h"
 #include "profiler.h"
+#include "video.h"
 
 #include "ui/uimain.h"
 
@@ -88,22 +89,6 @@ inline s64 recip_scale(s64 scale)
 inline s32 apply_scale(s32 value, s64 scale)
 {
 	return (s64(value) * scale) / (1 << 24);
-}
-
-//-------------------------------------------------
-//  compute_shift -- get shift required to right-
-//  align an I/O port field value
-//-------------------------------------------------
-
-inline u8 compute_shift(ioport_value mask)
-{
-	u8 result = 0U;
-	while (mask && !BIT(mask, 0))
-	{
-		mask >>= 1;
-		++result;
-	}
-	return result;
 }
 
 
@@ -850,6 +835,7 @@ std::string ioport_field::key_name(int which) const
 	case UCHAR_SHIFT_1: return "Shift";
 	case UCHAR_SHIFT_2: return "Ctrl";
 	case UCHAR_MAMEKEY(ESC): return "Esc";
+	case UCHAR_MAMEKEY(TAB): return "Tab";
 	case UCHAR_MAMEKEY(INSERT): return "Insert";
 	case UCHAR_MAMEKEY(DEL): return "Delete";
 	case UCHAR_MAMEKEY(HOME): return "Home";
@@ -3468,7 +3454,7 @@ void dynamic_field::write(ioport_value newval)
 
 analog_field::analog_field(ioport_field &field) :
 	m_field(field),
-	m_shift(compute_shift(field.mask())),
+	m_shift(field.mask() ? std::countr_zero(field.mask()) : 0U),
 	m_adjdefvalue((field.defvalue() & field.mask()) >> m_shift),
 	m_adjmin((field.minval() & field.mask()) >> m_shift),
 	m_adjmax((field.maxval() & field.mask()) >> m_shift),
