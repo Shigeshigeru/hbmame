@@ -9,6 +9,7 @@ New Games
 ---------------------------------
 - [dkongt]              Donkey Kong Test Rom v1.00
 - [dkongjrt]            Donkey Kong Junior Test Rom v1.00
+- [exedexes01]          Exed Exes (Recreation of loctest ver, 2026-09-21)
 - [gngaenh]             Ghosts'n Goblins (Enhanced) (World? set 2)
 - [gngbenh]             Ghosts'n Goblins (Enhanced) (World? set 3)
 - [gngcenh]             Ghosts'n Goblins (Enhanced) (World? set 4)
@@ -24,7 +25,8 @@ New Games
 - [gngmaidenenh]        Ghosts'n Goblins - Maiden Artoria Edition (Enhanced) (World? 1)
 - [gngmaidentenh]       Ghosts'n Goblins - Maiden Artoria Edition (Enhanced) (US)
 - [gngtenh]             Ghosts'n Goblins (Enhanced) (US)
-- [lhpb]                Last Hope Pink Bullets (hack)
+- [lhpb]                Last Hope (Pink Bullets, hack, v1.0)
+- [lhpb01]              Last Hope (Pink Bullets, hack, v1.2)
 - [makaimurbenh]        Makaimura (Enhanced) (Japan revision B)
 - [makaimurcenh]        Makaimura (Enhanced) (Japan revision C)
 - [makaimurenh]         Makaimura (Enhanced) (Japan revision A?)
@@ -37,14 +39,29 @@ New Games
 - [makmaidencenh]       Makaimura - Maiden Artoria Edition (Enhanced) (Japan revision C)
 - [makmaidenenh]        Makaimura - Maiden Artoria Edition (Enhanced)
 - [makmaidengenh]       Makaimura - Maiden Artoria Edition (Enhanced) (Japan revision G)
+- [mshvsfej]            Marvel Super Heroes Vs. Street Fighter EX (970707J, 2026-09-17)
+- [mshvsfex]            Marvel Super Heroes Vs. Street Fighter EX (970625U, 2026-09-17)
+- [mshvsfrj]            Marvel Super Heroes Vs. Street Fighter (970707J, Restoration, 2026-09-17)
+- [mshvsfru]            Marvel Super Heroes Vs. Street Fighter (970625U, English Restoration, 2026-09-17)
 - [mslug5s01]           Metal Slug 5 Remake v2
 - [mslug5s02]           Metal Slug 5 Extend Ver
-- [ssf2tgmc]            Super Street Fighter II Turbo: Grand Master Challenge (940311J, English Restoration, 2026-09-10)
+- [sfz2alr]             Street Fighter Zero 2 Alpha (960805A, English Restoration, 2026-09-17)
+- [ssf2tgmc]            Super Street Fighter II Turbo: Grand Master Challenge (940311J, English Restoration, 2026-09-17)
+- [ssf2tuc]             Super Street Fighter II EX: The Ultimate Championship (940223U, 2026-09-17)
+- [ssf2xuc]             Super Street Fighter II EX: The Ultimate Championship (940223J, 2026-09-17)
 
 
 Updated Games
 ---------------------------------
 - [cd_ssrpg]            Samurai Spirits RPG (English) v1.1
+- [ffightjs01]          Final Fight EX (Japan, 2026-09-17)
+- [ffightus01]          Final Fight EX (USA, 2026-09-17)
+- [sfa2d]               Street Fighter Alpha 2 Dash (960826, PS2 Backport, 2026-09-17)
+- [sfa2g]               Street Fighter Alpha 2 Gold (960826, PS2 Backport, 2026-09-17)
+- [sfz2d]               Street Fighter Zero 2 Dash (960805J, PS2 Backport, 2026-09-17)
+- [sfz2da]              Street Fighter Zero 2 Dash (960826, English, PS2 Backport, 2026-09-17)
+- [vhunt2s01]           Night Warriors 2: Darkstalkers Revenge (970929J, English, 2026-09-17)
+- [vsav2s04]            Vampire Savior 2: The Lord of Vampire (970913J, English, 2026-09-17)
 
 
 
