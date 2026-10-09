@@ -1068,6 +1068,7 @@ sf2s13
 sf2s14
 sf2s15
 sf2s16
+sf2s17
 sf2tlona01
 sf2tlona02
 sf2tlona03
@@ -1532,6 +1533,7 @@ sfz2al16
 sfz2al17
 sfz2al18
 sfz2al19
+sfz2al20
 sfa2d
 sfa2g
 sfz2d
@@ -1621,10 +1623,14 @@ suicide
 suicide2
 vampj01
 vhunt2s01
+vhunt2s02
+vhunt2s03
 vsav2s01
 vsav2s02
 vsav2s03
 vsav2s04
+vsav2s05
+vsav2s06
 vsavru
 xmcota01
 xmcota02
@@ -6263,9 +6269,11 @@ zupapa			// 070
 @source:neogeocd.cpp
 neocdz_bios
 cd_alice
+cd_altbeast
 cd_chelnov
 cd_diff
 cd_eira
+cd_eswat
 cd_ffury
 cd_fukkireta
 cd_gaxe
@@ -6278,7 +6286,9 @@ cd_phoenix
 cd_pong
 cd_pow
 cd_pow2
+cd_robocop
 cd_shinobiarr
+cd_sdodgeb
 cd_speedball
 cd_ssrpg
 cd_subspecies
@@ -6312,7 +6322,6 @@ cakefght                               // port
 cakefght1                              // port
 caravan                                // HB
 cbarrel                                // HB
-chelnovn
 cndi		/* Chip n Dale Intro */
 cndia
 cnbe
@@ -6376,6 +6385,7 @@ lhpb01
 looptris
 looptrsp
 ltorb
+maiya
 midnight
 ndo_a_td
 neo2048
@@ -6425,7 +6435,6 @@ pcmbdemo	// 2015 freem
 poknight	/* 2003 (c) 200? JMK */
 poknightcd
 poknightfr
-pown
 //raroggame
 rci			/* Robocop intro */
 rickdx
@@ -6474,6 +6483,7 @@ vaporous
 //venuswars
 violentv
 //vlad2000
+vssmbn
 wrldracr
 wrldracr01
 wrldracr02
@@ -8520,6 +8530,7 @@ baby3		/* T-Bone hack */
 baby4		/* T-Bone hack */
 brakman		/* Jerry Lawrence hack of Pac-Man (Midway) */
 bucaneerx	/* PacMAME Hacks */
+bupacman
 caterpil
 chtpac
 chtpac3d
@@ -8750,6 +8761,7 @@ outrunen
 outrunen0
 outrunen1
 outrunen2
+outrungb
 outrunm
 outrunt1
 toutrun                                //parent
@@ -9218,6 +9230,7 @@ xeviblk		/* Xevious Black */
 sxevious01
 hyxevious
 hyxevious01
+hyxevious02
 
 @source:yiear.cpp
 yiear                                  //parent

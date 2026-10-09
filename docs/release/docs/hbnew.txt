@@ -7,11 +7,26 @@
 
 New Games
 ---------------------------------
+- [bupacman]            Busy Pacman
+- [cd_altbeast]         Altered Beast (Neo-Geo port)[CD]
+- [cd_eswat]            Cyber Police ESWAT (Neo-Geo port)[CD]
+- [cd_robocop]          Robocop (Neo-Geo port)[CD]
+- [cd_sdodgeb]          Super Dodge Ball (v0.99 beta)[CD]
+- [hyxevious02]         Hyper Easy Xevious
+- [maiya]               Maiya Super Nature Girl
 - [nwarrru]             Night Warriors: Darkstalkers' Revenge (950316U, English Restoration, 2026-10-06)
+- [outrungb]            Out Run (Gumball Edition)
+- [sf2s17]              Street Fighter II' (Bonus Stage)
 - [sfa2ex]              Street Fighter Alpha 2 EX (960826, 2026-10-06)
+- [sfz2al20]            Street Fighter Zero 2 Alpha Dash / Gold (960813U)
 - [sfz2ex]              Street Fighter Zero 2 EX (960805J, 2026-10-06)
 - [vamprest]            Darkstalkers: The Night Warriors (940705U, English Restoration, 2026-10-06)
+- [vhunt2s02]           Night Warriors 2 Arrange (970929J, English, 2026-10-07)
+- [vhunt2s03]           Vampire Hunter 2 Arrange (970929J, 2026-10-07)
+- [vsav2s05]            Vampire Savior 2 Arrange (970913J, English, 2026-10-07)
+- [vsav2s06]            Vampire Savior 2 Arrange (970913J, 2026-10-07)
 - [vsavru]              Vampire Savior: The Lord of Vampire (970519U, English Restoration, 2026-09-22)
+- [vssmbn]              VS. Super Mario Bros.
 
 
 Updated Games
@@ -20,10 +35,12 @@ Updated Games
 - [mshvsfex]            Marvel Super Heroes Vs. Street Fighter EX (970625U, 2026-10-06)
 - [mshvsfrj]            Marvel Super Heroes Vs. Street Fighter (970707J, Restoration, 2026-09-17)
 - [mshvsfru]            Marvel Super Heroes Vs. Street Fighter (970625U, English Restoration, 2026-09-17)
+- [sf2mix]              Street Fighter II: Dream Battle (Mix 1.7)
 - [sfa2d]               Street Fighter Alpha 2 Dash (960826, PS2 Backport, 2026-10-06)
 - [sfa2g]               Street Fighter Alpha 2 Gold (960826, PS2 Backport, 2026-10-06)
 - [sfz2d]               Street Fighter Zero 2 Dash (960805J, PS2 Backport, 2026-10-06)
 - [sfz2da]              Street Fighter Zero 2 Dash (960826, English, PS2 Backport, 2026-10-06)
+- [smbn]                Super Mario Bros. (Neo Geo)
 - [ssf2tuc]             Super Street Fighter II EX: The Ultimate Championship (940223U, 2026-10-06)
 - [ssf2xuc]             Super Street Fighter II EX: The Ultimate Championship (940223J, 2026-10-06)
 
