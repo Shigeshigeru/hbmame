@@ -34,6 +34,7 @@ sinvtest1
 sinvtest2
 sinvtest3
 sinvtest4
+tinyvadr
 
 @source:vsystem/pspikes.cpp
 karatblz                               //parent
@@ -6279,6 +6280,7 @@ cd_fukkireta
 cd_gaxe
 cd_gaxearr
 cd_natademo
+cd_neotris2
 cd_ngdark
 cd_noneon
 cd_ntris3d
@@ -6427,16 +6429,17 @@ ngtd2
 ngtetris
 ngym2610
 nsmb
-nsmbd			// unplayable demo
+nsmbd                 // unplayable demo
 nyan
 nyana
-pcmademo	// 2015 freem
-pcmbdemo	// 2015 freem
-poknight	/* 2003 (c) 200? JMK */
+pcmademo
+pcmbdemo
+perfectf
+poknight              //Jeff M Kurtz
 poknightcd
 poknightfr
 //raroggame
-rci			/* Robocop intro */
+rci
 rickdx
 samantha
 santabll
@@ -6458,9 +6461,11 @@ shinobint
 smbn
 smi
 snddemo
+snowbrosn
 spkick
 spkick2
 spriteex
+ssodan
 syscheck
 teot_1
 teot_2
