@@ -6270,7 +6270,7 @@ zupapa			// 070
 @source:neogeocd.cpp
 neocdz_bios
 cd_alice
-cd_altbeast
+//cd_altbeast      // buggy
 cd_chelnov
 cd_diff
 cd_eira
@@ -6306,7 +6306,9 @@ abyssal
 abyssal1
 adkw                                   // port
 akiradmo
+altbeastn
 amazonn
+arena2
 badapple
 badapplea
 badappleb
