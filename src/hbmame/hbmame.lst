@@ -1765,6 +1765,8 @@ robocopb01
 @source:deco32.cpp
 fghthist                               //parent
 fghthist01
+nslasher                               //parent
+nslasheru01
 
 @source:decocass.cpp
 decocass                               //parent
@@ -6288,7 +6290,6 @@ cd_phoenix
 cd_pong
 cd_pow
 cd_pow2
-cd_robocop
 cd_shinobiarr
 cd_sdodgeb
 cd_speedball
@@ -6443,6 +6444,7 @@ poknightfr
 //raroggame
 rci
 rickdx
+robocopn
 samantha
 santabll
 sbpf
@@ -6457,9 +6459,11 @@ shaman20
 //shaman22
 //shaman23
 //shaman24
+shadowlf
 shinobin
 shinobin1
 shinobint
+skylance
 smbn
 smi
 snddemo
@@ -9186,6 +9190,9 @@ frombelow
 vs_urban
 nvs_mightybj                           //parent
 mightybj01
+smgolf01
+ladygolf01
+ladygolfe01
 
 @source:warriorb.cpp
 sagaiav2
