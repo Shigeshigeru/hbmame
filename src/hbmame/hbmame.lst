@@ -6292,6 +6292,7 @@ cd_pow
 cd_pow2
 cd_shinobiarr
 cd_sdodgeb
+cd_sf2ce
 cd_speedball
 cd_ssrpg
 cd_subspecies
@@ -6368,6 +6369,7 @@ goldaxen
 grime
 gxg
 halozero
+hangonn
 horekidb3
 hypernoid
 hypernoid01
@@ -6672,6 +6674,7 @@ preisle2s02
 preisle2s03
 pulstar01
 pulstar02
+pulstar03
 puzzldpr01
 puzzledp01
 ragnagrd01
@@ -8923,6 +8926,10 @@ sonson01
 spcenctr                               //parent
 senctest
 
+//@source:srumbler.cpp
+//srumbler                               //parent
+//srumbler01         not working
+
 @source:ssv.cpp
 survarts                               //parent
 survarts01
@@ -9024,6 +9031,7 @@ twinqix                                //parent
 twinqix01
 
 @source:taito_l.cpp
+jetpac
 sokoban                                // HB Sokoban LE by cmonkey
 speccies                               // HB Speccies 2 by Sokurah
 sqij                                   // HB SQIJ by Sokurah

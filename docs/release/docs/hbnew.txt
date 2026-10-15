@@ -8,12 +8,15 @@
 New Games
 ---------------------------------
 - [altbeastn]           Altered Beast (Neo-Geo port, v1.2)
-- [arena2]              Arena
+- [arena2]              Arena 2
 - [bupacman]            Busy Pacman
 - [cd_eswat]            Cyber Police ESWAT (Neo-Geo port)[CD]
 - [cd_neotris2]         Neotris 2 Proto[CD]
 - [cd_sdodgeb]          Super Dodge Ball (v0.99 beta)[CD]
+- [cd_sf2ce]            Street Fighter II' Champion Edition (Neo-Geo port, 74FP)[CD]
+- [hangonn]             Hang On (Neo-Geo port, v2.0)
 - [hyxevious02]         Hyper Easy Xevious
+- [jetpac]              Jetpac (v1.0, 2026-10-14)
 - [ladygolf01]          Vs. Stroke & Match Golf (Ladies Version, set LG4 ?, Easier CPU, v1.0, 2026-09-26)
 - [ladygolfe01]         Vs. Stroke & Match Golf (Ladies Version, set LG4 E, Easier CPU, v1.0, 2026-09-26)
 - [maiya]               Maiya Super Nature Girl (v4)
@@ -21,6 +24,7 @@ New Games
 - [nwarrru]             Night Warriors: Darkstalkers' Revenge (950316U, English Restoration, 2026-10-06)
 - [outrungb]            Out Run (Gumball Edition)
 - [perfectf]            Perfect Fighter, the (demo v4)
+- [pulstar03]           Pulstar (Aegis)
 - [robocopn]            Robocop (Neo-Geo port, v9)
 - [sf2s17]              Street Fighter II' (Bonus Stage)
 - [sfa2ex]              Street Fighter Alpha 2 EX (960826, 2026-10-06)
@@ -29,8 +33,8 @@ New Games
 - [shadowlf]            Shadow League Fighting (v1)
 - [skylance]            Sky Lance (v1)
 - [smgolf01]            Vs. Stroke & Match Golf (Men Version, set GF4-2 F, Easier CPU, v1.0, 2026-09-26)
-- [snowbrosn]           Snow Bros (Neo-Geo port, beta 0.1)
-- [ssodan]              Sword of Sodan (Neo-Geo port, beta 0.4)
+- [snowbrosn]           Snow Bros (Neo-Geo port, beta 0.3c)
+- [ssodan]              Sword of Sodan (Neo-Geo port, beta 0.5)
 - [tinyvadr]            Tiny Vaders
 - [vamprest]            Darkstalkers: The Night Warriors (940705U, English Restoration, 2026-10-06)
 - [vhunt2s02]           Night Warriors 2 Arrange (970929J, English, 2026-10-07)
@@ -55,6 +59,7 @@ Updated Games
 - [smbn]                Super Mario Bros. (Neo Geo)
 - [ssf2tuc]             Super Street Fighter II EX: The Ultimate Championship (940223U, 2026-10-06)
 - [ssf2xuc]             Super Street Fighter II EX: The Ultimate Championship (940223J, 2026-10-06)
+- [wjammers04]          Windjammers (Endless Breeze, v1.2.0)
 
 
 
@@ -170,7 +175,7 @@ New Games
 - [sfz2d]               Street Fighter Zero 2 Dash (960805J, PS2 Backport, 2026-08-27)
 - [sfz2da]              Street Fighter Zero 2 Dash (960826, English, PS2 Backport, 2026-08-27)
 - [smbn]                Super Mario Bros. (Neo Geo)
-- [wjammers04]          Windjammers (Endless Breeze)
+- [wjammers04]          Windjammers (Endless Breeze, v1.1.0)
 
 
 Updated Games
