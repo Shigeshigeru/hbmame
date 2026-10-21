@@ -34923,6 +34923,7 @@ finfurl
 finfurl2
 finfurl2j
 gunwars
+gunwarsj
 gunwarsa
 motoxgo
 motoxgov1a
@@ -40820,6 +40821,9 @@ lucky168
 pljh
 wakenz80
 
+@source:sealy/sealy_z80_8bpp.cpp
+clonekng
+
 @source:seequa/chameleon.cpp
 chameleon
 champroto
@@ -42383,7 +42387,6 @@ omv1000
 omv2000
 sc3000
 sc3000pal
-sf7000
 sg1000
 sg1000m2
 
