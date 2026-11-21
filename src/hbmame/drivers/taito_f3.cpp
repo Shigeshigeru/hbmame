@@ -350,6 +350,39 @@ ROM_START( dariusg01 )
 ROM_END
 
 /*************************
+ Darius Gaiden - Silver Hawk (Ver 2.5J Darius Cosmic Collection Version)
+**************************/
+ROM_START( dariusgjcc )
+	ROM_REGION(0x200000, "maincpu", 0)
+	ROM_LOAD32_BYTE("d87-12cc.bin", 0x000000, 0x80000, CRC(be34646a) SHA1(79f6e31a66ff7188959d9c3b5e703c11c1dc40b6) )
+	ROM_LOAD32_BYTE("d87-11cc.bin", 0x000001, 0x80000, CRC(41ce3164) SHA1(3faeca436d94cadd97cdf6d1f7f0ef791a22ad87) )
+	ROM_LOAD32_BYTE("d87-10cc.bin", 0x000002, 0x80000, CRC(31f2b36c) SHA1(aefc59518339626407763190dcc2e66daa4fd0e9) )
+	ROM_LOAD32_BYTE("d87-09cc.bin", 0x000003, 0x80000, CRC(91bbd6a0) SHA1(17ac107167d3a93f42b98a6921033b198afde9cb) )
+
+	ROM_REGION(0x400000, "sprites" , 0)
+	ROM_LOAD16_BYTE("d87-03.bin", 0x000000, 0x200000, CRC(4be1666e) SHA1(35ba7bcf29ec7a8f8b6944ee3544693d4df1bfc2) )
+	ROM_LOAD16_BYTE("d87-04.bin", 0x000001, 0x200000, CRC(2616002c) SHA1(003f98b740a697274385b8da03c78f3c6f7b5e89) )
+
+	ROM_REGION( 0x200000, "sprites_hi", 0 )
+	ROM_LOAD       ("d87-05.bin", 0x000000, 0x200000, CRC(4e5891a9) SHA1(fd08d848079841c9237fa359a850980fd00114d8) )
+
+	ROM_REGION(0x400000, "tilemap" , 0)
+	ROM_LOAD32_WORD("d87-06.bin", 0x000000, 0x200000, CRC(3b97a07c) SHA1(72cdeffedeab0c1bd0e47f03172085390a2be393) )
+	ROM_LOAD32_WORD("d87-17.bin", 0x000002, 0x200000, CRC(e601d63e) SHA1(256a6aeb5633fe1db407fad567169a9d0c911219) )
+
+	ROM_REGION( 0x200000, "tilemap_hi", 0 )
+	ROM_LOAD       ("d87-08.bin", 0x000000, 0x200000, CRC(76d23602) SHA1(ca53ea6641182c44a4038bbeaa5effb1687f1980) )
+
+	ROM_REGION(0x180000, "taito_en:audiocpu", 0)
+	ROM_LOAD16_BYTE("d87-13.bin", 0x100000, 0x40000, CRC(15b1fff4) SHA1(28692b731ae98a47c2c5e11a8a71b61a813d9a64) )
+	ROM_LOAD16_BYTE("d87-14.bin", 0x100001, 0x40000, CRC(eecda29a) SHA1(6eb238e47bc7bf635ffbdbb25fb06a37db980ef8) )
+
+	ROM_REGION16_BE(0x800000, "taito_en:ensoniq" , ROMREGION_ERASE00 )
+	ROM_LOAD16_BYTE("d87-01.bin", 0x000000, 0x200000, CRC(3848a110) SHA1(802e91695a526f665c7fd261f0a7639a0b883c9e) )
+	ROM_LOAD16_BYTE("d87-02.bin", 0x400000, 0x200000, CRC(9250abae) SHA1(07cae8edbc3cca0a95022d9b40a5c18a55350b67) )
+ROM_END
+
+/*************************
  Elevator Action Returns
 **************************/
 ROM_START( elvactr01 )
@@ -853,6 +886,8 @@ GAME( 1994, dankuga01,         dankuga,  f3_224a, kn, taito_f3_state, init_kaise
 GAME( 1994, dankuga02,         dankuga,  f3_224a, kn, taito_f3_state, init_kaiserkn, ROT0,   "Yumeji",   "Dan-Ku-Ga (Enable Hidden Characters)", 0 )
 // Darius Gaiden
 GAME( 1994, dariusg01,         dariusg,  f3,      f3, taito_f3_state, init_dariusg,  ROT0,   "hack",     "Darius Gaiden (Unknown Hack)", 0 )
+//  Darius Gaiden - Silver Hawk (Ver 2.5J Darius Cosmic Collection Version)
+GAME( 2021, dariusgjcc,        dariusg,  f3,      f3, taito_f3_state, init_dariusg,  ROT0,   "Taito",    "Darius Gaiden - Silver Hawk (Ver 2.5J Darius Cosmic Collection Version)", 0 )
 // Elevator Action Returns
 GAME( 1994, elvactr01,         elvactr,  f3,      f3, taito_f3_state, init_elvactr,  ROT0,   "hack",     "Elevator Action Returns (Chinese)", 0 )
 // Gekirindan

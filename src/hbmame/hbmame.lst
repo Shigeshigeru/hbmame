@@ -6208,6 +6208,7 @@ kof98			// 242
 kof99			// 251
 kof2000			// 257
 kof2001			// 262
+kof2001h		// 262
 kof2002			// 265
 kof2003			// 271
 kf2k3pcb
@@ -9043,6 +9044,7 @@ dankuga01
 dankuga02
 dariusg                                //parent
 dariusg01
+dariusgjcc
 elvactr                                //parent
 elvactr01
 gekiridn                               //parent
