@@ -6611,6 +6611,38 @@ ROM_START( mslug5s02 )
 	ROM_LOAD16_BYTE( "268hd.c8", 0x3000001, 0x800000, CRC(fafc3eb9) SHA1(F4F73194CC7FD151BE3CA2561F993B5BE7628369) )
 ROM_END
 
+ROM_START( mslug5be ) /* Bootleg / Hack of Metal Slug 5 Earlier */
+	ROM_REGION( 0x600000, "maincpu", 0 )
+	ROM_LOAD16_WORD_SWAP( "268dh49.p1", 0x000000, 0x100000, CRC(3f1cf3d2) SHA1(2c85eb5acdede4816675b91f8989c9e13c1573f8) )
+	ROM_IGNORE( 0x300000 )
+	ROM_CONTINUE( 0x200000, 0x100000 )
+	ROM_CONTINUE( 0x400000, 0x100000 )
+	ROM_CONTINUE( 0x300000, 0x100000 )
+	ROM_CONTINUE( 0x500000, 0x100000 )
+
+	NEO_SFIX_MT_128K
+	ROM_LOAD( "268boot.s1", 0x10000, 0x10000, CRC(52a8c09b) SHA1(3a90d8e44aa7cbc79945f8ece0e2fb9ce3e5a4c7) )
+	ROM_CONTINUE(           0x00000, 0x10000 )
+
+	NEO_BIOS_AUDIO_256K( "268boot.m1", CRC(792e07c1) SHA1(117516e8ec9026c7682ab27857aab6639bef5835) )
+
+	ROM_REGION( 0x1000000, "ymsnd:adpcma", 0 )
+	ROM_LOAD( "268boot.v1", 0x000000, 0x400000, CRC(c3540e0d) SHA1(bf7ca3abe291b28a4cfaef791f0c556cc98ad8d8) )
+	ROM_LOAD( "268boot.v2", 0x400000, 0x400000, CRC(077bd2f4) SHA1(1699959d17f8c7113cebdb9da2e1cd18ce48486c) )
+	ROM_LOAD( "268boot.v3", 0x800000, 0x400000, CRC(39b14567) SHA1(1658612a93ba30130f9260bc41d3f18f6b90c1e7) )
+	ROM_LOAD( "268boot.v4", 0xc00000, 0x400000, CRC(969ff3b2) SHA1(50feceb741a1c08b000b077a33151ab1352eb798) )
+
+	ROM_REGION( 0x4000000, "sprites", 0 )
+	ROM_LOAD16_BYTE( "268-c1d.c1", 0x0000000, 0x800000, CRC(969c0d62) SHA1(de3c5cfa980cca2fab0416ac0d292948b5d4c9c3) )
+	ROM_LOAD16_BYTE( "268-c2d.c2", 0x0000001, 0x800000, CRC(c69ae867) SHA1(3198ee5c7c2c7563b49ebd9f7ba95d9b0b303f6c) )
+	ROM_LOAD16_BYTE( "268-c3d.c3", 0x1000000, 0x800000, CRC(d7beaeaf) SHA1(99443ea4c1bab45f1977a390eb7e1a0163915110) )
+	ROM_LOAD16_BYTE( "268-c4nd.c4", 0x1000001, 0x800000, CRC(e1b1131b) SHA1(68a36d336582069e79ad481638d92f57c4cd6523) )
+	ROM_LOAD16_BYTE( "268-c5d.c5", 0x2000000, 0x800000, CRC(2fa1a5ad) SHA1(4ae15d29ba979601598eddf8905072fe1d9e0a98) )
+	ROM_LOAD16_BYTE( "268-c6d.c6", 0x2000001, 0x800000, CRC(6de89589) SHA1(86a6c036bf51af516fea83a30874026ec1586a83) )
+	ROM_LOAD16_BYTE( "268-c7d.c7", 0x3000000, 0x800000, CRC(97bd0c0a) SHA1(30f3280fe527098ecf46541cc645a59b366105ea) )
+	ROM_LOAD16_BYTE( "268-c8d.c8", 0x3000001, 0x800000, CRC(c0d5bc20) SHA1(b5d0d81d5cc624538b0651c568295e578a1330d1) )
+ROM_END
+
 
 
 /*    YEAR  NAME            PARENT    MACHINE        INPUT       INIT             MONITOR COMPANY                 FULLNAME FLAGS */
@@ -6863,6 +6895,8 @@ GAME( 2020, mslug5ervx16,     mslug5,   neogeo,        neogeo,   neogeo_state, i
 GAME( 2021, mslug5unity,      mslug5,   neogeo,        neogeo,   neogeo_state, init_mslug5hb,   ROT0, "hack", "Metal Slug 5 Unity", MACHINE_SUPPORTS_SAVE )
 GAME( 2020, mslug5s01,        mslug5,   neogeo,        neogeo,   neogeo_state, init_neogeo,     ROT0, "Xiao Zhang Bing", "Metal Slug 5 Remake v2", MACHINE_SUPPORTS_SAVE )
 GAME( 2022, mslug5s02,        mslug5,   neogeo,        neogeo,   neogeo_state, init_neogeo,     ROT0, "WillNie & AKS", "Metal Slug 5 Extend Ver", MACHINE_SUPPORTS_SAVE )
+
+GAME( 2003, mslug5be,  mslug5,   neogeo,        neogeo,   neogeo_state, init_mslug5b,  ROT0, "bootleg", "Metal Slug 5 (Bootleg Set 2 Earlier)", MACHINE_SUPPORTS_SAVE )
 
 // 5555: Uses metal slug characters in new scenes. After you die, immediately hit 1 to get a menu.
 // There's no official name (it just says Metal Slug).
