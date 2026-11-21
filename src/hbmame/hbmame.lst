@@ -6147,6 +6147,7 @@ roishtarx
 salamand	//parent
 spclone		// v0.7.3
 spcloneo	// v0.7.2.2
+spclonec	// from IPS unkown Chimera?
 
 @source:neogeo.cpp
 // These are the parents of our hacks
@@ -6155,7 +6156,7 @@ neogeo
 3countb			// 043
 alpham2			// 007
 androdun		// 049
-//aodk			// 074  not needed
+aodk			// 074
 aof				// 044
 aof2			// 056
 aof3			// 096
@@ -6167,7 +6168,7 @@ blazstar		// 239
 breakers		// 230
 breakrev		// 245
 bstars			// 002
-//bstars2		// 041  not needed
+bstars2			// 041
 burningf		// 018
 crsword			// 037
 //crswd2bl		// 054 crswd2bl
@@ -6190,7 +6191,7 @@ garou			// 253
 goalx3			// 209
 gowcaizr		// 094
 gpilots			// 020
-//gururin		// 067  not needed
+gururin			// 067
 ironclad		// 220
 irrmaze			// 236
 //janshin		// 048  not needed
@@ -6219,7 +6220,7 @@ lasthope		// 802
 lbowling		// 019
 //legendos		// 029  not needed
 lresort			// 024
-//magdrop2		// 221  not needed
+magdrop2		// 221  not needed
 magdrop3		// 233
 maglord			// 005
 //mahretsu		// 004  not needed
@@ -6245,15 +6246,15 @@ neodrift		// 213
 //neomrdo		// 207  not needed
 ninjamas		// 217
 nitd			// 260
-//overtop		// 212  not needed
+overtop			// 212
 //panicbom		// 073  not needed
-//pbobbl2n		// 248  not needed
+pbobbl2n		// 248
 pbobblen		// 083
 //pgoal			// 219  not needed
 pnyaa			// 267
 //popbounc		// 237  not needed
 preisle2		// 255
-//pspikes2		// 068  not needed
+pspikes2		// 068
 pulstar			// 089
 puzzledp		// 202
 puzzldpr		// 235
@@ -6289,13 +6290,13 @@ ssideki			// 052
 //ssideki2		// 061  not needed
 //ssideki3		// 081  not needed
 ssideki4		// 215
-//stakwin		// 088  not needed
-//stakwin2		// 227  not needed
+stakwin			// 088  not needed
+stakwin2		// 227  not needed
 stakwindev                             // totally broken in mame, partially works here.
 strhoop			// 079
 superspy		// 011
 svc				// 269
-//svcpcb                not needed
+svcpcb			//
 tophuntr		// 046
 tpgolf			// 003
 trally			// 038
@@ -6310,7 +6311,7 @@ wh2				// 057
 wh2j			// 064
 whp				// 090
 wjammers		// 065
-//zedblade		// 076  not needed
+zedblade		// 076  not needed
 zintrckb		// 211
 zupapa			// 070
 //dragonsh
