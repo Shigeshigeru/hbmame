@@ -170,7 +170,10 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 			const uint64_t cur_frame = m_screen->frame_number();
 			if (cur_frame == m_kof2001_last_raster_frame)
 			{
-				++m_kof2001_raster_streak;
+				if (m_kof2001_raster_streak <= 256)
+				{
+					++m_kof2001_raster_streak;
+				}
 			}
 			else
 			{
@@ -181,11 +184,9 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 			if (m_kof2001_raster_streak > 256)
 			{
 				m_display_position_interrupt_pending = 0;
-				m_kof2001_raster_streak = 0;
+				update_interrupts();
 			}
 		}
-
-		update_interrupts();
 	}
 
 	if (m_display_position_interrupt_control & IRQ2CTRL_AUTOLOAD_REPEAT)
