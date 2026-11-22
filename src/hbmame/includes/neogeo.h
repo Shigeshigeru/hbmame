@@ -176,7 +176,6 @@ public:
 	void init_rotdb();
 	void init_rotdd();
 	void init_rotdnd();
-	void init_rotddc();
 	void init_s1945p();
 	void init_sam5hb();
 	void init_sam5sphb();
