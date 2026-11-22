@@ -155,36 +155,66 @@ void neogeo_state::neogeo_acknowledge_interrupt( uint16_t  data )
 	update_interrupts();
 }
 
+namespace {
+
+constexpr uint32_t KOF2001_RASTER_STREAK_LIMIT = 256;
+
+bool is_kof2001_set(const running_machine &machine)
+{
+	const char *const name = machine.system().name;
+	return (!std::strcmp(name, "kof2001"))
+		|| (!std::strcmp(name, "kof2001h"))
+		|| (!std::strcmp(name, "kof2001n"));
+}
+
+struct kof2001_raster_guard_state
+{
+	uint64_t last_frame = 0;
+	uint32_t streak = 0;
+};
+
+kof2001_raster_guard_state &get_kof2001_raster_guard_state()
+{
+	static kof2001_raster_guard_state s_state;
+	return s_state;
+}
+
+} // anonymous namespace
 
 TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 {
 	if (LOG_VIDEO_SYSTEM) logerror("--- Scanline @ %d,%d\n", m_screen->vpos(), m_screen->hpos());
+
+	bool allow_autoload_repeat = true;
 
 	if (m_display_position_interrupt_control & IRQ2CTRL_ENABLE)
 	{
 		if (LOG_VIDEO_SYSTEM) logerror("*** Scanline interrupt (IRQ2) ***  y: %02x  x: %02x\n", m_screen->vpos(), m_screen->hpos());
 		m_display_position_interrupt_pending = 1;
 
-		if (is_kof2001_set())
+		if (is_kof2001_set(machine()))
 		{
+			auto &guard = get_kof2001_raster_guard_state();
 			const uint64_t cur_frame = m_screen->frame_number();
-			if (cur_frame == m_kof2001_last_raster_frame)
+
+			if (cur_frame == guard.last_frame)
 			{
-				if (m_kof2001_raster_streak <= 256)
+				if (guard.streak <= KOF2001_RASTER_STREAK_LIMIT)
 				{
-					++m_kof2001_raster_streak;
+					++guard.streak;
 				}
 			}
 			else
 			{
-				m_kof2001_last_raster_frame = cur_frame;
-				m_kof2001_raster_streak = 1;
+				guard.last_frame = cur_frame;
+				guard.streak = 1;
 			}
 
-			if (m_kof2001_raster_streak > 256)
+			if (guard.streak > KOF2001_RASTER_STREAK_LIMIT)
 			{
 				m_display_position_interrupt_pending = 0;
 				update_interrupts();
+				allow_autoload_repeat = false;
 			}
 		}
 	}
@@ -192,7 +222,7 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 	if (m_display_position_interrupt_control & IRQ2CTRL_AUTOLOAD_REPEAT)
 	{
 		if (LOG_VIDEO_SYSTEM) logerror("AUTOLOAD_REPEAT ");
-		if (!is_kof2001_set() || (m_kof2001_raster_streak <= 256))
+		if (allow_autoload_repeat)
 		{
 			adjust_display_position_interrupt_timer();
 		}
@@ -713,7 +743,7 @@ void neogeo_state::machine_start()
 
 	m_sprgen->set_screen(m_screen);
 	
-	if (is_kof2001_set())
+	if (is_kof2001_set(machine()))
 	{
 		auto *const wd = subdevice<watchdog_timer_device>("watchdog");
 		if (wd != nullptr)
@@ -1354,13 +1384,7 @@ void neogeo_state::init_kof2001()
 		m_cmc_prot->neogeo_sfix_decrypt(spr_region, spr_region_size, fix_region, fix_region_size);
 	}
 }
-	bool neogeo_state::is_kof2001_set() const
-{
-	const char *const name = machine().system().name;
-	return (!strcmp(name, "kof2001"))
-		|| (!strcmp(name, "kof2001h"))
-		|| (!strcmp(name, "kof2001n"));
-}
+
 /*********************************************** CMC50 + PCM2 */
 
 
