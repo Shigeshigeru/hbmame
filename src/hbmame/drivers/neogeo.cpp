@@ -175,6 +175,43 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 	}
 }
 
+{
+	if (LOG_VIDEO_SYSTEM) logerror("--- Scanline @ %d,%d\n", m_screen->vpos(), m_screen->hpos());
+
+	if (m_display_position_interrupt_control & IRQ2CTRL_ENABLE)
+	{
+		if (LOG_VIDEO_SYSTEM) logerror("*** Scanline interrupt (IRQ2) ***  y: %02x  x: %02x\n", m_screen->vpos(), m_screen->hpos());
+		m_display_position_interrupt_pending = 1;
+
+		if (is_kof2001_set())
+		{
+			const uint64_t cur_frame = m_screen->frame_number();
+			if (cur_frame == m_kof2001_last_raster_frame)
+			{
+				++m_kof2001_raster_streak;
+			}
+			else
+			{
+				m_kof2001_last_raster_frame = cur_frame;
+				m_kof2001_raster_streak = 1;
+			}
+
+			if (m_kof2001_raster_streak > 256)
+			{
+				m_display_position_interrupt_pending = 0;
+				m_kof2001_raster_streak = 0;
+			}
+		}
+
+		update_interrupts();
+	}
+
+	if (m_display_position_interrupt_control & IRQ2CTRL_AUTOLOAD_REPEAT)
+	{
+		if (LOG_VIDEO_SYSTEM) logerror("AUTOLOAD_REPEAT ");
+		adjust_display_position_interrupt_timer();
+	}
+}
 
 TIMER_CALLBACK_MEMBER(neogeo_state::display_position_vblank_callback)
 {
@@ -693,6 +730,14 @@ void neogeo_state::machine_start()
 //	m_sprgen->set_fixed_regions(m_region_fixed->base(), m_region_fixed->bytes(), m_region_fixedbios);
 }
 
+if (is_kof2001_set())
+	{
+		auto *const wd = subdevice<watchdog_timer_device>("watchdog");
+		if (wd != nullptr)
+		{
+			wd->set_time(attotime::from_seconds(60));
+		}
+	}
 
 
 /*************************************
@@ -1322,7 +1367,13 @@ void neogeo_state::init_kof2001()
 		m_cmc_prot->neogeo_sfix_decrypt(spr_region, spr_region_size, fix_region, fix_region_size);
 	}
 }
-
+	bool neogeo_state::is_kof2001_set() const
+{
+	const char *const name = machine().system().name;
+	return (!strcmp(name, "kof2001"))
+		|| (!strcmp(name, "kof2001h"))
+		|| (!strcmp(name, "kof2001n"));
+}
 /*********************************************** CMC50 + PCM2 */
 
 
