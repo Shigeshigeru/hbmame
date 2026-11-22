@@ -1,6 +1,11 @@
 name: CI (HBMAME)
 
-on: [push]
+on:
+  push:
+    branches:
+      - test
+
+  workflow_dispatch:
 
 jobs:
 
@@ -16,7 +21,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         install: git make mingw-w64-x86_64-gcc mingw-w64-x86_64-python mingw-w64-x86_64-lld mingw-w64-x86_64-libc++
-    - uses: actions/checkout@master
+    - uses: actions/checkout@main
     - name: Build
       env:
         MINGW64: "/mingw64"
@@ -24,7 +29,7 @@ jobs:
       run: make -j2 PTR64=1 TARGET=hbmame DEPRECATED=0 SYMBOLS=0 NO_SYMBOLS=1
     - name: Validate
       run: ./hbmame -validate
-    - uses: actions/upload-artifact@master
+    - uses: actions/upload-artifact@main
       with:
         name: hbmame-windows-gcc-${{ github.sha }}
         path: hbmame.exe
