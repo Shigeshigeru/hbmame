@@ -165,24 +165,6 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 		if (LOG_VIDEO_SYSTEM) logerror("*** Scanline interrupt (IRQ2) ***  y: %02x  x: %02x\n", m_screen->vpos(), m_screen->hpos());
 		m_display_position_interrupt_pending = 1;
 
-		update_interrupts();
-	}
-
-	if (m_display_position_interrupt_control & IRQ2CTRL_AUTOLOAD_REPEAT)
-	{
-		if (LOG_VIDEO_SYSTEM) logerror("AUTOLOAD_REPEAT ");
-		adjust_display_position_interrupt_timer();
-	}
-}
-
-{
-	if (LOG_VIDEO_SYSTEM) logerror("--- Scanline @ %d,%d\n", m_screen->vpos(), m_screen->hpos());
-
-	if (m_display_position_interrupt_control & IRQ2CTRL_ENABLE)
-	{
-		if (LOG_VIDEO_SYSTEM) logerror("*** Scanline interrupt (IRQ2) ***  y: %02x  x: %02x\n", m_screen->vpos(), m_screen->hpos());
-		m_display_position_interrupt_pending = 1;
-
 		if (is_kof2001_set())
 		{
 			const uint64_t cur_frame = m_screen->frame_number();
@@ -726,11 +708,8 @@ void neogeo_state::machine_start()
 	machine().save().register_postload(save_prepost_delegate(FUNC(neogeo_state::neogeo_postload), this));
 
 	m_sprgen->set_screen(m_screen);
-//	m_sprgen->set_sprite_region(m_region_sprites->base(), m_region_sprites->bytes());
-//	m_sprgen->set_fixed_regions(m_region_fixed->base(), m_region_fixed->bytes(), m_region_fixedbios);
-}
-
-if (is_kof2001_set())
+	
+	if (is_kof2001_set())
 	{
 		auto *const wd = subdevice<watchdog_timer_device>("watchdog");
 		if (wd != nullptr)
@@ -738,6 +717,10 @@ if (is_kof2001_set())
 			wd->set_time(attotime::from_seconds(60));
 		}
 	}
+
+//	m_sprgen->set_sprite_region(m_region_sprites->base(), m_region_sprites->bytes());
+//	m_sprgen->set_fixed_regions(m_region_fixed->base(), m_region_fixed->bytes(), m_region_fixedbios);
+}
 
 
 /*************************************
