@@ -192,7 +192,10 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 	if (m_display_position_interrupt_control & IRQ2CTRL_AUTOLOAD_REPEAT)
 	{
 		if (LOG_VIDEO_SYSTEM) logerror("AUTOLOAD_REPEAT ");
-		adjust_display_position_interrupt_timer();
+		if (!is_kof2001_set() || (m_kof2001_raster_streak <= 256))
+		{
+			adjust_display_position_interrupt_timer();
+		}
 	}
 }
 
