@@ -16,13 +16,13 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         install: git make mingw-w64-x86_64-gcc mingw-w64-x86_64-python mingw-w64-x86_64-lld mingw-w64-x86_64-libc++
-    - uses: actions/checkout@test
+    - uses: actions/checkout@master
     - name: Build
       env:
         MINGW64: "/mingw64"
         PTR64: "1"
       run: make -j2 PTR64=1 OSD=winui TARGET=hbmame DEPRECATED=0 SYMBOLS=0 NO_SYMBOLS=1
-    - uses: actions/upload-artifact@test
+    - uses: actions/upload-artifact@master
       with:
         name: hbmameui-windows-gcc-${{ github.sha }}
         path: hbmameui.exe
