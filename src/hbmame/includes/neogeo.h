@@ -175,6 +175,7 @@ public:
 	void init_rotd();
 	void init_rotdb();
 	void init_rotdd();
+	void init_rotdc();
 	void init_rotdnd();
 	void init_s1945p();
 	void init_sam5hb();
@@ -209,11 +210,6 @@ public:
 	required_device<cpu_device> m_maincpu;
 
 protected:
-	// kof2001
-	bool         is_kof2001_set() const;
-	uint32_t     m_kof2001_raster_streak = 0U;
-	uint64_t     m_kof2001_last_raster_frame = 0ULL;
-
 	void         main_map_noslot(address_map &map);
 	void         io_control_w(offs_t offset, uint8_t data);
 	uint16_t     memcard_r(offs_t offset);
