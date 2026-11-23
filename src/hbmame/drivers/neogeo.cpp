@@ -155,80 +155,22 @@ void neogeo_state::neogeo_acknowledge_interrupt( uint16_t  data )
 	update_interrupts();
 }
 
-namespace {
-
-constexpr uint32_t KOF2001_SAME_VPOS_LIMIT = 16;
-
-bool is_kof2001_set(const running_machine &machine)
-{
-	const char *const name = machine.system().name;
-	return (!std::strcmp(name, "kof2001"))
-		|| (!std::strcmp(name, "kof2001h"))
-		|| (!std::strcmp(name, "kof2001n"));
-}
-
-struct kof2001_raster_guard_state
-{
-	uint64_t last_frame = 0;
-	int last_vpos = -1;
-	uint32_t same_vpos_streak = 0;
-};
-
-kof2001_raster_guard_state &get_kof2001_raster_guard_state()
-{
-	static kof2001_raster_guard_state s_state;
-	return s_state;
-}
-
-} // anonymous namespace
-
+// display_position_interrupt_callback は元のクリーンな状態に戻す
 TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 {
 	if (LOG_VIDEO_SYSTEM) logerror("--- Scanline @ %d,%d\n", m_screen->vpos(), m_screen->hpos());
-
-	bool allow_autoload_repeat = true;
 
 	if (m_display_position_interrupt_control & IRQ2CTRL_ENABLE)
 	{
 		if (LOG_VIDEO_SYSTEM) logerror("*** Scanline interrupt (IRQ2) ***  y: %02x  x: %02x\n", m_screen->vpos(), m_screen->hpos());
 		m_display_position_interrupt_pending = 1;
-
-		if (is_kof2001_set(machine()))
-		{
-			auto &guard = get_kof2001_raster_guard_state();
-			const uint64_t cur_frame = m_screen->frame_number();
-			const int cur_vpos = m_screen->vpos();
-
-			if ((cur_frame == guard.last_frame) && (cur_vpos == guard.last_vpos))
-			{
-				if (guard.same_vpos_streak <= KOF2001_SAME_VPOS_LIMIT)
-				{
-					++guard.same_vpos_streak;
-				}
-			}
-			else
-			{
-				guard.last_frame = cur_frame;
-				guard.last_vpos = cur_vpos;
-				guard.same_vpos_streak = 1;
-			}
-
-			if (guard.same_vpos_streak > KOF2001_SAME_VPOS_LIMIT)
-			{
-				m_display_position_interrupt_pending = 0;
-				update_interrupts();
-				allow_autoload_repeat = false;
-			}
-		}
+		update_interrupts();
 	}
 
 	if (m_display_position_interrupt_control & IRQ2CTRL_AUTOLOAD_REPEAT)
 	{
 		if (LOG_VIDEO_SYSTEM) logerror("AUTOLOAD_REPEAT ");
-		if (allow_autoload_repeat)
-		{
-			adjust_display_position_interrupt_timer();
-		}
+		adjust_display_position_interrupt_timer();
 	}
 }
 
@@ -745,15 +687,6 @@ void neogeo_state::machine_start()
 	machine().save().register_postload(save_prepost_delegate(FUNC(neogeo_state::neogeo_postload), this));
 
 	m_sprgen->set_screen(m_screen);
-	
-	if (is_kof2001_set(machine()))
-	{
-		auto *const wd = subdevice<watchdog_timer_device>("watchdog");
-		if (wd != nullptr)
-		{
-			wd->set_time(attotime::from_seconds(60));
-		}
-	}
 
 //	m_sprgen->set_sprite_region(m_region_sprites->base(), m_region_sprites->bytes());
 //	m_sprgen->set_fixed_regions(m_region_fixed->base(), m_region_fixed->bytes(), m_region_fixedbios);
@@ -1159,6 +1092,16 @@ void neogeo_state::no_watchdog(machine_config &config)
 {
 	neogeo(config);
 	subdevice<watchdog_timer_device>("watchdog")->set_time(attotime::from_seconds(0.0));
+}
+
+void neogeo_state::kof2001_cfg(machine_config &config)
+{
+	neogeo(config);
+	auto *const wd = subdevice<watchdog_timer_device>("watchdog");
+	if (wd != nullptr)
+	{
+		wd->set_time(attotime::from_seconds(60));
+	}
 }
 
 void neogeo_state::gsc_map(address_map &map)
