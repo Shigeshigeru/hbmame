@@ -97,39 +97,6 @@
 #define IRQ2CTRL_AUTOLOAD_VBLANK    (0x40)
 #define IRQ2CTRL_AUTOLOAD_REPEAT    (0x80)
 
-namespace {
-
-// KOF2001系（kof2001 / kof2001h / kof2001n）のエンディング等でラスタ割り込みが連発する際の抑止上限
-constexpr uint32_t KOF2001_RASTER_STREAK_LIMIT = 256;
-
-bool is_kof2001_set(const running_machine &machine)
-{
-	const char *const name = machine.system().name;
-	return (!std::strcmp(name, "kof2001"))
-		|| (!std::strcmp(name, "kof2001h"))
-		|| (!std::strcmp(name, "kof2001n"));
-}
-
-struct kof2001_raster_guard_state
-{
-	uint64_t last_frame = 0;
-	uint32_t streak = 0;
-};
-
-kof2001_raster_guard_state &get_kof2001_raster_guard_state()
-{
-	// neogeo.h を汚さず neogeo.cpp 内に閉じ込めるガード状態
-	static kof2001_raster_guard_state s_state;
-	return s_state;
-}
-
-void kof2001_reset_raster_guard()
-{
-	// リセットや別ゲーム切替時に前回の連続カウント・フレーム番号をクリアする
-	get_kof2001_raster_guard_state() = kof2001_raster_guard_state{};
-}
-
-} // anonymous namespace
 
 void neogeo_state::adjust_display_position_interrupt_timer()
 {
@@ -188,7 +155,42 @@ void neogeo_state::neogeo_acknowledge_interrupt( uint16_t  data )
 	update_interrupts();
 }
 
-// display_position_interrupt_callback は元のクリーンな状態に戻す
+namespace {
+
+// KOF2001（kof2001）で同一フレーム・同一スキャンライン（vpos）のラスタ割り込みが連発する上限
+constexpr uint32_t KOF2001_SAME_VPOS_LIMIT = 16;
+
+// KOF2001系（kof2001 / kof2001h / kof2001n）を対象とし、それ以外のゲームには適用しない
+bool is_kof2001_set(const running_machine &machine)
+{
+	const char *const name = machine.system().name;
+	return (!std::strcmp(name, "kof2001"))
+		|| (!std::strcmp(name, "kof2001h"))
+		|| (!std::strcmp(name, "kof2001n"));
+}
+
+struct kof2001_raster_guard_state
+{
+	uint64_t last_frame = 0;
+	int last_vpos = -1;
+	uint32_t same_vpos_streak = 0;
+};
+
+kof2001_raster_guard_state &get_kof2001_raster_guard_state()
+{
+	// neogeo.h を変更せず neogeo.cpp 内に閉じ込めるガード状態
+	static kof2001_raster_guard_state s_state;
+	return s_state;
+}
+
+void kof2001_reset_raster_guard()
+{
+	// リセットやゲーム切替時に前回の連続カウントをクリアする
+	get_kof2001_raster_guard_state() = kof2001_raster_guard_state{};
+}
+
+} // anonymous namespace
+
 TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 {
 	if (LOG_VIDEO_SYSTEM) logerror("--- Scanline @ %d,%d\n", m_screen->vpos(), m_screen->hpos());
@@ -199,28 +201,28 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 	{
 		if (LOG_VIDEO_SYSTEM) logerror("*** Scanline interrupt (IRQ2) ***  y: %02x  x: %02x\n", m_screen->vpos(), m_screen->hpos());
 		m_display_position_interrupt_pending = 1;
-		update_interrupts();
 
-		// KOF2001系のみ同一フレームのラスタ連続回数を監視し、他ゲームには影響を与えない
 		if (is_kof2001_set(machine()))
 		{
 			auto &guard = get_kof2001_raster_guard_state();
 			const uint64_t cur_frame = m_screen->frame_number();
+			const int cur_vpos = m_screen->vpos();
 
-			if (cur_frame == guard.last_frame)
+			if ((cur_frame == guard.last_frame) && (cur_vpos == guard.last_vpos))
 			{
-				if (guard.streak <= KOF2001_RASTER_STREAK_LIMIT)
+				if (guard.same_vpos_streak <= KOF2001_SAME_VPOS_LIMIT)
 				{
-					++guard.streak;
+					++guard.same_vpos_streak;
 				}
 			}
 			else
 			{
 				guard.last_frame = cur_frame;
-				guard.streak = 1;
+				guard.last_vpos = cur_vpos;
+				guard.same_vpos_streak = 1;
 			}
 
-			if (guard.streak > KOF2001_RASTER_STREAK_LIMIT)
+			if (guard.same_vpos_streak > KOF2001_SAME_VPOS_LIMIT)
 			{
 				m_display_position_interrupt_pending = 0;
 				update_interrupts();
@@ -752,6 +754,15 @@ void neogeo_state::machine_start()
 	machine().save().register_postload(save_prepost_delegate(FUNC(neogeo_state::neogeo_postload), this));
 
 	m_sprgen->set_screen(m_screen);
+	
+	if (is_kof2001_set(machine()))
+	{
+		auto *const wd = subdevice<watchdog_timer_device>("watchdog");
+		if (wd != nullptr)
+		{
+			wd->set_time(attotime::from_seconds(60));
+		}
+	}
 
 //	m_sprgen->set_sprite_region(m_region_sprites->base(), m_region_sprites->bytes());
 //	m_sprgen->set_fixed_regions(m_region_fixed->base(), m_region_fixed->bytes(), m_region_fixedbios);
@@ -764,9 +775,10 @@ void neogeo_state::machine_start()
  *
  *************************************/
 
+
 void neogeo_state::machine_reset()
 {
-	// リセット時に KOF2001 ガード状態を初期化
+	// リセット時に kof2001 の同一 vpos ガード状態を初期化
 	kof2001_reset_raster_guard();
 
 	/* reset system control registers */
