@@ -157,7 +157,7 @@ void neogeo_state::neogeo_acknowledge_interrupt( uint16_t  data )
 
 namespace {
 
-constexpr uint32_t KOF2001_RASTER_STREAK_LIMIT = 512;
+constexpr uint32_t KOF2001_SAME_VPOS_LIMIT = 16;
 
 bool is_kof2001_set(const running_machine &machine)
 {
@@ -170,7 +170,8 @@ bool is_kof2001_set(const running_machine &machine)
 struct kof2001_raster_guard_state
 {
 	uint64_t last_frame = 0;
-	uint32_t streak = 0;
+	int last_vpos = -1;
+	uint32_t same_vpos_streak = 0;
 };
 
 kof2001_raster_guard_state &get_kof2001_raster_guard_state()
@@ -196,21 +197,23 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 		{
 			auto &guard = get_kof2001_raster_guard_state();
 			const uint64_t cur_frame = m_screen->frame_number();
+			const int cur_vpos = m_screen->vpos();
 
-			if (cur_frame == guard.last_frame)
+			if ((cur_frame == guard.last_frame) && (cur_vpos == guard.last_vpos))
 			{
-				if (guard.streak <= KOF2001_RASTER_STREAK_LIMIT)
+				if (guard.same_vpos_streak <= KOF2001_SAME_VPOS_LIMIT)
 				{
-					++guard.streak;
+					++guard.same_vpos_streak;
 				}
 			}
 			else
 			{
 				guard.last_frame = cur_frame;
-				guard.streak = 1;
+				guard.last_vpos = cur_vpos;
+				guard.same_vpos_streak = 1;
 			}
 
-			if (guard.streak > KOF2001_RASTER_STREAK_LIMIT)
+			if (guard.same_vpos_streak > KOF2001_SAME_VPOS_LIMIT)
 			{
 				m_display_position_interrupt_pending = 0;
 				update_interrupts();
