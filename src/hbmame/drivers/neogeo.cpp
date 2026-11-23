@@ -1094,16 +1094,6 @@ void neogeo_state::no_watchdog(machine_config &config)
 	subdevice<watchdog_timer_device>("watchdog")->set_time(attotime::from_seconds(0.0));
 }
 
-void neogeo_state::kof2001_cfg(machine_config &config)
-{
-	neogeo(config);
-	auto *const wd = subdevice<watchdog_timer_device>("watchdog");
-	if (wd != nullptr)
-	{
-		wd->set_time(attotime::from_seconds(60));
-	}
-}
-
 void neogeo_state::gsc_map(address_map &map)
 {
 	main_map_noslot(map);
@@ -1309,6 +1299,12 @@ void neogeo_state::init_kof2001()
 {
 	init_neogeo();
 	m_sprgen->m_fixed_layer_bank_type = 1; // only meaningful if s1 > 128k
+
+	auto *const wd = subdevice<watchdog_timer_device>("watchdog");
+	if (wd != nullptr)
+	{
+		wd->set_time(attotime::from_seconds(60));
+	}
 
 	// decrypt m1 if needed
 	if (memregion("audiocrypt"))
