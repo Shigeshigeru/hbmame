@@ -157,7 +157,7 @@ void neogeo_state::neogeo_acknowledge_interrupt( uint16_t  data )
 
 namespace {
 
-constexpr uint32_t KOF2001_RASTER_STREAK_LIMIT = 256;
+constexpr uint32_t KOF2001_RASTER_STREAK_LIMIT = 512;
 
 bool is_kof2001_set(const running_machine &machine)
 {
