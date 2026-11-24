@@ -202,7 +202,9 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 	{
 		if (LOG_VIDEO_SYSTEM) logerror("*** Scanline interrupt (IRQ2) ***  y: %02x  x: %02x\n", m_screen->vpos(), m_screen->hpos());
 		m_display_position_interrupt_pending = 1;
-	
+
+		bool skip_update_interrupts = false;
+
 		if (is_kof2001_set(machine()))
 		{
 			auto &guard = get_kof2001_raster_guard_state();
@@ -232,13 +234,19 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 				}
 			}
 
-			// 抑制状態に入っている間はラスタ割り込みのペンディングを立てず、連発による負荷を防ぐ
+			// 抑制状態に入っている間はラスタ割り込みのペンディングを落とし、update_interrupts() も無効化する
 			if (guard.suppressed)
 			{
 				m_display_position_interrupt_pending = 0;
+				skip_update_interrupts = true;
 			}
 		}
-		update_interrupts();
+
+		if (!skip_update_interrupts)
+		{
+			update_interrupts();
+		}
+	}
 	}
 	if (m_display_position_interrupt_control & IRQ2CTRL_AUTOLOAD_REPEAT)
 	{
