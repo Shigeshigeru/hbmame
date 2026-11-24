@@ -157,10 +157,11 @@ void neogeo_state::neogeo_acknowledge_interrupt( uint16_t  data )
 
 namespace {
 
-// KOF2001（kof2001）で同一フレーム・同一スキャンライン（vpos）のラスタ割り込みが連発する上限
+// KOF2001系（kof2001 / kof2001h / kof2001n）で同一フレーム・同一スキャンライン（vpos）の
+// ラスタ割り込み（IRQ2）が連続発生する許容上限回数
 constexpr uint32_t KOF2001_SAME_VPOS_LIMIT = 8;
 
-// KOF2001系（kof2001 / kof2001h / kof2001n）を対象とし、それ以外のゲームには適用しない
+// KOF2001系セットかどうかを判定し、他ゲームへの影響を遮断する
 bool is_kof2001_set(const running_machine &machine)
 {
 	const char *const name = machine.system().name;
@@ -169,23 +170,24 @@ bool is_kof2001_set(const running_machine &machine)
 		|| (!std::strcmp(name, "kof2001n"));
 }
 
+// neogeo.h を変更せず neogeo.cpp 内に閉じ込めるラスタ割り込みガード状態
 struct kof2001_raster_guard_state
 {
-	uint64_t last_frame = 0;
-	int last_vpos = -1;
-	uint32_t same_vpos_streak = 0;
+	uint64_t last_frame = 0;        // 直前にIRQ2が発生したフレーム番号
+	int last_vpos = -1;             // 直前にIRQ2が発生したスキャンライン位置（vpos）
+	uint32_t same_vpos_streak = 0;  // 同一フレーム・同一vposでの連続発生回数
+	bool suppressed = false;        // 上限超過後にIRQ2ペンディングを抑制し続けるフラグ
 };
 
 kof2001_raster_guard_state &get_kof2001_raster_guard_state()
 {
-	// neogeo.h を変更せず neogeo.cpp 内に閉じ込めるガード状態
 	static kof2001_raster_guard_state s_state;
 	return s_state;
 }
 
+// ソフトリセット時などにガード状態（連続カウントや抑制フラグ）を初期化する
 void kof2001_reset_raster_guard()
 {
-	// リセットやゲーム切替時に前回の連続カウントをクリアする
 	get_kof2001_raster_guard_state() = kof2001_raster_guard_state{};
 }
 
@@ -200,31 +202,42 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 	{
 		if (LOG_VIDEO_SYSTEM) logerror("*** Scanline interrupt (IRQ2) ***  y: %02x  x: %02x\n", m_screen->vpos(), m_screen->hpos());
 		m_display_position_interrupt_pending = 1;
-
+	
 		if (is_kof2001_set(machine()))
 		{
 			auto &guard = get_kof2001_raster_guard_state();
-			const uint64_t cur_frame = m_screen->frame_number();
-			const int cur_vpos = m_screen->vpos();
 
-			if ((cur_frame == guard.last_frame) && (cur_vpos == guard.last_vpos))
+			// まだ抑制状態に入っていない場合のみ、同一フレーム・同一vposの連発を計測する
+			if (!guard.suppressed)
 			{
-				if (guard.same_vpos_streak <= KOF2001_SAME_VPOS_LIMIT)
+				const uint64_t cur_frame = m_screen->frame_number();
+				const int cur_vpos = m_screen->vpos();
+
+				if ((cur_frame == guard.last_frame) && (cur_vpos == guard.last_vpos))
+				{
 					++guard.same_vpos_streak;
-			}
-			else
-			{
-				guard.last_frame = cur_frame;
-				guard.last_vpos = cur_vpos;
-				guard.same_vpos_streak = 1;
+
+					// 許容上限を超えたら、このリセット区間中は割り込み連発を抑制状態にする
+					if (guard.same_vpos_streak > KOF2001_SAME_VPOS_LIMIT)
+					{
+						guard.suppressed = true;
+					}
+				}
+				else
+				{
+					// フレームまたは走査線が変わったらカウントをリセットして新しい位置を記録する
+					guard.last_frame = cur_frame;
+					guard.last_vpos = cur_vpos;
+					guard.same_vpos_streak = 1;
+				}
 			}
 
-			if (guard.same_vpos_streak > KOF2001_SAME_VPOS_LIMIT)
+			// 抑制状態に入っている間はラスタ割り込みのペンディングを立てず、連発による負荷を防ぐ
+			if (guard.suppressed)
 			{
 				m_display_position_interrupt_pending = 0;
 			}
 		}
-
 		update_interrupts();
 	}
 	if (m_display_position_interrupt_control & IRQ2CTRL_AUTOLOAD_REPEAT)
