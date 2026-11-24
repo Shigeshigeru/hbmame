@@ -247,7 +247,6 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 			update_interrupts();
 		}
 	}
-	}
 	if (m_display_position_interrupt_control & IRQ2CTRL_AUTOLOAD_REPEAT)
 	{
 		if (LOG_VIDEO_SYSTEM) logerror("AUTOLOAD_REPEAT ");
