@@ -158,7 +158,7 @@ void neogeo_state::neogeo_acknowledge_interrupt( uint16_t  data )
 namespace {
 
 // KOF2001（kof2001）で同一フレーム・同一スキャンライン（vpos）のラスタ割り込みが連発する上限
-constexpr uint32_t KOF2001_SAME_VPOS_LIMIT = 4;
+constexpr uint32_t KOF2001_SAME_VPOS_LIMIT = 8;
 
 // KOF2001系（kof2001 / kof2001h / kof2001n）を対象とし、それ以外のゲームには適用しない
 bool is_kof2001_set(const running_machine &machine)
