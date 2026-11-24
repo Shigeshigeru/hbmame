@@ -3487,7 +3487,7 @@ ROM_END
 
 // The King of Fighters 2001 (NGH-2621, Fully Decrypted)
 
-ROM_START( kof2k1hb )
+ROM_START( kof2k1hd )
 	ROM_REGION( 0x500000, "maincpu", 0 )
 	ROM_LOAD16_WORD_SWAP( "262-pg1.p1", 0x000000, 0x100000, CRC(2af7e741) SHA1 (e41282d73ed6d521da056f1a16573bb61bfa3826) )
 	ROM_LOAD16_WORD_SWAP( "262-pg2.sp2", 0x100000, 0x400000, CRC(91eea062) SHA1 (82bae42bbeedb9f3aa0c7c0b0a7a69be499cf98f) )
