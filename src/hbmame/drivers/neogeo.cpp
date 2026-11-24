@@ -195,8 +195,7 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 {
 	if (LOG_VIDEO_SYSTEM) logerror("--- Scanline @ %d,%d\n", m_screen->vpos(), m_screen->hpos());
 
-	bool allow_autoload_repeat = true;
-
+	// TODO: how is this really triggered?
 	if (m_display_position_interrupt_control & IRQ2CTRL_ENABLE)
 	{
 		if (LOG_VIDEO_SYSTEM) logerror("*** Scanline interrupt (IRQ2) ***  y: %02x  x: %02x\n", m_screen->vpos(), m_screen->hpos());
@@ -211,9 +210,7 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 			if ((cur_frame == guard.last_frame) && (cur_vpos == guard.last_vpos))
 			{
 				if (guard.same_vpos_streak <= KOF2001_SAME_VPOS_LIMIT)
-				{
 					++guard.same_vpos_streak;
-				}
 			}
 			else
 			{
@@ -225,19 +222,15 @@ TIMER_CALLBACK_MEMBER(neogeo_state::display_position_interrupt_callback)
 			if (guard.same_vpos_streak > KOF2001_SAME_VPOS_LIMIT)
 			{
 				m_display_position_interrupt_pending = 0;
-				update_interrupts();
-				allow_autoload_repeat = false;
 			}
 		}
-	}
 
+		update_interrupts();
+	}
 	if (m_display_position_interrupt_control & IRQ2CTRL_AUTOLOAD_REPEAT)
 	{
 		if (LOG_VIDEO_SYSTEM) logerror("AUTOLOAD_REPEAT ");
-		if (allow_autoload_repeat)
-		{
-			adjust_display_position_interrupt_timer();
-		}
+		adjust_display_position_interrupt_timer();
 	}
 }
 
