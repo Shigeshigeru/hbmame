@@ -2125,6 +2125,9 @@ makprincessenh
 makprincessg
 makprincessgenh
 
+@source:goldnpkr.cpp
+goldnmame
+
 @source:gottlieb.cpp
 qbert                                  //parent
 myqbert                                // in mame
@@ -6400,6 +6403,7 @@ cndia
 cnbe
 cnbe2018
 cphd
+cninjan
 columnsn	/* 2000 (c) 1990 Sega */
 columnsncd
 cosmogngn
@@ -6544,9 +6548,11 @@ tmnti		/* TMNT intro */
 tmntia
 tmntn
 totc		// Treasure of the Caribbean
+tumblepn
 twister		// Blastar 2015
 vaporous
 veilriot
+vendettan
 violentv
 vssmbn
 warriorm
@@ -8945,9 +8951,6 @@ silkroad03
 @source:shaolins.cpp
 kicker                                 //parent
 kfjohnny
-
-@source:skimaxx.cpp
-skimaxx                                // HB, no parent
 
 @source:skylove.cpp
 skylove

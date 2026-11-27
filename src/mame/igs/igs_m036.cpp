@@ -8,7 +8,7 @@
    - The original ARM boot code uploads the key and checks the program ROM.
      The cipher hardware uses igs036_decryptor, as on PGM2; no boot checks are patched.
    - Atmel-style AIC and timer counters; vblank uses IRQ2, TC0-2 use IRQ6-8.
-   - Packed 7bpp sprites, provisional RLE, RGB555 palette, 512x240 / 800x600 video.
+   - Packed 7bpp sprites, provisional RLE, RGB555 palette, 512x240 / 640x480 / 800x600 video.
    - Several external bus layouts, GPIO input matrices, TT5665 / banked M6295.
    - Battery-backed SRAM, coin hoppers and Hou Ye Leyuan's ticket dispenser.
 
@@ -16,6 +16,10 @@
    display control, verify CPU/peripheral clocks, complete timer modes, serial
    links, real-time timer, lamps/counters and remaining DIP settings. Mechanical
    payout timing is provisional; alternate control modes still need checking.
+
+   TODO: hlqqq uses a separate I/O board over the SOC UART (RS232) for coins,
+   inputs and payout, like mghammer; it is not emulated, so the game stops at
+   the "I/O card connection failed" screen.
 
    The 20 MHz oscillator is documented on several boards; the CPU's internal
    PLL/multiplier has not been established. PGM2's 100 MHz is also marked unknown.
@@ -148,6 +152,7 @@ check more info and photo from cjdh2.zip!!!
 #include "igs036crypt.h"
 #include "igsmahjong.h"
 
+#include "machine/i8255.h"
 #include "machine/nvram.h"
 #include "machine/ticket.h"
 #include "sound/okim6295.h"
@@ -218,6 +223,7 @@ protected:
 	virtual void device_post_load() override ATTR_COLD;
 
 	void base_config(machine_config &config) ATTR_COLD;
+	void wide_video(machine_config &config, u16 width, u16 height) ATTR_COLD;
 	void m036_boot_map(address_map &map) ATTR_COLD;
 
 	template <bool Wide> u32 screen_update(screen_device &screen, bitmap_rgb32 &bitmap, const rectangle &cliprect);
@@ -392,6 +398,36 @@ private:
 	required_device<ticket_dispenser_device> m_ticket;
 
 	void hyleyuan_map(address_map &map) ATTR_COLD;
+};
+
+class m036_qiaojidm_state : public m036_base_state
+{
+public:
+	m036_qiaojidm_state(const machine_config &mconfig, device_type type, const char *tag)
+		: m036_base_state(mconfig, type, tag),
+		m_ppi(*this, "ppi") { }
+
+	void m036_qiaojidm(machine_config &config) ATTR_COLD;
+
+private:
+	required_device<i8255_device> m_ppi;
+
+	void qiaojidm_map(address_map &map) ATTR_COLD;
+};
+
+class m036_hlqqq_state : public m036_base_state
+{
+public:
+	m036_hlqqq_state(const machine_config &mconfig, device_type type, const char *tag)
+		: m036_base_state(mconfig, type, tag),
+		m_tt5665(*this, "tt5665") { }
+
+	void m036_hlqqq(machine_config &config) ATTR_COLD;
+
+private:
+	required_device<tt5665_device> m_tt5665;
+
+	void hlqqq_map(address_map &map) ATTR_COLD;
 };
 
 
@@ -792,6 +828,36 @@ void m036_hyleyuan_state::hyleyuan_map(address_map &map)
 	map(0x6000'0000, 0x6000'0003).umask32(0x0000'00ff).lw8(NAME([this] (u8 data) { m_ticket->motor_w(BIT(data, 1)); }));
 }
 
+void m036_qiaojidm_state::qiaojidm_map(address_map &map)
+{
+	m036_boot_map(map);
+
+	// The internal ROM's port tables list 16-bit ports at 0x30000002/4/6 and
+	// an 8255 at 0x60000000-6 (control word 0x9b: A, B and C as inputs).
+	// The game reads its two DIP banks from 0x30000006 and 0x30000004 at boot.
+	map(0x3000'0000, 0x3000'0003).umask32(0xffff'0000).portr("IN1");
+	map(0x3000'0004, 0x3000'0007).lr32(NAME([this] () -> u32 { return m_dsw[1]->read() | (m_dsw[0]->read() << 16) | 0xff00'ff00; }));
+	map(0x3000'0000, 0x3000'0007).nopw(); // TODO: outputs
+
+	map(0x4000'0000, 0x4000'0003).noprw(); // TODO: sound chip, register index at byte 0, data at byte 1
+
+	// The internal ROM's 8-bit output table lists 0x50000000-6 with the same layout as the 8255.
+	map(0x5000'0000, 0x5000'0007).nopw(); // TODO: outputs
+
+	map(0x6000'0000, 0x6000'0007).umask32(0x00ff'00ff).rw(m_ppi, FUNC(i8255_device::read), FUNC(i8255_device::write));
+}
+
+void m036_hlqqq_state::hlqqq_map(address_map &map)
+{
+	m036_boot_map(map);
+	map(0x3000'0000, 0x3000'0003).umask32(0x0000'00ff).rw(m_tt5665, FUNC(tt5665_device::csl_r), FUNC(tt5665_device::csl_w));
+	map(0x4000'0000, 0x4000'0003).umask32(0x0000'00ff).rw(m_tt5665, FUNC(tt5665_device::csr_r), FUNC(tt5665_device::csr_w));
+
+	// The internal ROM's port tables list 0x50000000 and 16-bit ports at 0x60000000-c,
+	// but the game program reaches coins, inputs and payout only through the I/O board.
+	map(0x6000'0000, 0x6000'0003).nopw(); // cleared by the internal ROM at boot
+}
+
 void m036_mj_state::mjzhizun_map(address_map &map)
 {
 	m036_boot_map(map);
@@ -1027,6 +1093,93 @@ INPUT_PORTS_END
 
 
 
+static INPUT_PORTS_START( qiaojidm )
+	// Not used by this board, but required by m036_base_state
+	PORT_START("SERVICE")
+	PORT_BIT(0xffff, IP_ACTIVE_LOW, IPT_UNKNOWN)
+	PORT_START("DIRECT")
+	PORT_BIT(0xffff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("KEY0")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("KEY1")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("KEY2")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("KEY3")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("KEY4")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+
+	// The game scans 8255 ports A-C and 0x30000002 as key codes 0x00-0x3f.
+	// Names from the key test; the other used codes are 0x06, 0x16 and 0x33.
+	PORT_START("PPIA")
+	PORT_BIT(0x01, IP_ACTIVE_LOW, IPT_SERVICE2) PORT_NAME("Set Key")
+	PORT_SERVICE_NO_TOGGLE(0x02, IP_ACTIVE_LOW)
+	PORT_BIT(0x04, IP_ACTIVE_LOW, IPT_SERVICE3) PORT_NAME("Select Key")
+	PORT_BIT(0x08, IP_ACTIVE_LOW, IPT_SERVICE1) PORT_NAME("Service Key")
+	PORT_BIT(0xf0, IP_ACTIVE_LOW, IPT_UNKNOWN)
+
+	PORT_START("PPIB")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNKNOWN)
+
+	PORT_START("PPIC")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNKNOWN)
+
+	PORT_START("IN1")
+	PORT_BIT(0xffff, IP_ACTIVE_LOW, IPT_UNKNOWN)
+
+	// TODO: which bank is SW3 and which is SW4
+	PORT_START("DSW1")
+	PORT_DIPUNKNOWN(0x01, 0x01)
+	PORT_DIPUNKNOWN(0x02, 0x02)
+	PORT_DIPUNKNOWN(0x04, 0x04)
+	PORT_DIPUNKNOWN(0x08, 0x08)
+	PORT_DIPUNKNOWN(0x10, 0x10)
+	PORT_DIPUNKNOWN(0x20, 0x20)
+	PORT_DIPUNKNOWN(0x40, 0x40)
+	PORT_DIPUNKNOWN(0x80, 0x80)
+
+	PORT_START("DSW2")
+	PORT_DIPUNKNOWN(0x01, 0x01)
+	PORT_DIPUNKNOWN(0x02, 0x02)
+	PORT_DIPUNKNOWN(0x04, 0x04)
+	PORT_DIPUNKNOWN(0x08, 0x08)
+	PORT_DIPUNKNOWN(0x10, 0x10)
+	PORT_DIPUNKNOWN(0x20, 0x20)
+	PORT_DIPUNKNOWN(0x40, 0x40)
+	PORT_DIPUNKNOWN(0x80, 0x80)
+
+	PORT_START("DSW3")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+INPUT_PORTS_END
+
+
+static INPUT_PORTS_START( hlqqq )
+	// Not used by this board, but required by m036_base_state
+	// TODO: coins, buttons and settings come from the I/O board over the UART
+	PORT_START("SERVICE")
+	PORT_BIT(0xffff, IP_ACTIVE_LOW, IPT_UNKNOWN)
+	PORT_START("DIRECT")
+	PORT_BIT(0xffff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("KEY0")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("KEY1")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("KEY2")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("KEY3")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("KEY4")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("DSW1")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("DSW2")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+	PORT_START("DSW3")
+	PORT_BIT(0xff, IP_ACTIVE_LOW, IPT_UNUSED)
+INPUT_PORTS_END
+
+
 // DIP functions read from the games' own test screens. Unidentified switches
 // use their physical locations; link and accounting settings need further tests.
 static INPUT_PORTS_START( ddz )
@@ -1193,6 +1346,15 @@ void m036_base_state::base_config(machine_config &config)
 	SPEAKER(config, "speaker").front_center();
 }
 
+void m036_base_state::wide_video(machine_config &config, u16 width, u16 height)
+{
+	// The 800x600 and 640x480 boards share the packed 7bpp "Wide" sprite path.
+	m_maincpu->set_clock(100'000'000); // provisional PLL clock, as in PGM2
+	m_screen->set_size(width, height);
+	m_screen->set_visarea(0, width - 1, 0, height - 1);
+	m_screen->set_screen_update(FUNC(m036_base_state::screen_update<true>));
+}
+
 void hopper_state::hopper_config(machine_config &config)
 {
 	base_config(config);
@@ -1267,10 +1429,7 @@ void m036_mj_state::m036_mjzhizun(machine_config &config)
 void m036_hd_base_state::hd_config(machine_config &config)
 {
 	base_config(config);
-	m_maincpu->set_clock(100'000'000); // provisional PLL clock, as in PGM2
-	m_screen->set_size(800, 600);
-	m_screen->set_visarea(0, 799, 0, 599);
-	m_screen->set_screen_update(FUNC(m036_hd_base_state::screen_update<true>));
+	wide_video(config, 800, 600);
 	TT5665(config, m_tt5665, 4.952_MHz_XTAL, tt5665_device::ss_state::SS_HIGH, 0);
 	m_tt5665->add_route(ALL_OUTPUTS, "speaker", 0.5);
 }
@@ -1291,6 +1450,37 @@ void m036_hyleyuan_state::m036_hyleyuan(machine_config &config)
 	m_maincpu->set_gpio_r().set(FUNC(m036_hyleyuan_state::scan_inputs_r<4>));
 
 	TICKET_DISPENSER(config, m_ticket, attotime::from_msec(100)); // mechanical period is provisional
+}
+
+void m036_qiaojidm_state::m036_qiaojidm(machine_config &config)
+{
+	base_config(config);
+	m_maincpu->set_addrmap(AS_PROGRAM, &m036_qiaojidm_state::qiaojidm_map);
+	// TODO: the game selects 0x19 at 0xfffffa0c (HD boards 0x1b, 512x240 boards 0x18)
+
+	// Full-screen backgrounds in the sprite table are 80 addresses (640 pixels) by 480 lines.
+	// TODO: pixel clock and blanking intervals are not known.
+	wide_video(config, 640, 480);
+
+	I8255(config, m_ppi);
+	m_ppi->in_pa_callback().set_ioport("PPIA");
+	m_ppi->in_pb_callback().set_ioport("PPIB");
+	m_ppi->in_pc_callback().set_ioport("PPIC");
+
+	// TODO: sound chip at 0x40000000, ticket dispenser, lamps/counters
+}
+
+void m036_hlqqq_state::m036_hlqqq(machine_config &config)
+{
+	base_config(config);
+	m_maincpu->set_addrmap(AS_PROGRAM, &m036_hlqqq_state::hlqqq_map);
+
+	// Full-screen backgrounds in the sprite table are 80 addresses (640 pixels) by 480 lines.
+	// TODO: pixel clock and blanking intervals are not known.
+	wide_video(config, 640, 480);
+
+	TT5665(config, m_tt5665, 4.952_MHz_XTAL, tt5665_device::ss_state::SS_HIGH, 0);
+	m_tt5665->add_route(ALL_OUTPUTS, "speaker", 0.5);
 }
 
 
@@ -2010,20 +2200,20 @@ ROM_END
 ROM_START( hlqqq )
 	ROM_REGION( 0x4000, "maincpu", 0 )
 	// Internal ROM of IGS036 ARM based MCU
-	ROM_LOAD( "hlqqq_igs036.bin", 0x0000, 0x4000, CRC(9a752539) SHA1(38d40b344b308bc24e93b6fbd7e38f52089fc58b) )
+	ROM_LOAD( "hlqqq_igs036.bin", 0x0000, 0x4000, CRC(ffcc9742) SHA1(b94e236b39affb6329a5a966fe892e56fdd40834) )
 
 	ROM_REGION32_LE( 0x200000, "user1", 0 ) // external ARM data / prg
 	ROM_LOAD( "hlqqq_v100cn.u26", 0x000000, 0x200000, CRC(39fb6a4c) SHA1(fc391b74910c26c6b46c218dc387ca539fc4949f) )
 
-	ROM_REGION( 0x1000000, "oki", 0 ) // samples
+	ROM_REGION( 0x1000000, "tt5665", 0 ) // samples
 	ROM_LOAD( "hlqqq_sp.u17", 0x000000, 0x800000, CRC(55d24d28) SHA1(b467fcc485e6748300a59928f6689439952b70b4) )
-	ROM_LOAD( "hlqqq_sp.u18", 0x000000, 0x800000, CRC(69addcf2) SHA1(216e8a14dae32a8cd8547215132b183dc0d12fe1) )
+	ROM_LOAD( "hlqqq_sp.u18", 0x800000, 0x800000, CRC(69addcf2) SHA1(216e8a14dae32a8cd8547215132b183dc0d12fe1) )
 
-	ROM_REGION( 0x8000000, "gfx", 0 )
-	ROM_LOAD( "hlqqq_cg_v100cn.u1", 0x0000000, 0x2000000, NO_DUMP )
-	ROM_LOAD( "hlqqq_cg_v100cn.u2", 0x2000000, 0x2000000, NO_DUMP )
-	ROM_LOAD( "hlqqq_cg_v100cn.u3", 0x4000000, 0x2000000, NO_DUMP )
-	ROM_LOAD( "hlqqq_cg_v100cn.u4", 0x6000000, 0x2000000, NO_DUMP )
+	ROM_REGION( 0x4000000, "gfx", 0 )
+	ROM_LOAD( "hlqqq_cg_v100cn.u1", 0x0000000, 0x1000000, CRC(25d78457) SHA1(5444d9fd698ff61af4e0060d0a274c40c0827a43) )
+	ROM_LOAD( "hlqqq_cg_v100cn.u2", 0x1000000, 0x1000000, CRC(cfeaad81) SHA1(f7330094ffb7a59f976dc0e9ed9966322c0b7569) )
+	ROM_LOAD( "hlqqq_cg_v100cn.u3", 0x2000000, 0x1000000, CRC(182a2a93) SHA1(fddf168aadc8486e786c6ebccf811fe200378e77) )
+	ROM_LOAD( "hlqqq_cg_v100cn.u4", 0x3000000, 0x1000000, CRC(ece602b5) SHA1(ac9d9279302c1221ffe8c36980feefc38ead322d) )
 ROM_END
 
 // 敲击大冒险 (Qiāojī Dà Màoxiǎn)
@@ -2031,10 +2221,10 @@ ROM_END
 ROM_START( qiaojidm )
 	ROM_REGION( 0x4000, "maincpu", 0 )
 	// Internal ROM of IGS036 ARM based MCU
-	ROM_LOAD( "igs036", 0x0000, 0x4000, NO_DUMP )
+	ROM_LOAD( "igs036", 0x0000, 0x4000, CRC(9a752539) SHA1(38d40b344b308bc24e93b6fbd7e38f52089fc58b) )
 
 	ROM_REGION32_LE( 0x200000, "user1", 0 ) // external ARM data / prg
-	ROM_LOAD( "qiaojidm_v100cn.u33", 0x000000, 0x200000, CRC(7eb744cd) SHA1(25976322f84001c56e053cf7d925b8a01184b50a) )
+	ROM_LOAD( "qiaojidm_v101cn.u33", 0x000000, 0x200000, CRC(85a75a7f) SHA1(0ab145d65313a954a401c86747c0cb480e8aa582) )
 
 	ROM_REGION( 0x800000, "oki", 0 ) // samples
 	ROM_LOAD( "qiaojidm_sp.u31", 0x000000, 0x800000, CRC(b4f76f8f) SHA1(4cd0a94cb09ae4d040091637bdf97a2ed2e94c3d) )
@@ -2184,18 +2374,20 @@ GAME( 2010, zjddz,        0,       m036_hd,       ddz_hd,   m036_hd_state,      
 
 GAME( 2009, hyleyuan,     0,       m036_hyleyuan, hyleyuan, m036_hyleyuan_state, empty_init,      ROT90, "IGS",          "Hou Ye Leyuan (S103CN)", MACHINE_NOT_WORKING )
 
-// sets with missing GFX ROM dumps
+// sets with a TT5665 for sound and 640x480 display
 
-GAME( 201?, hlqqq,        0,       m036_hd,       ddz_hd,   m036_hd_state,       empty_init,      ROT0, "IGS",           "Huanle Qiao Qiao Qiao (V100CN)", MACHINE_NOT_WORKING )
+GAME( 2014, hlqqq,        0,       m036_hlqqq,    hlqqq,    m036_hlqqq_state,    empty_init,      ROT0, "IGS",           "Qiaoji Da Maoxian 3: Huanle Qiao Qiao Qiao (V100CN)", MACHINE_NOT_WORKING )
+
+// sets with an unidentified sound chip and 640x480 display
+
+GAME( 2007, qiaojidm,     0,       m036_qiaojidm, qiaojidm, m036_qiaojidm_state, empty_init,      ROT0, "IGS",           "Qiaoji Da Maoxian (V101CN)", MACHINE_NO_SOUND | MACHINE_NOT_WORKING )
 
 // sets with no IGS036 ROM dump
 
-GAME( 200?, super70s,     0,       m036_tt, m036, m036_state, init_m036,          ROT0, "IGS",           "Super 70's (V100US)", MACHINE_NO_SOUND | MACHINE_NOT_WORKING )
+GAME( 200?, super70s,     0,       m036_tt, m036, m036_state, init_m036,              ROT0, "IGS",           "Super 70's (V100US)", MACHINE_NO_SOUND | MACHINE_NOT_WORKING )
 
 GAME( 200?, igsm312,      0,       m036_tt, m036, m036_state, init_key<m312cn_key>,   ROT0, "IGS",           "unknown 'IGS 6POKER2' game (V312CN)", MACHINE_NO_SOUND | MACHINE_NOT_WORKING ) // there's very little code and no gfx ROMs, might be a 'set/clear' chip for a gambling game.
 
 GAME( 201?, xcjnh,        0,       m036_tt, m036, m036_state, init_key<xcjnh_key>,    ROT0, "IGS",           "Xiaochou Jianianhua (S100CN)", MACHINE_NO_SOUND | MACHINE_NOT_WORKING )
-
-GAME( 201?, qiaojidm,     0,       m036_tt, m036, m036_state, init_m036,          ROT0, "IGS",           "Qiaoji Da Maoxian (V100CN)", MACHINE_NO_SOUND | MACHINE_NOT_WORKING )
 
 GAME( 2015, mghammer,     0,       m036_tt, m036, m036_state, init_mghammer,          ROT0, "IGS / Enheart", "Medal Get Hammer (V100JP)", MACHINE_NO_SOUND | MACHINE_NOT_WORKING ) // but has S033CN strings?
